@@ -145,7 +145,7 @@ Page({
             data: response.data.token,
             success: function () {
               wx.redirectTo({
-                url: '/pages/index/index'
+                url: '/pages/login/login'
               })
             }
           });

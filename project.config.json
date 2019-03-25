@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wxe82ef86ab407d3b3",
-	"projectname": "%E6%98%86%E8%87%AA%E5%90%88%E4%BC%99%E4%BA%BA",
+	"projectname": "kzhhr-mini-ui",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

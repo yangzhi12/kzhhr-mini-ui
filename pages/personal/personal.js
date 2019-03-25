@@ -58,16 +58,7 @@ Page({
           success: function (res) {
             if (res.statusCode === 200) {
               let response = res.data
-              if (!response.errno) {
-                let userInfo = response.data
-                that.assignUIData(userInfo[0])
-              } else {
-                wx.showModal({
-                  title: '提示信息',
-                  content: response.errmsg,
-                  showCancel: false
-                });
-              }
+              that.assignUIData(response)              
             } else {
               wx.showModal({
                 title: '提示信息',
