@@ -1,12 +1,14 @@
 <view class="container">
   <view class="form-box">
     <view class="form-item">
-      <input class="username" value="{{mobile}}" bindinput="bindMobileInput" placeholder="手机号码" auto-focus maxlength="11"/>
+      <view class="inputlabel">手机号：</view>
+      <input class="username" value="{{mobile}}" bindinput="bindMobileInput"  auto-focus maxlength="11"/>
       <image wx:if="{{ mobile.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
 
     <view class="form-item">
-      <input class="password" value="{{password}}" password bindinput="bindPasswordInput" placeholder="密码" maxlength="11"/>
+      <view class="inputlabel">密码：</view>
+      <input class="password" value="{{password}}" password bindinput="bindPasswordInput"  maxlength="11"/>
       <image class="clear" id="clear-password" wx:if="{{ password.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
     <button type="default" class="login-btn" bindtap="startLogin">登录</button>

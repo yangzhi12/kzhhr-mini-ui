@@ -14,6 +14,17 @@
     border-bottom: 1px solid #d9d9d9;
 }
 
+.form-item .inputlabel{
+    position: absolute;
+    top: 35rpx;
+    left: 0rpx;
+    /* z-index: 2; */
+    display: block;
+    background: #fff;
+    height: 44rpx;
+    width: 32%;
+}
+
 .form-item .username,
 .form-item .mobile,
 .form-item .password,
@@ -24,13 +35,14 @@
 .form-item .refereecertificate{
     position: absolute;
     top: 26rpx;
-    left: 0;
-    display: block;
-    width: 100%;
+    right: 0;
+    display: inline-block;
+    width: 68%;
     height: 44rpx;
     background: #fff;
     color: #333;
     font-size: 30rpx;
+    /* border-bottom: 1px solid #d9d9d9; */
 }
 
 .form-item-type{
@@ -45,12 +57,13 @@
 
 .type-label {
    color: #333;
-   opacity:0.75;
+   /* width: 15%; */
+   /* opacity:0.75; */
 }
 
 .form-item-type .type-item{
     float: left;
-    width: 25%;
+    width: 32%;
     margin-top:30rpx;
 }
 
@@ -60,7 +73,7 @@
 
 .form-item-type .type-selected{
     float: right;
-    width: 75%;
+    width: 68%;
     margin-top:22rpx;
 }
 

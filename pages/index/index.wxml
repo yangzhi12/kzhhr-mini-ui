@@ -1,6 +1,6 @@
 <view class="container">
   <view class="profile-info">
-    <image class="avatar" src="/static/images/logo.png"></image>
+    <image class="avatar" src="/static/images/logo0.png"></image>
     <text class="content">智慧用能服务平台</text>
   </view>
   <view class="user-menu">

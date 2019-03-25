@@ -36,7 +36,7 @@ var gender = {
 
 var referee = {
   'REF': '自荐',
-  'NO_REF': '别人推荐'
+  'NO_REF': '合伙人推荐'
 }
 
 function formatTime(date) {

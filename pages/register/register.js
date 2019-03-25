@@ -15,7 +15,7 @@ Page({
     registerType: '',
     registerTypes: [
       { name: 'NO_REF', value: '自荐' },
-      { name: 'REF', value: '别人推荐' },
+      { name: 'REF', value: '合伙人推荐' },
     ],
     refereeName: '',
     refereeMobile: '',
@@ -31,7 +31,8 @@ Page({
       refereeMobile: '推荐人手机号',
       password: '密码',
       confirmPassword: '确认密码'
-    }
+    },
+    issaving: false
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -117,47 +118,84 @@ Page({
       });
       return false;
     }
-    wx.request({
-      url: api.RegisterUrl,
-      data: {
-        username: that.data.username,
-        password: that.data.password,
-        mobile: that.data.mobile,
-        certificate: that.data.certificate,
-        weixinNo: that.data.weixinNo,
-        gender: that.data.gender,
-        registerType: that.data.registerType,
-        refereeName: that.data.refereeName,
-        refereeMobile: that.data.refereeMobile
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        let response = res.data
-        if (!response.errno) {
-          that.setData({
-            'loginErrorCount': 0
-          });
-          wx.setStorage({
-            key: "token",
-            data: response.data.token,
-            success: function () {
-              wx.redirectTo({
-                url: '/pages/login/login'
+    that.setData({
+      issaving: true
+    })
+    if (!that.issaving) {
+      wx.request({
+        url: api.RegisterUrl,
+        data: {
+          username: that.data.username,
+          password: that.data.password,
+          mobile: that.data.mobile,
+          certificate: that.data.certificate,
+          weixinNo: that.data.weixinNo,
+          gender: that.data.gender,
+          registerType: that.data.registerType,
+          refereeName: that.data.refereeName,
+          refereeMobile: that.data.refereeMobile
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          if (res.statusCode === 200) {
+            let response = res.data
+            if (!response.errno) {
+              that.setData({
+                'loginErrorCount': 0
+              });
+              wx.setStorage({
+                key: "token",
+                data: response.data.token,
+                success: function () {
+                  wx.showModal({
+                    title: '提示信息',
+                    content: '注册成功',
+                    showCancel: false,
+                    success(tipok) {
+                      if (tipok.confirm) {
+                        wx.redirectTo({
+                          url: '/pages/login/login'
+                        })
+                      }
+                    }
+                  });
+                }
+              });
+            } else {
+              wx.showModal({
+                title: '提示信息',
+                content: response.errmsg,
+                showCancel: false
+              });
+              that.setData({
+                issaving: false
               })
             }
-          });
-        } else {
-          wx.showModal({
-            title: '提示信息',
-            content: response.errMsg,
-            showCancel: false
-          });
+          } else {
+            wx.showModal({
+              title: '提示信息',
+              content: '网络异常',
+              showCancel: false
+            });
+            that.setData({
+              issaving: false
+            })
+          }
         }
-      }
-    });
+      });
+    } else {
+      wx.showModal({
+        title: '提示信息',
+        content: '正在提交数据，请稍后...',
+        showCancel: false
+      });
+      that.setData({
+        issaving: false
+      })
+    }
   },
   bindUsernameInput: function (e) {
     this.setData({
