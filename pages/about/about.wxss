@@ -10,3 +10,7 @@
 .form-box .content{   
   padding-bottom: 15rpx;
 }
+
+.form-box .space_content {
+  top: 40rpx;
+}
