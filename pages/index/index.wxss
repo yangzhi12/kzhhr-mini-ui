@@ -22,8 +22,10 @@ page{
 
 .profile-info .avatar {
   height: 200rpx;
-  width: 200rpx;
-  border-radius: 50%;
+  width: 295rpx;
+  /* height: 200rpx;
+  width: 200rpx; */
+  /* border-radius: 50%; */
   /* border: 4rpx solid #fff; */
 }
 
@@ -78,7 +80,7 @@ page{
     border-right: 1px solid rgba(0,0,0,.15);
     border-bottom: 1px solid rgba(0,0,0,.15);
     text-align: center;
-}
+  }
 
 .user-menu .item .a{
   display: flex;

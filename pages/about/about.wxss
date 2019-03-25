@@ -3,6 +3,10 @@
     height: auto;
     overflow: hidden;
     padding: 0 40rpx;
-    margin-top: 96rpx;
+    margin-top: 40rpx;
     background: #fff;
+}
+
+.form-box .content{   
+  padding-bottom: 15rpx;
 }

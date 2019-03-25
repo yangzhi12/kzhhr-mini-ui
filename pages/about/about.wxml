@@ -1,5 +1,24 @@
-<view class="container">  
+<view class="container">
   <view class="form-box">
-    此功能模块暂未开放，敬请期待...
+    <text class="content" decode='{{true}}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昆明自动化成套集团股份有限公司（以下简称：昆自集团）成立于1988年，昆自集团是提供智慧综合能源服务的企业集团。公司以智慧能源服务为核心，围绕客户的综合需求提供工程设计、工程施工、系统运维以及新能源项目开发利用等服务。</text>
+    <text class="content" decode='{{true}}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昆自集团以人才和技术为依托。由数名教授级高级工程师和有数十年工作经验的资深电力专家构成公司智囊团队，以一大批技术水平高、年富力强、实践经验丰富的中级技术人才为中坚力量，并持续储备和培养各专业年轻人才为生力军，组成昆自集团强大的技术人才队伍。目前，公司技术管理人才达300人，为公司发展奠定可靠的技术人才基础。</text>
+    <text class="content" decode='{{true}}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昆自集团始终以工程质量、产品质量和服务质量为管理工作中心，通过了GB/T 19001-2016、ISO 9001：2015、GB/T 50430-2017质量管理体系认证，并保持体系的正常运行。同时，公司注重职业健康和环境安全的管理，通过了职业健康安全管理体系（GB/T28001-2011/OHSAS18001：2007）和环境管理体系（ISO14001：2015）认证。 30年以来，昆自集团业绩遍布国内外，已经完成近3000个工程和服务案例，保持了优良的工程质量和零重大事故的工程安全，赢得了广大业主的信任和支持，树立了良好的品牌形象。2015年7月31日，昆自集团成功登陆资本市场，证券简称为“昆自股份”，股票代码为832848。</text>
+    <text class="content" decode='{{true}}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昆自集团电力工程分公司：具有电力工程承装二级、承修二级、承试二级、电力工程施工总承包贰级、机电工程施工总承包贰级、建筑机电安装工程专业承包贰级、水利水电机电安装工程专业承包叁级、电子与智能化工程专业承包壹级等资质。具备220kV及以下电力工程施工及调试试验、检修维护的服务能力。 昆自集团电力设计有限公司：具有电力行业（送电工程、变电工程）专业乙级、火电专业咨询丙级资质，具备220kV及以下送变电工程设计和技术咨询能力。 昆明自动化集团能源服务有限公司：具有变电站综合自动化系统、水电站计算机监控系统、KZEC昆自能源服务平台等自动化产品，具备电力系统自动化设备的综合技术服务能力，具备水电站、光伏电站、风电电站、变电站、配电室、输电线路、充电站等智慧运维服务的能力。</text>
+    <text class="content" decode='{{true}}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昆明自动化集团新能源有限公司：具有电动汽车充电桩系列产品，具备光伏发电项目开发和新能源项目综合技术服务能力。</text>
+    <text class="content" decode='{{true}}'>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址：云南省昆明市白塔路131号汇都国际B座7楼
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总机：+86 871 65630292 65627062 63129209
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传真：+86 871 65634216
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网址：网址：www.kmatm.com
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail：vip@kmatm.com
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;免费咨询热线：400 8888 209
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术咨询：18388464092
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;股票代码：832848
+    </text>
   </view>
 </view>
