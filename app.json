@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/reset/reset",
+    "pages/index/index",
+    "pages/personal/personal",
+    "pages/income/income",
+    "pages/order/order",
+    "pages/team/team",
+    "pages/share/share",
+    "pages/train/train",
+    "pages/level/level",
+    "pages/focus/focus",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "昆自合伙人",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

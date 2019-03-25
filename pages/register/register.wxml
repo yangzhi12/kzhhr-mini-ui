@@ -1,0 +1,64 @@
+<view class="container">
+    <view class="form-box">
+    	<view class="form-item">
+    		<input class="username" value="{{username}}" bindinput="bindUsernameInput" placeholder="用户名" maxlength="20" auto-focus/>
+    		<image wx:if="{{ username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+      <view class="form-item form-item-type">
+        <view class="type-item">
+          <label class="type-label">性别</label>
+        </view> 
+        <view class="type-selected">
+            <radio-group class="radio-group"  bindchange="genderChange">
+              <label class="radio radio-label" wx:key="{{item.name}}"  wx:for="{{genders}}">
+                <radio value="{{item.name}}" checked="{{item.checked}}" />
+                {{item.value}}
+              </label>
+          </radio-group>
+        </view>       
+    	</view>
+      <view class="form-item">
+    		<input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="手机号" maxlength="11" auto-focus/>
+    		<image wx:if="{{ mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+      <view class="form-item">
+    		<input class="certificate" value="{{certificate}}" bindinput="bindCertificateInput" placeholder="身份证号" maxlength="20" auto-focus/>
+    		<image wx:if="{{ certificate.length > 0 }}" id="clear-certificate" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+      <view class="form-item">
+    		<input class="weixinno" value="{{weixinNo}}" bindinput="bindWeixinNoInput" placeholder="微信号" maxlength="50" auto-focus/>
+    		<image wx:if="{{ weixinNo.length > 0 }}" id="clear-weixinno" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>      
+      <view class="form-item form-item-type">
+        <view class="type-item">
+          <label class="type-label">注册方式</label>
+        </view> 
+        <view class="type-selected">
+            <radio-group class="radio-group"  bindchange="registerTypeChange">
+              <label class="radio radio-label" wx:key="{{item.name}}" wx:for="{{registerTypes}}">
+                <radio value="{{item.name}}" checked="{{item.checked}}" />
+                {{item.value}}
+              </label>
+          </radio-group>
+        </view>       
+    	</view>
+      <view class="form-item" hidden="{{ (!registerType) || (registerType === 'NO_REF') }}">
+    		<input class="refereename" value="{{refereeName}}" bindinput="bindRefereeNameInput" placeholder="推荐人姓名" maxlength="20"/>
+    		<image class="clear" id="clear-refereename" wx:if="{{ refereeName.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+      <view class="form-item" hidden="{{ (!registerType) || (registerType === 'NO_REF') }}">
+    		<input class="refereemobile" value="{{refereeMobile}}" bindinput="bindRefereeMobileInput" placeholder="推荐人手机号" maxlength="11"/>
+    		<image class="clear" id="clear-refereeMobile" wx:if="{{ refereeMobile.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+    	<view class="form-item">
+    		<input class="password" value="{{password}}" password bindinput="bindPasswordInput" placeholder="密码" maxlength="11"/>
+    		<image class="clear" id="clear-password" wx:if="{{ password.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+      <view class="form-item">
+    		<input class="password" value="{{confirmPassword}}" password bindinput="bindConfirmPasswordInput" placeholder="确认密码" maxlength="11"/>
+    		<image class="clear" id="clear-confirm-password" wx:if="{{ confirmPassword.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    	</view>
+    	<button type="default" class="login-btn" bindtap="startRegister">注册</button>
+
+    </view>
+</view>

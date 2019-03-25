@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="profile-info">
+    <image class="avatar" src="/static/images/logo.png"></image>
+    <text class="content">智慧用能服务平台</text>
+  </view>
+  <view class="user-menu">
+    <view class="item">
+      <navigator url="/pages/personal/personal" class="a">
+        <text class="iconfont iconshenfenzheng"></text>
+        <text class="txt">个人中心</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/income/income" class="a">
+        <text class="iconfont iconqian4"></text>
+        <text class="txt">我的收益</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/order/order" class="a">
+        <text class="iconfont iconhetongqicao"></text>
+        <text class="txt">我的签单</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/team/team" class="a">
+        <text class="iconfont icontuanduiguanli"></text>
+        <text class="txt">我的团队</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/share/share" class="a">
+        <text class="iconfont icontubiaozhizuo-"></text>
+        <text class="txt">我的分享</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/train/train" class="a">
+        <text class="iconfont iconpeixunzhuanqu"></text>
+        <text class="txt">我的培训</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/level/level" class="a">
+        <text class="iconfont iconxingjibie"></text>
+        <text class="txt">钻别说明</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/focus/focus" class="a">
+        <text class="iconfont iconquanzix"></text>
+        <text class="txt">我的圈子</text>
+      </navigator>
+    </view>
+    <view class="item no-border">
+      <navigator url="/pages/about/about" class="a">
+        <text class="iconfont iconguanyu"></text>
+        <text class="txt">关于我们</text>
+      </navigator>
+    </view>
+  </view>
+</view>

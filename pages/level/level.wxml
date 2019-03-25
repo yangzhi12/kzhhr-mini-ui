@@ -1,0 +1,186 @@
+<view class="container">
+  <view class="profile-info">
+    <view class="content">钻别按季度评定</view>
+    <view class="content">共五个钻级，每个钻级按五个标准评定</view>
+    <view class="content">每个钻级含A、B、C、D、E（仅五钻含）等小级</view>
+    <view class="content">每个级别相应五个标准均达标即可升级</view>
+    <view class="content">首次注册级别默认为业务员</view>
+    <!-- <view class="content">不同钻级签单单价及计算方式有所不同</view> -->
+  </view>
+  <view class="user-menu">
+    <view class='title'>
+      <view class='titleSel' bindtap='titleClick' data-idx='0'>
+        <text>业务员</text>
+        <hr class="{{0 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}}" />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='1'>
+        <text>一钻</text>
+        <hr class="{{1 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='2'>
+        <text>二钻</text>
+        <hr class="{{2 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='3'>
+        <text>三钻</text>
+        <hr class="{{3 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='4'>
+        <text>四钻</text>
+        <hr class="{{4 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='5'>
+        <text>五钻</text>
+        <hr class="{{5 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+    </view>
+    <!--内容布局-->
+    <swiper class='swiper' bindchange='pagechange' current='{{currentIndex}}'>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:2个（3000元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号</view>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:A级4个（3900元/个）、B级5个（4100元/个）、C级6个（4300元/个）、D级7个（4500元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二</view>
+          <view class="levelContent">拓展数:2个业务员</view>
+          <view class="levelContent">团队站点数:A级8个、B级9个、C级10个、D级11个</view>
+          <view class="levelContent">注：拓展数与团队签单数其中一项达标即可</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三</view>
+          <view class="levelContent">推广分享次数:10次</view>
+          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四</view>
+          <view class="levelContent">培训次数:2次</view>
+          <view class="levelContent">注：培训需提供照片为据，培训是面对团队成员</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息</view>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:A级8个（4800元/个）、B级10个（5000元/个）、C级12个（5200元/个）、D级14个（5400元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二</view>
+          <view class="levelContent">拓展数:2个一钻</view>
+          <view class="levelContent">团队站点数:A级24个、B级26个、C级28个、D级30个</view>
+          <view class="levelContent">注：拓展数与团队签单数其中一项达标即可</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三</view>
+          <view class="levelContent">推广分享次数:15次</view>
+          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四</view>
+          <view class="levelContent">培训次数:3次</view>
+          <view class="levelContent">注：培训需提供照片为据，培训是面对团队成员</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历</view>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:A级16个（5700元/个）、B级20个（5900元/个）、C级24个（6100元/个）、D级28个（6300元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二</view>
+          <view class="levelContent">拓展数:2个二钻</view>
+          <view class="levelContent">团队站点数:A级64个、B级68个、C级72个、D级76个</view>
+          <view class="levelContent">注：拓展数与团队签单数其中一项达标即可</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三</view>
+          <view class="levelContent">推广分享次数:20次</view>
+          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四</view>
+          <view class="levelContent">培训次数:4次</view>
+          <view class="levelContent">注：培训需提供照片为据，培训是面对团队成员</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址</view>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:A级32个（6600元/个）、B级40个（6800元/个）、C级48个（7000元/个）、D级56个（7200元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二</view>
+          <view class="levelContent">拓展数:2个三钻</view>
+          <view class="levelContent">团队站点数:A级160个、B级168个、C级176个、D级184个</view>
+          <view class="levelContent">注：拓展数与团队签单数其中一项达标即可</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三</view>
+          <view class="levelContent">推广分享次数:25次</view>
+          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四</view>
+          <view class="levelContent">培训次数:5次</view>
+          <view class="levelContent">注：培训需提供照片为据，培训是面对团队成员</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址、家庭成员信息</view>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view class="level">
+          <view class="levelTitle">标准一</view>
+          <view class="levelContent">自签站点数:A级64个（7500元/个）、B级80个（7700元/个）、C级96个（7900元/个）、D级112个（8100元/个）、E级128个（8300元/个）</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二</view>
+          <view class="levelContent">拓展数:2个四钻</view>
+          <view class="levelContent">团队站点数:A级384个、B级400个、C级416个、D级432个、E级448个</view>
+          <view class="levelContent">注：拓展数与团队签单数其中一项达标即可</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三</view>
+          <view class="levelContent">推广分享次数:30次</view>
+          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四</view>
+          <view class="levelContent">培训次数:6次</view>
+          <view class="levelContent">注：培训需提供照片为据，培训是面对团队成员</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准五</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址、家庭成员信息、个人征信证明</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
