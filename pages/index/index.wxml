@@ -43,13 +43,13 @@
     <view class="item">
       <navigator url="/pages/level/level" class="a">
         <text class="iconfont iconxingjibie"></text>
-        <text class="txt">钻别说明</text>
+        <text class="txt">钻级说明</text>
       </navigator>
     </view>
     <view class="item">
       <navigator url="/pages/focus/focus" class="a">
         <text class="iconfont iconquanzix"></text>
-        <text class="txt">我的圈子</text>
+        <text class="txt">公告通知</text>
       </navigator>
     </view>
     <view class="item no-border">

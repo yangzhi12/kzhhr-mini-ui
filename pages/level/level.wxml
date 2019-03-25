@@ -44,7 +44,16 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:2个（3000元/个）</view>
+          <view class="levelContent">自签站点数:2个</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准二：无</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准三：无</view>
+        </view>
+        <view class="level">
+          <view class="levelTitle">标准四：无</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准五</view>
@@ -54,7 +63,7 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:A级4个（3900元/个）、B级5个（4100元/个）、C级6个（4300元/个）、D级7个（4500元/个）</view>
+          <view class="levelContent">自签站点数:A级4个、B级5个、C级6个、D级7个</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准二</view>
@@ -65,7 +74,7 @@
         <view class="level">
           <view class="levelTitle">标准三</view>
           <view class="levelContent">推广分享次数:10次</view>
-          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+          <view class="levelContent">注：分享需提供材料为据，分享是面对客户</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准四</view>
@@ -80,7 +89,7 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:A级8个（4800元/个）、B级10个（5000元/个）、C级12个（5200元/个）、D级14个（5400元/个）</view>
+          <view class="levelContent">自签站点数:A级8个、B级10个、C级12个、D级14个</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准二</view>
@@ -91,7 +100,7 @@
         <view class="level">
           <view class="levelTitle">标准三</view>
           <view class="levelContent">推广分享次数:15次</view>
-          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+          <view class="levelContent">注：分享需提供材料为据，分享是面对客户</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准四</view>
@@ -106,7 +115,7 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:A级16个（5700元/个）、B级20个（5900元/个）、C级24个（6100元/个）、D级28个（6300元/个）</view>
+          <view class="levelContent">自签站点数:A级16个、B级20个、C级24个、D级28个</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准二</view>
@@ -117,7 +126,7 @@
         <view class="level">
           <view class="levelTitle">标准三</view>
           <view class="levelContent">推广分享次数:20次</view>
-          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+          <view class="levelContent">注：分享需提供材料为据，分享是面对客户</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准四</view>
@@ -132,7 +141,7 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:A级32个（6600元/个）、B级40个（6800元/个）、C级48个（7000元/个）、D级56个（7200元/个）</view>
+          <view class="levelContent">自签站点数:A级32个、B级40个、C级48个、D级56个</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准二</view>
@@ -143,7 +152,7 @@
         <view class="level">
           <view class="levelTitle">标准三</view>
           <view class="levelContent">推广分享次数:25次</view>
-          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+          <view class="levelContent">注：分享需提供材料为据，分享是面对客户</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准四</view>
@@ -158,7 +167,7 @@
       <swiper-item class='swiper'>
         <view class="level">
           <view class="levelTitle">标准一</view>
-          <view class="levelContent">自签站点数:A级64个（7500元/个）、B级80个（7700元/个）、C级96个（7900元/个）、D级112个（8100元/个）、E级128个（8300元/个）</view>
+          <view class="levelContent">自签站点数:A级64个、B级80个、C级96个、D级112个、E级128个</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准二</view>
@@ -169,7 +178,7 @@
         <view class="level">
           <view class="levelTitle">标准三</view>
           <view class="levelContent">推广分享次数:30次</view>
-          <view class="levelContent">注：分享需提供照片为据，分享是面对客户</view>
+          <view class="levelContent">注：分享需提供材料为据，分享是面对客户</view>
         </view>
         <view class="level">
           <view class="levelTitle">标准四</view>
