@@ -1,2 +1,2 @@
 # kzhhr-mini-ui
-this is reademe file
+version 0.3.0
