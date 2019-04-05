@@ -1,5 +1,44 @@
-<view class="container">  
-  <view class="form-box">
-    此功能模块暂未开放，敬请期待...
+<view class="container">
+<view class="profile-info">
+    <view class="content-title">{{ selectedyear }} 签单数量统计如下：</view>
+    <view class="content">Q1(第一季度)：{{ quarter.Q1 }} 单，已收款：{{quarter.M1}} 单， 收款率：{{quarter.MR1}}%</view>
+    <view class="content">Q2(第二季度)：{{ quarter.Q2 }} 单，已收款：{{quarter.M2}} 单， 收款率：{{quarter.MR2}}%</view>
+    <view class="content">Q3(第三季度)：{{ quarter.Q3 }} 单，已收款：{{quarter.M3}} 单， 收款率：{{quarter.MR3}}%</view>
+    <view class="content">Q4(第四季度)：{{ quarter.Q4 }} 单，已收款：{{quarter.M4}} 单， 收款率：{{quarter.MR4}}%</view>
+    <!-- <view class="content">不同钻级签单单价及计算方式有所不同</view> -->
+  </view>
+  <view class="user-menu">
+    <view class='title'>
+      <view class='titleSel' bindtap='titleYearClick'>
+        <text>{{selectedyear}}</text>
+        <hr class="headerLineUnsel" />
+      </view>
+      <view class="menu-items" hidden='{{yearsshow}}'>
+        <view wx:for="{{years}}" wx:key="item" class="{{selectedyear === item ? 'item-selected' : 'item' }}" bindtap="tapMenuItem"
+        data-index="{{item}}">
+          {{item}}
+        </view>
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q1'>
+        <text>Q1</text>
+        <hr class="{{'Q1' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q2'>
+        <text>Q2</text>
+        <hr class="{{'Q2' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q3'>
+        <text>Q3</text>
+        <hr class="{{'Q3' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q4'>
+        <text>Q4</text>
+        <hr class="{{'Q4' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+    </view>
   </view>
 </view>
