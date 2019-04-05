@@ -3,11 +3,12 @@ var api = require('../../config/api.js');
 var app = getApp();
 Page({
   data: {
-    quarter: { Q1: 0, M1: 0, MR1: 0, Q2: 1, M2: 0, MR2: 0, Q3: 1, M3: 0, MR3: 0, Q4: 1, M4: 0, MR4: 0},
+    quarter: { Q1: 0, M1: 0, MR1: 0, Q2: 1, M2: 0, MR2: 0, Q3: 1, M3: 0, MR3: 0, Q4: 1, M4: 0, MR4: 0 },
     currentquarter: 'Q1',
     years: [2019, 2020, 2021],
     selectedyear: 2019,
-    yearsshow: true
+    yearsshow: true,
+    contract: []
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -52,8 +53,17 @@ Page({
           success: function (res) {
             if (res.statusCode === 200) {
               let response = res.data
-              // that.assignUIData(response)
-              console.log(response)
+              if (response.errorno) {
+                wx.showModal({
+                  title: '提示信息',
+                  content: '服务异常',
+                  showCancel: false
+                });
+              } else {
+                let data = response.data
+                that.setData({ quarter: data })
+                console.log(data)
+              }
             } else {
               wx.showModal({
                 title: '提示信息',
@@ -69,7 +79,6 @@ Page({
     }
   },
   // 季度签单量列表
-  // 查询个人资料
   getOrderStatQList() {
     let that = this
     let quarter = that.getQuarterIndex(that.data.currentquarter)
@@ -91,8 +100,21 @@ Page({
           success: function (res) {
             if (res.statusCode === 200) {
               let response = res.data
-              // that.assignUIData(response)
-              console.log(response)
+              if (response.errorno) {
+                wx.showModal({
+                  title: '提示信息',
+                  content: '服务异常',
+                  showCancel: false
+                });
+              } else {
+                let data = response.data
+                for (let i = 0; i < data.length; i++) {
+                  let statename = util.getApproveFlow(data[i].contractstate)['name']
+                  let money = util.getCommaMoney(data[i].contractvalue, 0)
+                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money })
+                }
+                that.setData({ contract: data })
+              }
             } else {
               wx.showModal({
                 title: '提示信息',
@@ -109,11 +131,13 @@ Page({
   },
   //用户点击tab时调用
   titleClick: function (e) {
-    let currentPageIndex =
-      this.setData({
-        //拿到当前索引并动态改变
-        currentquarter: e.currentTarget.dataset.idx
-      })
+    this.setData({
+      //拿到当前索引并动态改变
+      currentquarter: e.currentTarget.dataset.idx,
+      // 隐藏年份选择（如果显示则隐藏）
+      yearsshow: true
+    })
+    this.getOrderStatQList()
   },
   titleYearClick: function (e) {
     this.setData({
@@ -123,13 +147,14 @@ Page({
   tapMenuItem: function (e) {
     this.setData({
       selectedyear: e.currentTarget.dataset.index,
-      yearsshow: !this.data.yearsshow
+      yearsshow: !this.data.yearsshow,
+      currentquarter: 'Q1'
     })
     this.getOrderIndex()
   },
   getQuarterIndex: function (quarter) {
     let index = 1
-    switch(quarter) {
+    switch (quarter) {
       case 'Q1':
         index = 1
         break;
@@ -150,5 +175,9 @@ Page({
   getOrderIndex: function () {
     this.getOrderStatQ() // 获取季度签单统计
     this.getOrderStatQList() // 获取季度签单列表
+  },
+  // 读取流程名称
+  getApproveFlowNode: function (flowno) {
+    return util.getApproveFlow('010')
   }
 })

@@ -12,7 +12,8 @@
     "pages/train/train",
     "pages/level/level",
     "pages/focus/focus",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/order/orderadd/orderadd"
   ],
   "window": {
     "backgroundTextStyle": "dark",

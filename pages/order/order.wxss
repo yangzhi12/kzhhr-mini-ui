@@ -49,7 +49,8 @@ page{
   position: absolute;
   left: 55rpx;
   top: 280rpx;
-  /* border: 1px solid red; */
+  border: 1px solid #f4f4f4;
+  border-top-width: 0rpx;
 }
 
 .title .menu-items .item {
@@ -91,3 +92,32 @@ page{
   position: relative;
   margin-top: 10rpx;
 }
+
+.user-menu .content{
+  /* padding-bottom: 20rpx; */
+}
+
+.user-menu .content .contentitem{
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.user-menu .content .contentitemline{
+  padding-top: 15rpx;
+}
+
+.user-menu .nocontent{
+  height: 400rpx;
+  text-align: center;
+  line-height: 400rpx;
+}
+
+.user-menu .addcontract{
+  position: absolute;
+  right: 25rpx;
+  top: 320rpx;
+  padding: 15rpx 15rpx;
+  border: 1px solid #5f6fee;
+  border-radius: 10rpx;
+}
+

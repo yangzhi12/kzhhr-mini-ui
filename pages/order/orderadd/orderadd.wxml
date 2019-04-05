@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="form-box">
+    <view class="form-item">
+      <view class="inputlabel">客户名称：</view>
+      <input class="username" value="{{username}}" bindinput="bindUsernameInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="industry-voltage">
+        <view class="industry">
+          <view class="industry-label">所属行业：</view>
+          <picker bindchange="bindPickerIndustryChange" value="{{industryindex}}" range-key="name" range="{{industries}}">
+            <view>{{industries[industryindex].name}}</view>
+          </picker>
+        </view>
+        <view class="voltage">
+          <view class="voltage-label">电压等级：</view>
+          <picker bindchange="bindPickerVoltageChange" value="{{voltageindex}}" range-key="name" range="{{voltages}}">
+            <view class="voltage-voltage">{{voltages[voltageindex].name}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">变压器总容量：</view>
+      <input class="username" value="{{username}}" bindinput="bindUsernameInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <button type="default" class="login-btn" bindtap="startRegister">保存</button>
+  </view>
+</view>
