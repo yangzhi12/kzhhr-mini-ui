@@ -111,7 +111,8 @@ Page({
                 for (let i = 0; i < data.length; i++) {
                   let statename = util.getApproveFlow(data[i].contractstate)['name']
                   let money = util.getCommaMoney(data[i].contractvalue, 0)
-                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money })
+                  let recommendmoney = util.getCommaMoney(data[i].recommendvalue, 0)
+                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money, recommendvaluecomma: recommendmoney})
                 }
                 that.setData({ contract: data })
               }

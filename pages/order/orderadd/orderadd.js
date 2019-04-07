@@ -219,7 +219,6 @@ Page({
   },
   // 根据变压器容量、所属行业、服务方案自动计算合同金额
   autoCalculateValue: function (e) {
-    console.log('dsadklsa')
     let that = this
     let industry = that.data.industry
     let transformer = that.data.transformer
@@ -348,9 +347,10 @@ Page({
                 showCancel: false,
                 success(tipok) {
                   if (tipok.confirm) {
-                    wx.redirectTo({
-                      url: '/pages/order/order'
-                    })
+                    // wx.redirectTo({
+                    //   url: '/pages/order/order'
+                    // })
+                    wx.navigateBack() // 路由出栈
                   }
                 }
               });

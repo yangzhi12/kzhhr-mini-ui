@@ -41,14 +41,21 @@
       </view>
     </view>
     <view class="addcontract">
-      <navigator url="/pages/order/orderadd/orderadd" class="register">新增签单</navigator>
+      <navigator url="/pages/order/orderadd/orderadd">新增签单</navigator>
     </view>
     <view class="content" hidden="{{contract.length === 0}}">
         <view class="contentitem" wx:for="{{contract}}" wx:key="item.id">
-            <view class="contentitemline">客户编号：{{item.contractno || '--'}}</view>
+            <view class="contentitemline" hidden="item.contractno.length === 0">合同编号：{{item.contractno || '--'}}</view>
             <view class="contentitemline">客户名称：{{item.contractname}}</view>
             <view class="contentitemline">起止时间：{{item.contractstart}} 至 {{item.contractend}}</view>
-            <view class="contentitemline">合同金额：{{item.contractvaluecomma}} 元</view>
+            <view class="contentitemline">
+              <view class="contractvalue">
+                合同金额：{{item.contractvaluecomma}} 元
+              </view>
+              <view class="recommendvalue">
+                （{{item.recommendvaluecomma}} 元）
+              </view>
+            </view>
             <view class="contentitemline">合同状态：{{item.contractstatename}}</view>
         </view>
     </view>

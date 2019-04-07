@@ -104,6 +104,12 @@ page{
 
 .user-menu .content .contentitemline{
   padding-top: 15rpx;
+  display: flex;
+  justify-content: start;
+}
+
+.user-menu .content .contentitemline .recommendvalue{
+  color: #1982c2;
 }
 
 .user-menu .nocontent{
