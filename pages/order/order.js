@@ -5,7 +5,7 @@ Page({
   data: {
     quarter: { Q1: 0, M1: 0, MR1: 0, Q2: 1, M2: 0, MR2: 0, Q3: 1, M3: 0, MR3: 0, Q4: 1, M4: 0, MR4: 0 },
     currentquarter: 'Q1',
-    years: [2019, 2020, 2021],
+    years: [2019, 2020, 2021, 2022, 2023, 2024,2025],
     selectedyear: 2019,
     yearsshow: true,
     contract: []
