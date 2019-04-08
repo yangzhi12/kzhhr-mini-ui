@@ -9,21 +9,30 @@ page{
     overflow: hidden;
     width: 100%;
 }
+
 .profile-info {
-  width: 100%;
-  height: 220rpx;
   background: #1982c2;
+  padding-bottom: 25rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
 }
-.profile-info .content-title {
-  margin-left: 30rpx;
-  font-size: 30rpx;
+
+.profile-info .orderstat {
+  display: flex;
+  direction: column;
+  justify-content: space-between;
+}
+
+.profile-info .orderstattitle {
+  width: 25%;
+  text-align: center;
+}
+
+.profile-info .orderstattitle {
   color: #fff;
+  width: 25%;
 }
-.profile-info .content {
-  margin-left: 30rpx;
-  font-size: 30rpx;
-  color: #fff;
-}
+
 .user-menu{
     width: 100%;
     height: auto;
@@ -48,7 +57,7 @@ page{
 .title .menu-items {
   position: absolute;
   left: 55rpx;
-  top: 280rpx;
+  top: 240rpx;
   border: 1px solid #f4f4f4;
   border-top-width: 0rpx;
 }

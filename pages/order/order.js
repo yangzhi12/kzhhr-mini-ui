@@ -8,7 +8,8 @@ Page({
     years: [2019, 2020, 2021, 2022, 2023, 2024,2025],
     selectedyear: 2019,
     yearsshow: true,
-    contract: []
+    contract: [],
+    stats: ['Q', 'Y', 'R']
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -38,7 +39,8 @@ Page({
     let that = this
     let year = that.data.selectedyear
     let data = {
-      year: year
+      year: year,
+      quarter: that.data.currentquarter.substr(1, 1)
     }
     try {
       const token = wx.getStorageSync('token')
@@ -62,7 +64,6 @@ Page({
               } else {
                 let data = response.data
                 that.setData({ quarter: data })
-                console.log(data)
               }
             } else {
               wx.showModal({
@@ -138,7 +139,7 @@ Page({
       // 隐藏年份选择（如果显示则隐藏）
       yearsshow: true
     })
-    this.getOrderStatQList()
+    this.getOrderIndex()
   },
   titleYearClick: function (e) {
     this.setData({

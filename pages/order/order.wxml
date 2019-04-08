@@ -1,11 +1,22 @@
 <view class="container">
-<view class="profile-info">
-    <view class="content-title">{{ selectedyear }} 签单数量统计如下：</view>
+  <view class="profile-info">
+    <!-- <view class="content-title">{{ selectedyear }} 签单数量统计如下：</view>
     <view class="content">Q1(第一季度)：{{ quarter.Q1 }} 单，已收款：{{quarter.M1}} 单， 收款率：{{quarter.MR1}}%</view>
     <view class="content">Q2(第二季度)：{{ quarter.Q2 }} 单，已收款：{{quarter.M2}} 单， 收款率：{{quarter.MR2}}%</view>
     <view class="content">Q3(第三季度)：{{ quarter.Q3 }} 单，已收款：{{quarter.M3}} 单， 收款率：{{quarter.MR3}}%</view>
-    <view class="content">Q4(第四季度)：{{ quarter.Q4 }} 单，已收款：{{quarter.M4}} 单， 收款率：{{quarter.MR4}}%</view>
-    <!-- <view class="content">不同钻级签单单价及计算方式有所不同</view> -->
+    <view class="content">Q4(第四季度)：{{ quarter.Q4 }} 单，已收款：{{quarter.M4}} 单， 收款率：{{quarter.MR4}}%</view> -->
+    <view class="orderstat">
+      <view class="orderstattitle"></view>
+      <view class="orderstattitle">合同个数(个)</view>
+      <view class="orderstattitle">合同金额(元)</view>
+      <view class="orderstattitle">签单总数(单)</view>
+    </view>
+    <view class="orderstat" wx:for="{{stats}}"  wx:key="{{item}}">
+      <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>
+      <view class="orderstattitle">{{ quarter[item + 'T'] }}</view>
+      <view class="orderstattitle">{{ quarter[item + 'MR'] }}</view>
+      <view class="orderstattitle">{{ quarter[item + 'N'] }}</view>
+    </view>
   </view>
   <view class="user-menu">
     <view class='title'>
@@ -14,8 +25,7 @@
         <hr class="headerLineUnsel" />
       </view>
       <view class="menu-items" hidden='{{yearsshow}}'>
-        <view wx:for="{{years}}" wx:key="item" class="{{selectedyear === item ? 'item-selected' : 'item' }}" bindtap="tapMenuItem"
-        data-index="{{item}}">
+        <view wx:for="{{years}}" wx:key="item" class="{{selectedyear === item ? 'item-selected' : 'item' }}" bindtap="tapMenuItem" data-index="{{item}}">
           {{item}}
         </view>
       </view>
@@ -44,23 +54,23 @@
       <navigator url="/pages/order/orderadd/orderadd">新增签单</navigator>
     </view>
     <view class="content" hidden="{{contract.length === 0}}">
-        <view class="contentitem" wx:for="{{contract}}" wx:key="item.id">
-            <view class="contentitemline" hidden="item.contractno.length === 0">合同编号：{{item.contractno || '--'}}</view>
-            <view class="contentitemline">客户名称：{{item.contractname}}</view>
-            <view class="contentitemline">起止时间：{{item.contractstart}} 至 {{item.contractend}}</view>
-            <view class="contentitemline">
-              <view class="contractvalue">
-                合同金额：{{item.contractvaluecomma}} 元
-              </view>
-              <view class="recommendvalue">
-                （{{item.recommendvaluecomma}} 元）
-              </view>
-            </view>
-            <view class="contentitemline">合同状态：{{item.contractstatename}}</view>
+      <view class="contentitem" wx:for="{{contract}}" wx:key="item.id">
+        <view class="contentitemline" hidden="item.contractno.length === 0">合同编号：{{item.contractno || '--'}}</view>
+        <view class="contentitemline">客户名称：{{item.contractname}}</view>
+        <view class="contentitemline">起止时间：{{item.contractstart}} 至 {{item.contractend}}</view>
+        <view class="contentitemline">
+          <view class="contractvalue">
+            合同金额：{{item.contractvaluecomma}} 元
+          </view>
+          <view class="recommendvalue">
+            （{{item.recommendvaluecomma}} 元）
+          </view>
         </view>
+        <view class="contentitemline">合同状态：{{item.contractstatename}}</view>
+      </view>
     </view>
     <view class="nocontent" hidden="{{contract.length > 0}}">
-        加油！嘿！
+      加油！嘿！
     </view>
   </view>
 </view>

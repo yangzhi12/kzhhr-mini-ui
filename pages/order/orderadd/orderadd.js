@@ -50,8 +50,8 @@ Page({
         id: '02',
         name: '大工业'
       }],
-    industry: '00',
-    industryindex: 0,
+    industry: '01',
+    industryindex: 1,
     voltages: [
       {
         id: '00',
@@ -72,10 +72,14 @@ Page({
       {
         id: '04',
         name: '220kV'
+      },
+      {
+        id: '05',
+        name: '220kV以上'
       }
     ],
-    voltage: '00',
-    voltageindex: 0,
+    voltage: '01',
+    voltageindex: 1,
     plannos: [
       {
         value: '00',
