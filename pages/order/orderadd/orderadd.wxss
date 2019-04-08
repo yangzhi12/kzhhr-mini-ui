@@ -1,16 +1,16 @@
-.form-box{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding: 0 40rpx;
-    background: #fff;
+.form-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
 }
 
-.form-item{
-    position: relative;
-    background: #fff;
-    height: 96rpx;
-    border-bottom: 1px solid #d9d9d9;
+.form-item {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .form-item .industry-voltage {
@@ -39,54 +39,52 @@
   padding-top: 5rpx;
 }
 
-.form-item .inputlabel{
-    position: absolute;
-    top: 35rpx;
-    left: 0rpx;
-    /* z-index: 2; */
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 23%;
-}
-
-.form-item .inputTransformerlabel,
-.form-item .contractvaluelabel{
+.form-item .inputlabel {
   position: absolute;
-    top: 35rpx;
-    left: 0rpx;
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 48%;
+  top: 35rpx;
+  left: 0rpx;
+  /* z-index: 2; */
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 23%;
 }
 
-.form-item .contractname{
-    position: absolute;
-    top: 26rpx;
-    right: 0;
-    display: inline-block;
-    width: 77%;
-    height: 44rpx;
-    background: #fff;
-    color: #333;
-    font-size: 30rpx;
+.form-item .inputTransformerlabel, .form-item .contractvaluelabel {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 48%;
 }
 
-.form-item .transformer,
-.form-item .contractdatelabel{
-    position: absolute;
-    top: 26rpx;
-    right: 0;
-    display: inline-block;
-    width: 52%;
-    height: 44rpx;
-    background: #fff;
-    color: #333;
-    font-size: 30rpx;
+.form-item .contractname {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: inline-block;
+  width: 77%;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
 }
 
-.form-item .contractvalue{
+.form-item .transformer, .form-item .contractdatelabel {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: inline-block;
+  width: 52%;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.form-item .contractvalue {
   display: flex;
   direction: row;
   justify-content: space-between;
@@ -99,7 +97,7 @@
   color: red;
 }
 
-.form-item .serviceplan{
+.form-item .serviceplan {
   display: flex;
   direction: row;
   justify-content: start;
@@ -111,32 +109,32 @@
   padding-top: 10rpx;
 }
 
-.contractdategroup{
+.contractdategroup {
   display: flex;
   direction: row;
   justify-content: start;
   padding-top: 20rpx;
 }
 
-.contractstart{
+.contractstart {
   padding-left: 20rpx;
   padding-right: 20rpx;
   padding-top: 7rpx;
 }
 
-.contractdatedivide{
+.contractdatedivide {
   padding-right: 20rpx;
 }
 
-.contractend{
+.contractend {
   padding-top: 5rpx;
   padding-right: 20rpx;
 }
 
-.contractend{
+.contractend {
 }
 
-.form-item .serviceplan .planlabel{
+.form-item .serviceplan .planlabel {
   padding-top: 5rpx;
   /* padding-right: 25rpx; */
 }
@@ -146,50 +144,86 @@
   margin-right: 5rpx;
 }
 
-.form-item .clear{
-    position: absolute;
-    top: 26rpx;
-    right: 18rpx;
-    z-index: 2;
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 44rpx;
+.form-item .clear {
+  position: absolute;
+  top: 26rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
 }
 
-.serviceitems{
+.clearfile{
+  position: absolute;
+  top: 23rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+
+.serviceitems {
   padding-top: 5rpx;
   padding-bottom: 25rpx;
   border-bottom: 1rpx solid #d9d9d9;
 }
 
-.itemcheckbox{
+.itemcheckbox {
   display: flex;
   direction: column;
   padding-top: 20rpx;
 }
 
-.itemslectedname{
+.itemslectedname {
   padding-top: 5rpx;
 }
 
-.form-item .clear{
-    position: absolute;
-    top: 38rpx;
-    right: 20rpx;
-    z-index: 2;
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 44rpx;
+.form-item .clear {
+  position: absolute;
+  top: 38rpx;
+  right: 20rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
 }
 
-.save-btn{
-    margin: 60rpx 0 40rpx 0;
-    height: 96rpx;
-    line-height: 96rpx;
-    color: #fff;
-    font-size: 30rpx;
-    width: 100%;
-    border-radius: 6rpx;
+.form-item .uploadfile {
+  display: flex;
+  direction: row;
+  align-items: center;
+  padding-top: 25rpx;
+}
+
+.form-item .uploadfile .uploadlabel {
+  width: 23%;
+}
+
+.form-item .uploadfile .upload-btn,
+.form-item .uploadfile .selectedfile {
+  width: 70%;
+  color: #1982c2;
+  cursor: pointer;
+  text-decoration: underline;
+  /*超出部分隐藏*/
+	overflow:hidden;
+	/*不换行*/
+	white-space:nowrap;
+	/*添加...*/
+	text-overflow:ellipsis;
+}
+
+.save-btn {
+  margin: 60rpx 0 40rpx 0;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 6rpx;
 }

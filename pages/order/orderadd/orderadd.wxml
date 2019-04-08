@@ -66,6 +66,14 @@
         </picker>
       </view>
     </view>
+    <view class="form-item">
+      <view class="uploadfile">
+        <view class="uploadlabel">合同附件：</view>
+        <view class="upload-btn" bindtap="uploadcontract" hidden="{{contractfile}}">点击上传合同</view>
+        <view class="selectedfile" wx:if="{{contractfile}}">{{contractfile.name}}</view>
+          <image wx:if="{{ contractfile }}" id="clear-contractfile" class="clearfile" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+      </view>
+    </view>
     <button type="default" class="save-btn" bindtap="saveContract">保存</button>
   </view>
 </view>

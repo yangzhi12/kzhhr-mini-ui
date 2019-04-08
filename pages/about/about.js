@@ -20,5 +20,22 @@ Page({
   onUnload: function () {
     // 页面关闭
 
+  },
+  downloadfile: function () {
+    // 下载合同
+    wx.downloadFile({
+      url: 'https://hhr.dianjuhui.com:3393/用户服务协议.pdf',
+      success(res) {
+        if (res.statusCode === 200) {
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success(res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      }
+    })
   }
 })

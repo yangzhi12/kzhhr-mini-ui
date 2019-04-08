@@ -14,3 +14,8 @@
 .form-box .space_content {
   top: 40rpx;
 }
+
+.attachcontract {
+  text-decoration: underline;
+  color: #1982c2;
+}

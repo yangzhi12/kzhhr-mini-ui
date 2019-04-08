@@ -104,7 +104,8 @@ Page({
       plan: '服务方案',
       startdate: '合同起止日期'
     },
-    issaving: false
+    issaving: false,
+    contractfile: null
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -217,7 +218,11 @@ Page({
         this.setData({
           transformer: ''
         });
-        break;      
+        break; 
+      case 'clear-contractfile':
+        this.setData({
+          contractfile: null
+        })     
       default:
     }
   },
@@ -390,5 +395,20 @@ Page({
         issaving: false
       })
     }
+  },
+  uploadcontract: function () {
+    let that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success(res) {
+        let msgflag = res.errMsg
+        if (msgflag.split(':').includes('ok')) {
+          that.setData({
+              contractfile: res.tempFiles[0]
+          })
+        }
+      }
+    })
   }
 })
