@@ -267,7 +267,6 @@ function request(url, data = {}, method = "GET") {
       data: data,
       method: method,
       header: {
-        'Content-Type': 'application/json',
         'X-Nideshop-Token': wx.getStorageSync('token')
       },
       success: function (res) {
@@ -437,6 +436,71 @@ function getCommaMoney(s, type) {
   return s
 }
 
+// 封装http请求
+function sendRrquest(url, method, data, header) {
+  let status = true
+  let promise = new Promise(function (resolve, reject) {
+    wx.getNetworkType({
+      success: function (res) {
+        // 返回网络类型2g，3g，4g，wifi, none, unknown
+        let networkType = res.networkType
+        if (networkType == "none") {
+          wx.hideLoading();
+          //没有网络连接
+          wx.showModal({
+            title: '提示',
+            content: '网络连接失败,请检查您的网络设置',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                //返回res.confirm为true时，表示用户点击确定按钮
+                console.log('表示用户点击确定按钮')
+
+              }
+            }
+          })
+          status = false;
+        } else if (networkType == "unknown") {
+          wx.hideLoading();
+          //未知的网络类型
+          wx.showModal({
+            title: '提示',
+            content: '未知的网络类型,请检查您的网络设置',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                //返回res.confirm为true时，表示用户点击确定按钮
+                console.log('表示用户点击确定按钮')
+              }
+            }
+          })
+          status = false;
+        } else {
+          wx.request({
+            url: url,
+            data: data,
+            method: method,
+            header: header,
+            success: resolve,
+            fail: reject
+          })
+        }
+      }
+    })
+    return status
+  })
+  return promise
+}
+
+// 封装Http请求头部
+function reqHeader() {
+  const token = wx.getStorageSync('token')
+  const header = {
+    'x-kzhhr-token': token
+  }
+  return header
+}
+
 module.exports = {
   formatTime,
   request,
@@ -456,4 +520,6 @@ module.exports = {
   getGenderName,
   getApproveFlow,
   getCommaMoney,
+  reqHeader,
+  sendRrquest
 }

@@ -155,17 +155,6 @@
   width: 44rpx;
 }
 
-.clearfile{
-  position: absolute;
-  top: 23rpx;
-  right: 18rpx;
-  z-index: 2;
-  display: block;
-  background: #fff;
-  height: 44rpx;
-  width: 44rpx;
-}
-
 .serviceitems {
   padding-top: 5rpx;
   padding-bottom: 25rpx;
@@ -193,29 +182,37 @@
   width: 44rpx;
 }
 
-.form-item .uploadfile {
+.form-box .contractcontainer{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.form-box .contractcontainer .uploadaction{
+  display: flex;
+  direction: column;
+  width: 100%;
+}
+
+.form-box .contractcontainer .uploadaction .uploadbtn{
+    color: #1982c2;
+    padding-left: 40rpx;
+}
+
+.form-box .contractcontainer .contractfiles{
+  margin-top: 25rpx;
   display: flex;
   direction: row;
-  align-items: center;
-  padding-top: 25rpx;
 }
 
-.form-item .uploadfile .uploadlabel {
-  width: 23%;
+.form-box .contractcontainer .contractfiles .selectedfile{
+  padding-left: 50rpx;
 }
 
-.form-item .uploadfile .upload-btn,
-.form-item .uploadfile .selectedfile {
-  width: 70%;
-  color: #1982c2;
-  cursor: pointer;
-  text-decoration: underline;
-  /*超出部分隐藏*/
-	overflow:hidden;
-	/*不换行*/
-	white-space:nowrap;
-	/*添加...*/
-	text-overflow:ellipsis;
+.clearfile{
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
 }
 
 .save-btn {

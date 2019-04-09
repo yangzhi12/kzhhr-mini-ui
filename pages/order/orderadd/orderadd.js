@@ -10,46 +10,46 @@ Page({
     contractend: '',
     plan: '',
     plans: [],
-    planitems:[{
+    planitems: [{
       value: '0000000',
       name: '平台基础服务',
       checked: true
-    },{
-        value: '1000000',
-        name: '配电室带电巡检',
-        checked: true
-    },{
-        value: '1000100',
-        name: '配电设施设备维保',
-        checked: true
-      }, {
-        value: '1000200',
-        name: '配电设备预防性试验',
-        checked: true
-      }, {
-        value: '1000300',
-        name: '配电设施设备应急抢修保障',
-        checked: true
-      }, {
-        value: '1000400',
-        name: '能效管理',
-        checked: true
-      }, {
-        value: '2000000',
-        name: '包含平台基础服务、线下维护服务、应急抢修保障',
-        checked: true
-      }],
-    itemtypes:[],
+    }, {
+      value: '1000000',
+      name: '配电室带电巡检',
+      checked: true
+    }, {
+      value: '1000100',
+      name: '配电设施设备维保',
+      checked: true
+    }, {
+      value: '1000200',
+      name: '配电设备预防性试验',
+      checked: true
+    }, {
+      value: '1000300',
+      name: '配电设施设备应急抢修保障',
+      checked: true
+    }, {
+      value: '1000400',
+      name: '能效管理',
+      checked: true
+    }, {
+      value: '2000000',
+      name: '包含平台基础服务、线下维护服务、应急抢修保障',
+      checked: true
+    }],
+    itemtypes: [],
     industries: [{
       id: '00',
       name: '居民'
     }, {
-        id: '01',
-        name: '一般工商业'
-      }, {
-        id: '02',
-        name: '大工业'
-      }],
+      id: '01',
+      name: '一般工商业'
+    }, {
+      id: '02',
+      name: '大工业'
+    }],
     industry: '01',
     industryindex: 1,
     voltages: [
@@ -105,7 +105,33 @@ Page({
       startdate: '合同起止日期'
     },
     issaving: false,
-    contractfile: null
+    // contractfile: null,
+    contractfiles: [
+      // {
+      //   no: 1,
+      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx", 
+      //   name: "用户服务协议1.docx", 
+      //   size: 73503, 
+      //   type: "file", 
+      //   time: 1554692173
+      // },
+      // {
+      //   no: 2,
+      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx", 
+      //   name: "用户服务协议2.docx", 
+      //   size: 73503, 
+      //   type: "file", 
+      //   time: 1554692173
+      // },
+      // {
+      //   no: 3,
+      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx",
+      //   name: "用户服务协议3.docx",
+      //   size: 73503,
+      //   type: "file",
+      //   time: 1554692173
+      // }
+    ]
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -192,7 +218,7 @@ Page({
     let enddate = util.formatTime(new Date(startdate.setYear(startdate.getFullYear() + 1)))
     this.setData({
       enddate: enddate.substr(0, 10)
-    })   
+    })
   },
   bindContractnameInput: function (e) {
     let value = e.detail.value;
@@ -218,11 +244,11 @@ Page({
         this.setData({
           transformer: ''
         });
-        break; 
+        break;
       case 'clear-contractfile':
         this.setData({
           contractfile: null
-        })     
+        })
       default:
     }
   },
@@ -315,6 +341,15 @@ Page({
       });
       return false;
     }
+    // 合同附件不能为空
+    if (that.data.contractfiles.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传合同扫描件',
+        showCancel: false
+      });
+      return false;
+    }
     if (!that.data.contractvalue || !that.data.recommendvalue) {
       wx.showModal({
         title: '提示信息',
@@ -385,6 +420,14 @@ Page({
           }
         }
       });
+      // const header = util.reqHeader()
+      // util.sendRrquest(api.FileUpload, 'POST', {
+      //   file: that.data.contractfiles[0].path
+      // }, header).then(response => {
+      //   console.log(response)
+      // }, error => {
+      //   console.log(error)
+      // })
     } else {
       wx.showModal({
         title: '提示信息',
@@ -399,16 +442,42 @@ Page({
   uploadcontract: function () {
     let that = this
     wx.chooseMessageFile({
-      count: 1,
-      type: 'file',
+      count: 10,
+      type: 'all',
       success(res) {
         let msgflag = res.errMsg
         if (msgflag.split(':').includes('ok')) {
-          that.setData({
-              contractfile: res.tempFiles[0]
+          let files = res.tempFiles
+          files.map((item, index) => {
+            return Object.assign(item, { no: index + 1})
           })
+          that.setData({
+            contractfiles: files
+          })
+          // wx.uploadFile({
+          //   url: 'https://hhr.dianjuhui.com:3393/upload', // 仅为示例，非真实的接口地址
+          //   filePath: files[0].path,
+          //   name: 'file',
+          //   formData: {
+          //     user: 'test'
+          //   },
+          //   success(res) {
+          //     const data = res.data
+          //     // do something
+          //   }
+          // })
         }
       }
+    })
+  },
+  clearFile: function(e) {
+    const no = e.currentTarget.id
+    let files = this.data.contractfiles
+    const curfiles = files.filter(file => {
+      return `${file.no}` !== `${no}`
+    })
+    this.setData({
+      contractfiles: curfiles
     })
   }
 })
