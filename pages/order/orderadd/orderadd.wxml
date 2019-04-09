@@ -1,0 +1,84 @@
+<view class="container">
+  <view class="form-box">
+    <view class="form-item">
+      <view class="inputlabel">客户名称：</view>
+      <input class="contractname" value="{{contractname}}" bindinput="bindContractnameInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ contractname.length > 0 }}" id="clear-contractname" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="industry-voltage">
+        <view class="industry">
+          <view class="industry-label">所属行业：</view>
+          <picker bindchange="bindPickerIndustryChange" value="{{industryindex}}" range-key="name" range="{{industries}}">
+            <view>{{industries[industryindex].name}}</view>
+          </picker>
+        </view>
+        <view class="voltage">
+          <view class="voltage-label">电压等级：</view>
+          <picker bindchange="bindPickerVoltageChange" value="{{voltageindex}}" range-key="name" range="{{voltages}}">
+            <view class="voltage-voltage">{{voltages[voltageindex].name}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class="inputTransformerlabel">变压器总容量（kVa）：</view>
+      <input class="transformer" value="{{transformer}}" type="number" bindinput="bindTransformerInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ transformer.length > 0 }}" id="clear-transformer" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="serviceplan">
+        <view class="planlabel">服务方案：</view>
+        <radio-group class="radio-group" bindchange="serviceplanChange">
+          <label class="radio radio-label slectedlabel" wx:key="{{item.value}}" wx:for="{{plannos}}">
+            <radio value="{{item.value}}" color="#1982c2" checked="{{item.checked}}" /> {{item.name}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="serviceitems" hidden="{{plans.length === 0}}">
+      <view class="serviceitem">
+        <checkbox-group bindchange="itemtypesChange">
+          <label class="checkbox itemcheckbox" wx:key="{{item.value}}" wx:for="{{itemtypes}}">
+            <checkbox class="itemslectedvalue" value="{{item.value}}" color="#1982c2" checked="{{item.checked}}" />
+            <view class="itemslectedname">{{item.name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class="contractvalue">
+        <view class="feelabel">合同金额（元）：</view>
+        <view class="fee">{{ contractvalue }}</view>
+        <view class="recommendlabel">建议收费（元）：</view>
+        <view class="recommendfee">{{ recommendvalue }}</view>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class="contractdateselected">
+        <picker mode="date" value="{{contractstart}}" start="2019-01-01" end="2030-01-01" bindchange="bindDateSelectedChange">
+          <view class="contractdategroup">
+            <view class="contractlabel">合同起止日期：</view>
+            <view class="contractstart">{{startdate}}</view>
+            <view class="contractdatedivide" hidden="{{startdate === ''}}">至</view>
+            <view class="contractend" hidden="{{startdate === ''}}">{{enddate}}</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="contractcontainer">
+      <view class="uploadaction">
+        <view class="uploadlabel">合同附件：</view>
+        <view class="uploadbtn" 
+            bindtap="uploadcontract" hidden="{{contractfile}}">点击上传合同
+        </view>
+      </view>
+      <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{contractfile.no}}">
+        <view class="selectedfile">{{item.no}}：</view>
+        <view>{{item.name}}</view>
+        <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+      </view>
+    </view>
+    <button type="default" class="save-btn" bindtap="saveContract">保存</button>
+  </view>
+</view>
