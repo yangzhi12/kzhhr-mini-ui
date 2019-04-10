@@ -297,7 +297,9 @@ Page({
     }
   },
   saveContract: function () {
-    var that = this;
+    const that = this;
+    console.log(that.data.contractfiles)
+    return
     let errors = [];
     // 设置合同起止时间（时间戳）
     if (that.data.startdate) {
@@ -420,14 +422,6 @@ Page({
           }
         }
       });
-      // const header = util.reqHeader()
-      // util.sendRrquest(api.FileUpload, 'POST', {
-      //   file: that.data.contractfiles[0].path
-      // }, header).then(response => {
-      //   console.log(response)
-      // }, error => {
-      //   console.log(error)
-      // })
     } else {
       wx.showModal({
         title: '提示信息',
@@ -441,6 +435,7 @@ Page({
   },
   uploadcontract: function () {
     let that = this
+    const token = wx.getStorageSync('token')
     wx.chooseMessageFile({
       count: 10,
       type: 'all',
@@ -449,28 +444,49 @@ Page({
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
           files.map((item, index) => {
-            return Object.assign(item, { no: index + 1})
+            return Object.assign(item, { no: index + 1 })
           })
           that.setData({
             contractfiles: files
           })
-          // wx.uploadFile({
-          //   url: 'https://hhr.dianjuhui.com:3393/upload', // 仅为示例，非真实的接口地址
-          //   filePath: files[0].path,
-          //   name: 'file',
-          //   formData: {
-          //     user: 'test'
-          //   },
-          //   success(res) {
-          //     const data = res.data
-          //     // do something
-          //   }
-          // })
+          let requests = []
+          that.data.contractfiles.map(file => {
+            requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
+          })
+          Promise.all(requests).then(res => {
+            let contractfiles = []
+            let r = res.map((url,index) => {
+              if (url.errMsg.split(':').includes('ok')) {
+                let d = url.data
+                if (d.indexOf('http') !== -1) {
+                  d = d.replace('http://hhr.dianjuhui.com', 'https://hhr.dianjuhui.com:3394') 
+                  contractfiles = that.data.contractfiles.map(file => {
+                    return file.no === index + 1 ? Object.assign(file, {downloadurl: d}) : file
+                  })                 
+                }
+              }
+            })
+          })
         }
       }
     })
+    // wx.chooseImage({
+    //   success(res) {
+    //     const tempFilePaths = res.tempFilePaths
+    //     that.setData({
+    //       contractfiles: tempFilePaths
+    //     })
+    //     let promises = []
+    //     that.data.contractfiles.map(file => {
+    //       promises.push(util.fileuploadRrquest(api.FileUpload, file))
+    //     })
+    //     Promise.all(promises).then(res => {
+    //       console.log(res)
+    //     })
+    //   }
+    // })
   },
-  clearFile: function(e) {
+  clearFile: function (e) {
     const no = e.currentTarget.id
     let files = this.data.contractfiles
     const curfiles = files.filter(file => {
