@@ -1,6 +1,5 @@
-const ApiRootUrl = 'https://hhr.dianjuhui.com:3393/api/';
-const FileServer = 'https://hhr.dianjuhui.com:3394';
-// const ApiRootUrl = 'http://localhost:8360/api/';
+const ApiRootUrl = 'http://localhost:8360/api/';
+const FileServer = 'https://localhost:3394';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + 'user/register', //用户注册
