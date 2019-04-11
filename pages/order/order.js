@@ -3,9 +3,22 @@ var api = require('../../config/api.js');
 var app = getApp();
 Page({
   data: {
-    quarter: { Q1: 0, M1: 0, MR1: 0, Q2: 1, M2: 0, MR2: 0, Q3: 1, M3: 0, MR3: 0, Q4: 1, M4: 0, MR4: 0 },
+    quarter: {
+      QT: 0,
+      QM: 0,
+      QMR: 0,
+      QN: 0,
+      YT: 0,
+      YM: 0,
+      YMR: 0,
+      YN: 0,
+      RT: 0,
+      RM: 0,
+      RMR: 0,
+      RN: 0
+    },
     currentquarter: 'Q1',
-    years: [2019, 2020, 2021, 2022, 2023, 2024,2025],
+    years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
     selectedyear: 2019,
     yearsshow: true,
     contract: [],
@@ -63,6 +76,11 @@ Page({
                 });
               } else {
                 let data = response.data
+                Object.keys(data).map(item => {
+                  if (item.substr(1, 1) === 'N') {
+                    data[item] = that.getTwoDecimal(data[item])
+                  }
+                })
                 that.setData({ quarter: data })
               }
             } else {
@@ -113,7 +131,7 @@ Page({
                   let statename = util.getApproveFlow(data[i].contractstate)['name']
                   let money = util.getCommaMoney(data[i].contractvalue, 0)
                   let recommendmoney = util.getCommaMoney(data[i].recommendvalue, 0)
-                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money, recommendvaluecomma: recommendmoney})
+                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money, recommendvaluecomma: recommendmoney })
                 }
                 that.setData({ contract: data })
               }
@@ -181,5 +199,10 @@ Page({
   // 读取流程名称
   getApproveFlowNode: function (flowno) {
     return util.getApproveFlow('010')
+  },
+  // 截取两位小树
+  getTwoDecimal: function (number) {
+    let value = Number(number).toFixed(2)
+    return value
   }
 })

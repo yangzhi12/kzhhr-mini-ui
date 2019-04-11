@@ -41,16 +41,34 @@ Page({
     }],
     itemtypes: [],
     industries: [{
-      id: '00',
+      id: '0100',
       name: '居民'
     }, {
-      id: '01',
-      name: '一般工商业'
+      id: '1101',
+      name: '一般工业'
     }, {
-      id: '02',
+      id: '1102',
+      name: '综合商业体'
+    }, {
+      id: '1103',
+      name: '餐饮业'
+    }, {
+      id: '1104',
+      name: '酒店住宿业'
+    }, {
+      id: '1105',
+      name: '修理修配业'
+    }, {
+      id: '1106',
+      name: '金融服务业'
+    }, {
+      id: '1107',
+      name: '其他'
+    }, {
+      id: '1200',
       name: '大工业'
     }],
-    industry: '01',
+    industry: '1100',
     industryindex: 1,
     voltages: [
       {
@@ -80,6 +98,18 @@ Page({
     ],
     voltage: '01',
     voltageindex: 1,
+    substationtypes: [
+      {
+        value: '00',
+        name: '室内配电站',
+        checked: false
+      },
+      {
+        value: '01',
+        name: '室外配电站',
+        checked: false
+      }
+    ],
     plannos: [
       {
         value: '00',
@@ -101,37 +131,18 @@ Page({
     enddate: '',
     fieldMaps: {
       contractname: '客户名称',
+      substationtype: '配电站形式',
       plan: '服务方案',
       startdate: '合同起止日期'
     },
     issaving: false,
     // contractfile: null,
-    contractfiles: [
-      // {
-      //   no: 1,
-      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx", 
-      //   name: "用户服务协议1.docx", 
-      //   size: 73503, 
-      //   type: "file", 
-      //   time: 1554692173
-      // },
-      // {
-      //   no: 2,
-      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx", 
-      //   name: "用户服务协议2.docx", 
-      //   size: 73503, 
-      //   type: "file", 
-      //   time: 1554692173
-      // },
-      // {
-      //   no: 3,
-      //   path: "wxfile://tmp_1aa897d49608961e828a518948d072103b725682bdf97dee.docx",
-      //   name: "用户服务协议3.docx",
-      //   size: 73503,
-      //   type: "file",
-      //   time: 1554692173
-      // }
-    ]
+    contractfiles: [],
+    transformer: '',
+    transformercount: '',
+    substationtype: '',
+    lowvoltagecount: '',
+    wiringdiagrams: []
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -164,6 +175,24 @@ Page({
     this.setData({
       voltageindex: e.detail.value,
       voltage: this.data.voltages[e.detail.value].id
+    })
+  },
+  // 变压器数量
+  bindTransformerCountInput: function (e) {
+    this.setData({
+      transformercount: e.detail.value
+    })
+  },
+  // 低压柜个数
+  bindLowvoltageCountInput: function (e) {
+    this.setData({
+      lowvoltagecount: e.detail.value
+    })
+  },
+  // 选择配电站形式时触发
+  substationtypeChange: function (e) {
+    this.setData({
+      substationtype: e.detail.value
     })
   },
   // 选择方案时触发
@@ -248,7 +277,17 @@ Page({
       case 'clear-contractfile':
         this.setData({
           contractfile: null
-        })
+        });
+        break;
+      case 'clear-transformercount':
+        this.setData({
+          transformercount: ''
+        });
+        break;
+      case 'clear-lowvoltagecount':
+        this.setData({
+          lowvoltagecount: ''
+        });
       default:
     }
   },
@@ -298,8 +337,6 @@ Page({
   },
   saveContract: function () {
     const that = this;
-    console.log(that.data.contractfiles)
-    return
     let errors = [];
     // 设置合同起止时间（时间戳）
     if (that.data.startdate) {
@@ -325,11 +362,47 @@ Page({
       });
       return false;
     }
+    // 变压器台数
+    if (!that.data.transformercount) {
+      wx.showModal({
+        title: '错误信息',
+        content: '变压器台数不能为空',
+        showCancel: false
+      });
+      return false;
+    }
+    // 低压柜个数
+    if (!that.data.lowvoltagecount) {
+      wx.showModal({
+        title: '错误信息',
+        content: '低压柜个数不能为空',
+        showCancel: false
+      });
+      return false;
+    }
     // 变压器总容量
     if (!that.data.transformer) {
       wx.showModal({
         title: '错误信息',
         content: '变压器总容量不能为空',
+        showCancel: false
+      });
+      return false;
+    }
+    // 变压器台数
+    if (isNaN(that.data.transformercount)) {
+      wx.showModal({
+        title: '错误信息',
+        content: '变压器台数有误,请重新输入',
+        showCancel: false
+      });
+      return false;
+    }
+    // 低压柜个数
+    if (isNaN(that.data.lowvoltagecount)) {
+      wx.showModal({
+        title: '错误信息',
+        content: '低压柜个数有误,请重新输入',
         showCancel: false
       });
       return false;
@@ -348,6 +421,15 @@ Page({
       wx.showModal({
         title: '错误信息',
         content: '请上传合同扫描件',
+        showCancel: false
+      });
+      return false;
+    }
+    // 电气主接线图不能为空
+    if (that.data.wiringdiagrams.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传电气主接线图扫描件',
         showCancel: false
       });
       return false;
@@ -376,7 +458,12 @@ Page({
           contractvalue: that.data.contractvalue,
           recommendvalue: that.data.recommendvalue,
           contractstart: that.data.contractstart,
-          contractend: that.data.contractend
+          contractend: that.data.contractend,
+          contractfiles: that.data.contractfiles,
+          substationtype: that.data.substationtype,
+          transformercount: that.data.transformercount,
+          lowvoltagecount: that.data.lowvoltagecount,
+          wiringdiagrams: that.data.wiringdiagrams
         },
         method: 'POST',
         header: {
@@ -455,14 +542,14 @@ Page({
           })
           Promise.all(requests).then(res => {
             let contractfiles = []
-            let r = res.map((url,index) => {
+            let r = res.map((url, index) => {
               if (url.errMsg.split(':').includes('ok')) {
                 let d = url.data
                 if (d.indexOf('http') !== -1) {
-                  d = d.replace('http://hhr.dianjuhui.com', 'https://hhr.dianjuhui.com:3394') 
+                  d = d.replace('http://hhr.dianjuhui.com', '')
                   contractfiles = that.data.contractfiles.map(file => {
-                    return file.no === index + 1 ? Object.assign(file, {downloadurl: d}) : file
-                  })                 
+                    return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
+                  })
                 }
               }
             })
@@ -476,15 +563,64 @@ Page({
     //     that.setData({
     //       contractfiles: tempFilePaths
     //     })
-    //     let promises = []
+    //     let requests = []
     //     that.data.contractfiles.map(file => {
-    //       promises.push(util.fileuploadRrquest(api.FileUpload, file))
+    //       requests.push(util.fileuploadRrquest(api.FileUpload, file))
     //     })
-    //     Promise.all(promises).then(res => {
-    //       console.log(res)
+    //     Promise.all(requests).then(res => {
+    //       let contractfiles = []
+    //       let r = res.map((url, index) => {
+    //         if (url.errMsg.split(':').includes('ok')) {
+    //           let d = url.data
+    //           if (d.indexOf('http') !== -1) {
+    //             d = d.replace('http://hhr.dianjuhui.com', '')
+    //             contractfiles = that.data.contractfiles.map(file => {
+    //               return file.no === index + 1 ? Object.assign(file, { downloadurl: d }) : file
+    //             })
+    //           }
+    //         }
+    //       })
     //     })
     //   }
     // })
+  },
+  uploadwiringdiagram: function () {
+    let that = this
+    const token = wx.getStorageSync('token')
+    wx.chooseMessageFile({
+      count: 10,
+      type: 'all',
+      success(res) {
+        let msgflag = res.errMsg
+        if (msgflag.split(':').includes('ok')) {
+          let files = res.tempFiles
+          files.map((item, index) => {
+            return Object.assign(item, { no: index + 1 })
+          })
+          that.setData({
+            wiringdiagrams: files
+          })
+          let requests = []
+          that.data.wiringdiagrams.map(file => {
+            requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
+          })
+          Promise.all(requests).then(res => {
+            let wiringdiagrams = []
+            let r = res.map((url, index) => {
+              if (url.errMsg.split(':').includes('ok')) {
+                let d = url.data
+                if (d.indexOf('http') !== -1) {
+                  d = d.replace('http://hhr.dianjuhui.com', '')
+                  wiringdiagrams = that.data.wiringdiagrams.map(file => {
+                    return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
+                  })
+                }
+              }
+            })
+          })
+        }
+      }
+    })
   },
   clearFile: function (e) {
     const no = e.currentTarget.id
@@ -494,6 +630,16 @@ Page({
     })
     this.setData({
       contractfiles: curfiles
+    })
+  },
+  clearWiringdiagramFile: function (e) {
+    const no = e.currentTarget.id
+    let files = this.data.wiringdiagrams
+    const curfiles = files.filter(file => {
+      return `${file.no}` !== `${no}`
+    })
+    this.setData({
+      wiringdiagrams: curfiles
     })
   }
 })

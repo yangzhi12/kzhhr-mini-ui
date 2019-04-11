@@ -22,9 +22,29 @@
       </view>
     </view>
     <view class="form-item">
+      <view class="inputTransformerlabel">变压器台数（台）：</view>
+      <input class="transformer" value="{{transformercount}}" type="number" bindinput="bindTransformerCountInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ transformercount.length > 0 }}" id="clear-transformercount" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputTransformerlabel">低压柜个数（个）：</view>
+      <input class="transformer" value="{{lowvoltagecount}}" type="number" bindinput="bindLowvoltageCountInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ lowvoltagecount.length > 0 }}" id="clear-lowvoltagecount" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
       <view class="inputTransformerlabel">变压器总容量（kVa）：</view>
       <input class="transformer" value="{{transformer}}" type="number" bindinput="bindTransformerInput" maxlength="20" auto-focus/>
       <image wx:if="{{ transformer.length > 0 }}" id="clear-transformer" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+        <view class="form-item">
+      <view class="serviceplan">
+        <view class="planlabel">配电站形式：</view>
+        <radio-group class="radio-group" bindchange="substationtypeChange">
+          <label class="radio radio-label slectedlabel" wx:key="{{item.value}}" wx:for="{{substationtypes}}">
+            <radio value="{{item.value}}" color="#1982c2" checked="{{item.checked}}" /> {{item.name}}
+          </label>
+        </radio-group>
+      </view>
     </view>
     <view class="form-item">
       <view class="serviceplan">
@@ -68,15 +88,25 @@
     </view>
     <view class="contractcontainer">
       <view class="uploadaction">
-        <view class="uploadlabel">合同附件：</view>
-        <view class="uploadbtn" 
-            bindtap="uploadcontract" hidden="{{contractfile}}">点击上传合同
+        <view class="uploadlabel">合同扫描件：</view>
+        <view class="uploadbtn" bindtap="uploadcontract">点击上传合同
         </view>
       </view>
-      <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{contractfile.no}}">
+      <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
         <view class="selectedfile">{{item.no}}：</view>
         <view>{{item.name}}</view>
         <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+      </view>
+    </view>
+    <view class="contractcontainer">
+      <view class="uploadaction">
+        <view class="uploadlabel">电气主接线图扫描件：</view>
+        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传电气主接线图</view>
+      </view>
+      <view class="contractfiles" wx:for="{{wiringdiagrams}}" wx:key="{{item.no}}">
+        <view class="selectedfile">{{item.no}}：</view>
+        <view>{{item.name}}</view>
+        <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearWiringdiagramFile"></image>
       </view>
     </view>
     <button type="default" class="save-btn" bindtap="saveContract">保存</button>

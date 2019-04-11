@@ -69,12 +69,12 @@ page{
 
 .title .menu-items .item-selected {
   padding: 10rpx 10rpx;
-  background-color: #5f6fee;
+  background-color: #1982c2;
   color: white;
 }
 
 .titleSel {
-  color: #5f6fee;
+  color: #1982c2;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@ page{
 }
 
 .headerLineSel {
-  background: #5f6fee;
+  background: #1982c2;
   height: 6rpx;
   width: 40rpx;
   position: relative;
@@ -132,7 +132,7 @@ page{
   right: 25rpx;
   top: 320rpx;
   padding: 15rpx 15rpx;
-  border: 1px solid #5f6fee;
+  border: 1px solid #1982c2;
   border-radius: 10rpx;
 }
 

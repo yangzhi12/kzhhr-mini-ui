@@ -1,4 +1,5 @@
 const ApiRootUrl = 'https://hhr.dianjuhui.com:3393/api/';
+const FileServer = 'https://hhr.dianjuhui.com:3394';
 // const ApiRootUrl = 'http://localhost:8360/api/';
 
 module.exports = {
@@ -12,6 +13,5 @@ module.exports = {
   OrderStatQList: ApiRootUrl + 'contract/index', //根据用户ID获取签单列表
   OrderMoney: ApiRootUrl + 'contract/fee', //自动计算合同金额
   OrderAdd: ApiRootUrl + 'contract/store', //新增保存合同
-  // FileUpload: ApiRootUrl + 'file/upload', //文件上传
-  FileUpload: 'https://hhr.dianjuhui.com:3394/upload', //文件上传
+  FileUpload: `${FileServer}/upload`, //文件上传
 };

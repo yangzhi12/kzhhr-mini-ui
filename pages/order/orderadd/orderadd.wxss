@@ -144,17 +144,6 @@
   margin-right: 5rpx;
 }
 
-.form-item .clear {
-  position: absolute;
-  top: 26rpx;
-  right: 18rpx;
-  z-index: 2;
-  display: block;
-  background: #fff;
-  height: 44rpx;
-  width: 44rpx;
-}
-
 .serviceitems {
   padding-top: 5rpx;
   padding-bottom: 25rpx;
@@ -173,7 +162,7 @@
 
 .form-item .clear {
   position: absolute;
-  top: 38rpx;
+  top: 35rpx;
   right: 20rpx;
   z-index: 2;
   display: block;
