@@ -50,7 +50,7 @@
   width: 23%;
 }
 
-.form-item .inputTransformerlabel, .form-item .contractvaluelabel {
+.form-item .inputTransformerlabel {
   position: absolute;
   top: 35rpx;
   left: 0rpx;
@@ -72,7 +72,8 @@
   font-size: 30rpx;
 }
 
-.form-item .transformer, .form-item .contractdatelabel {
+.form-item .transformer,
+.form-item .contractdatelabel {
   position: absolute;
   top: 26rpx;
   right: 0;
@@ -84,17 +85,48 @@
   font-size: 30rpx;
 }
 
-.form-item .contractvalue {
-  display: flex;
-  direction: row;
-  justify-content: space-between;
-  padding-top: 30rpx;
-  width: 100%;
+.form-item .inputTransformerlabel0 {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 40%;
 }
 
-.fee, .recommendfee {
-  padding-top: 2px;
+.form-item .transformer0 {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: inline-block;
+  width: 60%;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.form-item .contractvaluelabel {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 40%;
+}
+
+.form-item .contractvalue {
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+  display: inline-block;
+  width: 60%;
+  height: 44rpx;
+  background: #fff;
   color: red;
+  font-size: 30rpx;
 }
 
 .form-item .serviceplan {
@@ -185,7 +217,7 @@
 
 .form-box .contractcontainer .uploadaction .uploadbtn{
     color: #1982c2;
-    padding-left: 40rpx;
+    padding-left: 5rpx;
 }
 
 .form-box .contractcontainer .contractfiles{

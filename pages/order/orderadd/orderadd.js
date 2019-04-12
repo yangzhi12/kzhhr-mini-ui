@@ -244,10 +244,11 @@ Page({
     })
     // 计算合同截止时间(间隔一年)
     let startdate = new Date(this.data.startdate)
-    let enddate = util.formatTime(new Date(startdate.setYear(startdate.getFullYear() + 1)))
+    let enddate = util.formatTime(new Date(startdate.setYear(startdate.getFullYear() + 3)))
     this.setData({
       enddate: enddate.substr(0, 10)
     })
+    this.autoCalculateValue()
   },
   bindContractnameInput: function (e) {
     let value = e.detail.value;
@@ -297,7 +298,8 @@ Page({
     let industry = that.data.industry
     let transformer = that.data.transformer
     let plan = that.data.plan
-    if (industry && transformer && plan) {
+    let startdate = that.data.startdate
+    if (industry && transformer && plan && startdate) {
       // 如果变压器容量不为数字则退出
       if (!isNaN(transformer)) {
         try {
@@ -320,7 +322,7 @@ Page({
                   if (response.errorno) {
                   } else {
                     that.setData({
-                      contractvalue: response.data.fee,
+                      contractvalue: response.data.recommendfee * 3,
                       recommendvalue: response.data.recommendfee
                     })
                   }

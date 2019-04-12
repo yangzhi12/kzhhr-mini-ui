@@ -18,7 +18,7 @@ Page({
       RN: 0
     },
     currentquarter: 'Q1',
-    years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
     selectedyear: 2019,
     yearsshow: true,
     contract: [],

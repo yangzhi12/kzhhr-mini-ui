@@ -4,7 +4,7 @@
       <view class="orderstattitle"></view>
       <view class="orderstattitle">合同个数(个)</view>
       <view class="orderstattitle">合同金额(元)</view>
-      <view class="orderstattitle">签单数(单)</view>
+      <view class="orderstattitle">核准单数(单)</view>
     </view>
     <view class="orderstat" wx:for="{{stats}}"  wx:key="{{item}}">
       <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>
@@ -53,14 +53,15 @@
         <view class="contentitemline" hidden="item.contractno.length === 0">合同编号：{{item.contractno || '--'}}</view>
         <view class="contentitemline">客户名称：{{item.contractname}}</view>
         <view class="contentitemline">起止时间：{{item.contractstart}} 至 {{item.contractend}}</view>
-        <view class="contentitemline">
+        <!-- <view class="contentitemline">
           <view class="contractvalue">
-            合同金额：{{item.contractvaluecomma}} 元
+          合同金额：{{item.contractvaluecomma}} 元
           </view>
           <view class="recommendvalue">
-            （{{item.recommendvaluecomma}} 元）
+          （年服务费：{{item.recommendvaluecomma}} 元/年）
           </view>
-        </view>
+        </view> -->
+        <view class="contentitemline">合同金额：{{item.contractvaluecomma}} 元</view>
         <view class="contentitemline">合同状态：{{item.contractstatename}}</view>
       </view>
     </view>

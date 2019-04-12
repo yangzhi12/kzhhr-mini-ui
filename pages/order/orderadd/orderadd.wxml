@@ -22,17 +22,17 @@
       </view>
     </view>
     <view class="form-item">
-      <view class="inputTransformerlabel">变压器台数（台）：</view>
-      <input class="transformer" value="{{transformercount}}" type="number" bindinput="bindTransformerCountInput" maxlength="20" auto-focus/>
+      <view class="inputTransformerlabel0">变压器台数（台）：</view>
+      <input class="transformer0" value="{{transformercount}}" type="number" bindinput="bindTransformerCountInput" maxlength="20" auto-focus/>
       <image wx:if="{{ transformercount.length > 0 }}" id="clear-transformercount" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
     <view class="form-item">
-      <view class="inputTransformerlabel">低压柜个数（个）：</view>
-      <input class="transformer" value="{{lowvoltagecount}}" type="number" bindinput="bindLowvoltageCountInput" maxlength="20" auto-focus/>
+      <view class="inputTransformerlabel0">低压柜个数（个）：</view>
+      <input class="transformer0" value="{{lowvoltagecount}}" type="number" bindinput="bindLowvoltageCountInput" maxlength="20" auto-focus/>
       <image wx:if="{{ lowvoltagecount.length > 0 }}" id="clear-lowvoltagecount" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
     <view class="form-item">
-      <view class="inputTransformerlabel">变压器总容量（kVa）：</view>
+      <view class="inputTransformerlabel">变压器总容量（kVA）：</view>
       <input class="transformer" value="{{transformer}}" type="number" bindinput="bindTransformerInput" maxlength="20" auto-focus/>
       <image wx:if="{{ transformer.length > 0 }}" id="clear-transformer" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
@@ -67,14 +67,6 @@
       </view>
     </view>
     <view class="form-item">
-      <view class="contractvalue">
-        <view class="feelabel">合同金额（元）：</view>
-        <view class="fee">{{ contractvalue }}</view>
-        <view class="recommendlabel">建议收费（元）：</view>
-        <view class="recommendfee">{{ recommendvalue }}</view>
-      </view>
-    </view>
-    <view class="form-item">
       <view class="contractdateselected">
         <picker mode="date" value="{{contractstart}}" start="2019-01-01" end="2030-01-01" bindchange="bindDateSelectedChange">
           <view class="contractdategroup">
@@ -86,10 +78,14 @@
         </picker>
       </view>
     </view>
+    <view class="form-item">
+        <view class="contractvaluelabel">合同金额（元）：</view>
+        <view class="contractvalue">{{ contractvalue }}</view>
+    </view>
     <view class="contractcontainer">
       <view class="uploadaction">
         <view class="uploadlabel">合同扫描件：</view>
-        <view class="uploadbtn" bindtap="uploadcontract">点击上传合同
+        <view class="uploadbtn" bindtap="uploadcontract">点击上传合同(微信内图片)
         </view>
       </view>
       <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
@@ -101,7 +97,7 @@
     <view class="contractcontainer">
       <view class="uploadaction">
         <view class="uploadlabel">电气主接线图扫描件：</view>
-        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传电气主接线图</view>
+        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传接线图(微信内图片)</view>
       </view>
       <view class="contractfiles" wx:for="{{wiringdiagrams}}" wx:key="{{item.no}}">
         <view class="selectedfile">{{item.no}}：</view>
