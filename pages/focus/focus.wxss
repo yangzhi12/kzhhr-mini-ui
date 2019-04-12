@@ -3,6 +3,44 @@
     height: auto;
     overflow: hidden;
     padding: 0 40rpx;
-    margin-top: 96rpx;
+    margin-top: 20rpx;
     background: #fff;
+}
+
+.form-box .noticecontainer{
+  height: 450rpx;
+}
+
+.form-box .noticecontainer .containertitle{
+  padding-bottom: 10rpx;
+  border-bottom: 3rpx solid #1982c2;
+}
+
+.form-box .messagecontainer{
+  height: 450rpx;
+}
+
+.form-box .messagecontainer .containertitle{
+  padding-bottom: 10rpx;
+  border-bottom: 3rpx solid #1982c2;
+}
+
+items{
+  /* text-decoration: underline; */
+  margin-top: 10rpx;
+}
+
+.items .item{
+  display: flex;
+  direction: row;
+  padding: 10rpx 10rpx;
+}
+
+.items .item .itemaction{
+  color: #1982c2;
+  margin-left: 25rpx;
+}
+
+.items .item .itemtime{
+  margin-left: 150rpx;
 }

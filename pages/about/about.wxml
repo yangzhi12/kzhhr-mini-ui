@@ -21,8 +21,5 @@
       技术咨询：18388464092
 
     </text>
-    <view class="content" decode='{{true}}' space='{{true}}'>      
-      <view>附件：<span class="attachcontract" bindtap="downloadfile">用户服务协议.pdf</span></view>
-    </view>
   </view>
 </view>

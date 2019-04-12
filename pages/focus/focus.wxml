@@ -1,5 +1,28 @@
 <view class="container">  
   <view class="form-box">
-    此功能模块暂未开放，敬请期待...
+    <!-- <import src="../../lib/wxParse/wxParse.wxml" /> -->
+    <view class="noticecontainer">
+      <view class="containertitle">通知</view>
+      <view class="items">
+        <view class="item">
+          <view class="itemtitle">暂无</view>
+        </view>
+      </view>
+    </view>
+    <view class="messagecontainer">
+      <view class="containertitle">公告</view>
+      <!-- <view class="wxParse">
+        <scroll-view style="height:100%;" scroll-y='true'> 
+            <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" />
+        </scroll-view>
+      </view> -->
+      <view class="items">
+        <view class="item">
+          <view class="itemtitle">用户服务合同.pdf</view>
+          <view class="itemaction" bindtap="downloadfile">点击下载</view>
+          <view class="itemtime">2019-04-01</view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
