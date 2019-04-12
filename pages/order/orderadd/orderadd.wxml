@@ -36,7 +36,7 @@
       <input class="transformer" value="{{transformer}}" type="number" bindinput="bindTransformerInput" maxlength="20" auto-focus/>
       <image wx:if="{{ transformer.length > 0 }}" id="clear-transformer" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
-        <view class="form-item">
+    <view class="form-item">
       <view class="serviceplan">
         <view class="planlabel">配电站形式：</view>
         <radio-group class="radio-group" bindchange="substationtypeChange">
@@ -79,8 +79,8 @@
       </view>
     </view>
     <view class="form-item">
-        <view class="contractvaluelabel">合同金额（元）：</view>
-        <view class="contractvalue">{{ contractvalue }}</view>
+      <view class="contractvaluelabel">合同金额（元）：</view>
+      <view class="contractvalue">{{ contractvalue }}</view>
     </view>
     <view class="contractcontainer">
       <view class="uploadaction">
@@ -88,10 +88,11 @@
         <view class="uploadbtn" bindtap="uploadcontract">点击上传合同(微信内图片)
         </view>
       </view>
-      <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
-        <view class="selectedfile">{{item.no}}：</view>
-        <view>{{item.name}}</view>
-        <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+      <view class="filesmap">
+        <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" />
+          <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+        </view>
       </view>
     </view>
     <view class="contractcontainer">

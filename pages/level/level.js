@@ -23,15 +23,15 @@ Page({
     // 页面关闭
   },
   //swiper切换时会调用
-  pagechange: function (e) {
-    if ("touch" === e.detail.source) {
-      let currentPageIndex = this.data.currentIndex
-      currentPageIndex = (currentPageIndex + 1) % 2
-      this.setData({
-        currentIndex: currentPageIndex
-      })
-    }
-  },
+  // pagechange: function (e) {
+  //   if ("touch" === e.detail.source) {
+  //     let currentPageIndex = this.data.currentIndex
+  //     currentPageIndex = (currentPageIndex + 1) % 5
+  //     this.setData({
+  //       currentIndex: currentPageIndex
+  //     })
+  //   }
+  // },
   //用户点击tab时调用
   titleClick: function (e) {
     let currentPageIndex =

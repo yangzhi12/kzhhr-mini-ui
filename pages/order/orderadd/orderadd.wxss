@@ -220,20 +220,31 @@
     padding-left: 5rpx;
 }
 
-.form-box .contractcontainer .contractfiles{
-  margin-top: 25rpx;
-  display: flex;
-  direction: row;
+.form-box .contractcontainer .filesmap{
+  /* margin-top: 25rpx; */
+  /* display: flex;
+  direction: row;   */
+  text-align: center;
+}
+
+.form-box .contractcontainer .filesmap .contractfiles{
+  border: 0.5rpx solid #f3eeee;
+  padding: 25rpx 25rpx;
+  margin: 25rpx 25rpx;
+  position: relative;
 }
 
 .form-box .contractcontainer .contractfiles .selectedfile{
-  padding-left: 50rpx;
+  /* position: absolute; */
 }
 
 .clearfile{
-  background: #fff;
-  height: 44rpx;
-  width: 44rpx;
+  height: 80rpx;
+  width: 80rpx;
+  position: absolute;
+  z-index: 2;
+  top: 0rpx;
+  right: 0rpx;
 }
 
 .save-btn {
@@ -244,4 +255,9 @@
   font-size: 30rpx;
   width: 100%;
   border-radius: 6rpx;
+}
+
+.imagesize{
+  height: 200rpx;
+  width: 200rpx;
 }

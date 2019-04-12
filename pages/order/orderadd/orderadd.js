@@ -524,7 +524,6 @@ Page({
   },
   uploadcontract: function () {
     let that = this
-    const token = wx.getStorageSync('token')
     wx.chooseMessageFile({
       count: 10,
       type: 'all',
@@ -533,13 +532,10 @@ Page({
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
           files.map((item, index) => {
-            return Object.assign(item, { no: index + 1 })
-          })
-          that.setData({
-            contractfiles: files
+            return Object.assign(item, { no: that.data.contractfiles.length + index + 1 })
           })
           let requests = []
-          that.data.contractfiles.map(file => {
+          files.map(file => {
             requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
           })
           Promise.all(requests).then(res => {
@@ -549,11 +545,14 @@ Page({
                 let d = url.data
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http://hhr.dianjuhui.com', '')
-                  contractfiles = that.data.contractfiles.map(file => {
-                    return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
+                  contractfiles = files.map(file => {
+                    return file.no === that.data.contractfiles.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
                   })
                 }
               }
+            })
+            that.setData({
+              contractfiles: that.data.contractfiles.concat(contractfiles)
             })
           })
         }
