@@ -586,8 +586,43 @@ Page({
     // })
   },
   uploadwiringdiagram: function () {
+    // let that = this
+    // const token = wx.getStorageSync('token')
+    // wx.chooseMessageFile({
+    //   count: 10,
+    //   type: 'all',
+    //   success(res) {
+    //     let msgflag = res.errMsg
+    //     if (msgflag.split(':').includes('ok')) {
+    //       let files = res.tempFiles
+    //       files.map((item, index) => {
+    //         return Object.assign(item, { no: index + 1 })
+    //       })
+    //       that.setData({
+    //         wiringdiagrams: files
+    //       })
+    //       let requests = []
+    //       that.data.wiringdiagrams.map(file => {
+    //         requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
+    //       })
+    //       Promise.all(requests).then(res => {
+    //         let wiringdiagrams = []
+    //         let r = res.map((url, index) => {
+    //           if (url.errMsg.split(':').includes('ok')) {
+    //             let d = url.data
+    //             if (d.indexOf('http') !== -1) {
+    //               d = d.replace('http://hhr.dianjuhui.com', '')
+    //               wiringdiagrams = that.data.wiringdiagrams.map(file => {
+    //                 return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
+    //               })
+    //             }
+    //           }
+    //         })
+    //       })
+    //     }
+    //   }
+    // })
     let that = this
-    const token = wx.getStorageSync('token')
     wx.chooseMessageFile({
       count: 10,
       type: 'all',
@@ -596,13 +631,10 @@ Page({
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
           files.map((item, index) => {
-            return Object.assign(item, { no: index + 1 })
-          })
-          that.setData({
-            wiringdiagrams: files
+            return Object.assign(item, { no: that.data.wiringdiagrams.length + index + 1 })
           })
           let requests = []
-          that.data.wiringdiagrams.map(file => {
+          files.map(file => {
             requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
           })
           Promise.all(requests).then(res => {
@@ -612,11 +644,14 @@ Page({
                 let d = url.data
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http://hhr.dianjuhui.com', '')
-                  wiringdiagrams = that.data.wiringdiagrams.map(file => {
-                    return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
+                  wiringdiagrams = files.map(file => {
+                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
                   })
                 }
               }
+            })
+            that.setData({
+              wiringdiagrams: that.data.wiringdiagrams.concat(wiringdiagrams)
             })
           })
         }
@@ -642,5 +677,52 @@ Page({
     this.setData({
       wiringdiagrams: curfiles
     })
+  },
+  // 显示大图
+  showZoomFile: function (e) {
+    const dataset = e.currentTarget.dataset
+    const items = dataset.files
+    const item = dataset.file
+    if (this.fileTypeIsImage(item)) {
+      // 获取图片列表
+      let images = items.filter(i => {
+        return i.type === 'image'
+      })
+      let imagepaths = []
+      images.map(i => {
+        let url = i.path
+        // let url = this.fileFullPath(i.downloadurl)
+        imagepaths.push(url)
+      })     
+      // 预览图片
+      wx.previewImage({
+        current: item.path,
+        urls: imagepaths 
+      })
+    } else {
+      // 预览其他格式的文件 
+      // let url = this.fileFullPath(item.downloadurl)
+      let url = item.path
+      wx.downloadFile({
+        url: url,
+        success(res) {
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success(res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+    }    
+  },
+  // 判断文件类型
+  fileTypeIsImage: function (item) {
+    return item.type === 'image'
+  },
+  // 获取文件访问全路径
+  fileFullPath: function (path) {
+    return `${api.FileView}${path}`
   }
 })

@@ -239,8 +239,8 @@
 }
 
 .clearfile{
-  height: 80rpx;
-  width: 80rpx;
+  height: 60rpx;
+  width: 60rpx;
   position: absolute;
   z-index: 2;
   top: 0rpx;

@@ -13,4 +13,5 @@ module.exports = {
   OrderMoney: ApiRootUrl + '/api/contract/fee', //自动计算合同金额
   OrderAdd: ApiRootUrl + '/api/contract/store', //新增保存合同
   FileUpload: `${FileServer}/upload`, //文件上传
+  FileView: FileServer, //文件预览及下载URL
 };
