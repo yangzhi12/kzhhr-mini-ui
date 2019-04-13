@@ -18,9 +18,9 @@
       </view> -->
       <view class="items">
         <view class="item">
-          <view class="itemtitle">用户服务合同.pdf</view>
-          <view class="itemaction" bindtap="downloadfile">点击下载</view>
           <view class="itemtime">2019-04-01</view>
+          <view class="itemtitle">用户服务合同.pdf</view>
+          <view class="itemaction" bindtap="downloadfile">点击下载{{(process > 0 && process < 100) ? ('(' + process + '%)') : '' }}</view>
         </view>
       </view>
     </view>

@@ -544,7 +544,7 @@ Page({
               if (url.errMsg.split(':').includes('ok')) {
                 let d = url.data
                 if (d.indexOf('http') !== -1) {
-                  d = d.replace('http://hhr.dianjuhui.com', '')
+                  d = d.replace('http', 'https')
                   contractfiles = files.map(file => {
                     return file.no === that.data.contractfiles.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
                   })
@@ -643,7 +643,7 @@ Page({
               if (url.errMsg.split(':').includes('ok')) {
                 let d = url.data
                 if (d.indexOf('http') !== -1) {
-                  d = d.replace('http://hhr.dianjuhui.com', '')
+                  d = d.replace('http', 'https')
                   wiringdiagrams = files.map(file => {
                     return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
                   })
@@ -691,7 +691,6 @@ Page({
       let imagepaths = []
       images.map(i => {
         let url = i.path
-        // let url = this.fileFullPath(i.downloadurl)
         imagepaths.push(url)
       })     
       // 预览图片
@@ -701,7 +700,6 @@ Page({
       })
     } else {
       // 预览其他格式的文件 
-      // let url = this.fileFullPath(item.downloadurl)
       let url = item.path
       wx.downloadFile({
         url: url,
@@ -720,9 +718,5 @@ Page({
   // 判断文件类型
   fileTypeIsImage: function (item) {
     return item.type === 'image'
-  },
-  // 获取文件访问全路径
-  fileFullPath: function (path) {
-    return `${api.FileView}${path}`
   }
 })

@@ -34,6 +34,7 @@ items{
   display: flex;
   direction: row;
   padding: 10rpx 10rpx;
+  position: relative;
 }
 
 .items .item .itemaction{
@@ -42,5 +43,8 @@ items{
 }
 
 .items .item .itemtime{
-  margin-left: 150rpx;
+  position: absolute;
+  padding-top: 5rpx;
+  right: 0rpx;
+  
 }

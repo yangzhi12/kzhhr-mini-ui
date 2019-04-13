@@ -537,6 +537,9 @@ function fileuploadRrquest(url, filepath) {
             url: url,
             filePath: filepath,
             name: 'file',
+            formData: {
+              scene: 'kzhhr'
+            },
             success: resolve,
             fail: reject
           })
