@@ -1,5 +1,5 @@
-const ApiRootUrl = 'https://localhost:3393';
-const FileServer = 'https://localhost:3394';
+const ApiRootUrl = 'http://localhost:8360';
+const FileServer = 'http://localhost:2392';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + '/api/user/register', //用户注册
@@ -14,4 +14,5 @@ module.exports = {
   OrderAdd: ApiRootUrl + '/api/contract/store', //新增保存合同
   FileUpload: `${FileServer}/upload`, //文件上传
   FileView: FileServer, //文件预览及下载URL
+  ShareAdd: ApiRootUrl + '/api/share/store', //我的分享添加
 };

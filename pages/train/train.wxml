@@ -1,5 +1,50 @@
 <view class="container">  
-  <view class="form-box">
-    此功能模块暂未开放，敬请期待...
+  <view class="profile-info">
+    <view class="orderstat">
+      <view class="orderstattitle"></view>
+      <view class="orderstattitle">培训次数(次)</view>
+      <view class="orderstattitle">参与人数(人)</view>
+    </view>
+    <view class="orderstat" wx:for="{{stats}}"  wx:key="{{item}}">
+      <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>
+      <view class="orderstattitle">{{ quarter[item + 'T'] }}</view>
+      <view class="orderstattitle">{{ quarter[item + 'N'] }}</view>
+    </view>
+  </view>
+  <view class="user-menu">
+    <view class='title'>
+      <view class='titleSel' bindtap='titleYearClick'>
+        <text>{{selectedyear}}</text>
+        <hr class="headerLineUnsel" />
+      </view>
+      <view class="menu-items" hidden='{{yearsshow}}'>
+        <view wx:for="{{years}}" wx:key="item" class="{{selectedyear === item ? 'item-selected' : 'item' }}" bindtap="tapMenuItem" data-index="{{item}}">
+          {{item}}
+        </view>
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q1'>
+        <text>Q1</text>
+        <hr class="{{'Q1' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q2'>
+        <text>Q2</text>
+        <hr class="{{'Q2' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q3'>
+        <text>Q3</text>
+        <hr class="{{'Q3' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+
+      <view class='titleSel' bindtap='titleClick' data-idx='Q4'>
+        <text>Q4</text>
+        <hr class="{{'Q4' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+      </view>
+    </view>
+    <view class="teamcontainer">
+      
+    </view>
   </view>
 </view>

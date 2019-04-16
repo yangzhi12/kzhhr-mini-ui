@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="form-box">
+    <view class="positioncontainer">
+      <view class="address-label">
+        <view class="address">所在位置：</view>
+        <view class="btnlocation" catchtap="locationAddress">{{locationing ? (positionisok ? '定位失败，请重试？' : '正在定位，请稍后...') : (positionisok ? '不够精准，重新定位？' : '点击定位')}}</view>
+      </view>
+      <view class="addresscontent">{{address + name}}</view>
+    </view>
+    <view class="form-item">
+      <view class="inputPeoplesLabel">参与人数（人）：</view>
+      <input class="peoples" value="{{peoples}}" type="number" bindinput="bindpeoplesInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ peoples.length > 0 }}" id="clear-peoples" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>    
+    <!-- <view class="form-item">
+      <view class="contractdateselected">
+        <picker mode="date" value="{{contractstart}}" start="2019-01-01" end="2030-01-01" bindchange="bindDateSelectedChange">
+          <view class="contractdategroup">
+            <view class="contractlabel">起止时间：</view>
+            <view class="contractstart">{{startdate}}</view>
+            <view class="contractdatedivide" hidden="{{startdate === ''}}">至</view>
+            <view class="contractend" hidden="{{startdate === ''}}">{{enddate}}</view>
+          </view>
+        </picker>
+      </view>
+    </view> -->
+    <view class="attachmentcontainer">
+      <view class="uploadaction">
+        <view class="uploadlabel">现场照片（最多三张）：</view>
+        <view class="uploadbtn" bindtap="uploadimage">点击上传照片
+        </view>
+      </view>
+      <view class="filesmap">
+        <view class="attachmentfiles" wx:for="{{attachmentfiles}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" data-files="{{attachmentfiles}}" data-file="{{item}}" catchtap="showZoomFile" />
+          <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+        </view>
+      </view>
+    </view>
+    <button type="default" class="save-btn" bindtap="saveShare">保存</button>
+  </view>
+</view>

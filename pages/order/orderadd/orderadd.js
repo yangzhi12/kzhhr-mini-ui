@@ -419,23 +419,23 @@ Page({
       return false;
     }
     // 合同附件不能为空
-    if (that.data.contractfiles.length === 0) {
-      wx.showModal({
-        title: '错误信息',
-        content: '请上传合同扫描件',
-        showCancel: false
-      });
-      return false;
-    }
-    // 电气主接线图不能为空
-    if (that.data.wiringdiagrams.length === 0) {
-      wx.showModal({
-        title: '错误信息',
-        content: '请上传电气主接线图扫描件',
-        showCancel: false
-      });
-      return false;
-    }
+    // if (that.data.contractfiles.length === 0) {
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '请上传合同扫描件',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
+    // // 电气主接线图不能为空
+    // if (that.data.wiringdiagrams.length === 0) {
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '请上传电气主接线图扫描件',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
     if (!that.data.contractvalue || !that.data.recommendvalue) {
       wx.showModal({
         title: '提示信息',
@@ -558,32 +558,6 @@ Page({
         }
       }
     })
-    // wx.chooseImage({
-    //   success(res) {
-    //     const tempFilePaths = res.tempFilePaths
-    //     that.setData({
-    //       contractfiles: tempFilePaths
-    //     })
-    //     let requests = []
-    //     that.data.contractfiles.map(file => {
-    //       requests.push(util.fileuploadRrquest(api.FileUpload, file))
-    //     })
-    //     Promise.all(requests).then(res => {
-    //       let contractfiles = []
-    //       let r = res.map((url, index) => {
-    //         if (url.errMsg.split(':').includes('ok')) {
-    //           let d = url.data
-    //           if (d.indexOf('http') !== -1) {
-    //             d = d.replace('http://hhr.dianjuhui.com', '')
-    //             contractfiles = that.data.contractfiles.map(file => {
-    //               return file.no === index + 1 ? Object.assign(file, { downloadurl: d }) : file
-    //             })
-    //           }
-    //         }
-    //       })
-    //     })
-    //   }
-    // })
   },
   uploadwiringdiagram: function () {
     // let that = this

@@ -1,8 +1,137 @@
-.form-box{
+page{
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+.container{
+    background: #f4f4f4;
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.profile-info {
+  background: #1982c2;
+  padding-bottom: 25rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
+
+.profile-info .orderstat {
+  display: flex;
+  direction: column;
+  justify-content: space-between;
+}
+
+.profile-info .orderstattitle {
+  width: 25%;
+  text-align: center;
+}
+
+.profile-info .orderstattitle {
+  color: #fff;
+  width: 25%;
+}
+
+.user-menu{
     width: 100%;
     height: auto;
     overflow: hidden;
-    padding: 0 40rpx;
-    margin-top: 96rpx;
     background: #fff;
+    padding-left: 20rpx;
+    padding-right: 20px;
+}
+
+.level {
+  padding-bottom: 20rpx;
+}
+.title {
+  width: 100%;
+  height: 88rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title .menu-items {
+  position: absolute;
+  left: 55rpx;
+  top: 240rpx;
+  border: 1px solid #f4f4f4;
+  border-top-width: 0rpx;
+}
+
+.title .menu-items .item {
+  padding: 15rpx 15rpx;
+  background-color: white;
+}
+
+.title .menu-items .item-selected {
+  padding: 10rpx 10rpx;
+  background-color: #1982c2;
+  color: white;
+}
+
+.titleSel {
+  color: #1982c2;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleUnsel {
+  color: #858fab;
+  font-size: #858fab;
+}
+
+.headerLineSel {
+  background: #1982c2;
+  height: 6rpx;
+  width: 40rpx;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.headerLineUnsel {
+  background: #fff;
+  height: 6rpx;
+  width: 40rpx;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.user-menu .content{
+  /* padding-bottom: 20rpx; */
+}
+
+.user-menu .content .contentitem{
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.user-menu .content .contentitemline{
+  padding-top: 15rpx;
+  display: flex;
+  justify-content: start;
+}
+
+.user-menu .content .contentitemline .recommendvalue{
+  color: #1982c2;
+}
+
+.user-menu .shareontainer{
+  height: 600rpx;
+  text-align: center;
+  width: auto;
+}
+
+.user-menu .addshare{
+  position: absolute;
+  right: 25rpx;
+  top: 320rpx;
+  padding: 15rpx 15rpx;
+  border: 1px solid #1982c2;
+  border-radius: 10rpx;
 }

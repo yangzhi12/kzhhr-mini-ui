@@ -13,7 +13,9 @@
     "pages/level/level",
     "pages/focus/focus",
     "pages/about/about",
-    "pages/order/orderadd/orderadd"
+    "pages/order/orderadd/orderadd",
+    "pages/share/shareadd/shareadd",
+    "pages/train/trainadd/trainadd"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -25,6 +27,11 @@
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的定位信息将用于获取拍照位置分享"
+    }
   },
   "debug": true
 }
