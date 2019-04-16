@@ -120,13 +120,10 @@ Page({
             if (!response.errno) {
               wx.showModal({
                 title: '提示信息',
-                content: '合同保存成功',
+                content: '分享信息保存成功',
                 showCancel: false,
                 success(tipok) {
                   if (tipok.confirm) {
-                    // wx.redirectTo({
-                    //   url: '/pages/order/order'
-                    // })
                     wx.navigateBack() // 路由出栈
                   }
                 }
@@ -175,7 +172,7 @@ Page({
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFilePaths
           let tmpfiles = files.map((item, index) => {
-            return Object.assign({}, { no: that.data.attachmentfiles.length + index + 1, path: item })
+            return Object.assign({}, { no: that.data.attachmentfiles.length + index + 1, path: item, category: '000' })
           })
           let requests = []
           tmpfiles.map((file, index) => {
