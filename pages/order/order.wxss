@@ -25,12 +25,8 @@ page{
 
 .profile-info .orderstattitle {
   width: 25%;
-  text-align: center;
-}
-
-.profile-info .orderstattitle {
   color: #fff;
-  width: 25%;
+  text-align: center;
 }
 
 .user-menu{

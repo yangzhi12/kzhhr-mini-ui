@@ -15,52 +15,8 @@ Page({
     years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
     selectedyear: 2019,
     yearsshow: true,
-    contract: [],
-    stats: ['Q', 'Y', 'R'],
-    relations: {
-      id: 1,
-      name: '张',
-      children: [
-        {
-          id: 2,
-          name: '1张1',
-          children: [
-            {
-              id: 4,
-              name: '2张1',
-            },
-            {
-              id: 5,
-              name: '2张2',
-              children: [
-                {
-                  id: 8,
-                  name: '8张1',
-                },
-              ]
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: '1张2',
-          children: [
-            {
-              id: 6,
-              name: '3张1',
-            },
-            {
-              id: 7,
-              name: '3张2',
-            }
-          ]
-        },
-        {
-          id: 4,
-          name: '1张3'
-        }
-      ]
-    }
+    share: [],
+    stats: ['Q', 'Y', 'R']
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -74,7 +30,7 @@ Page({
       selectedyear: this.data.years[0],
       currentquarter: 'Q1'
     })
-    this.getOrderIndex()
+    this.getShareIndex()
   },
   onHide: function () {
     // 页面隐藏
@@ -85,7 +41,7 @@ Page({
 
   },
   // 季度签单量汇总
-  getOrderStatQ() {
+  getShareStatQ() {
     let that = this
     let year = that.data.selectedyear
     let data = {
@@ -96,7 +52,7 @@ Page({
       const token = wx.getStorageSync('token')
       if (token) {
         wx.request({
-          url: api.OrderStatQ,
+          url: api.ShareStatQ,
           method: 'post',
           header: {
             'x-kzhhr-token': token
@@ -113,11 +69,6 @@ Page({
                 });
               } else {
                 let data = response.data
-                Object.keys(data).map(item => {
-                  if (item.substr(1, 1) === 'N') {
-                    data[item] = that.getTwoDecimal(data[item])
-                  }
-                })
                 that.setData({ quarter: data })
               }
             } else {
@@ -135,7 +86,7 @@ Page({
     }
   },
   // 季度签单量列表
-  getOrderStatQList() {
+  getShareStatQList() {
     let that = this
     let quarter = that.getQuarterIndex(that.data.currentquarter)
     let year = that.data.selectedyear
@@ -147,7 +98,7 @@ Page({
       const token = wx.getStorageSync('token')
       if (token) {
         wx.request({
-          url: api.OrderStatQList,
+          url: api.ShareStatQList,
           method: 'post',
           header: {
             'x-kzhhr-token': token
@@ -164,13 +115,7 @@ Page({
                 });
               } else {
                 let data = response.data
-                for (let i = 0; i < data.length; i++) {
-                  let statename = util.getApproveFlow(data[i].contractstate)['name']
-                  let money = util.getCommaMoney(data[i].contractvalue, 0)
-                  let recommendmoney = util.getCommaMoney(data[i].recommendvalue, 0)
-                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money, recommendvaluecomma: recommendmoney })
-                }
-                that.setData({ contract: data })
+                that.setData({ share: data })
               }
             } else {
               wx.showModal({
@@ -194,7 +139,7 @@ Page({
       // 隐藏年份选择（如果显示则隐藏）
       yearsshow: true
     })
-    this.getOrderIndex()
+    this.getShareIndex()
   },
   titleYearClick: function (e) {
     this.setData({
@@ -207,7 +152,7 @@ Page({
       yearsshow: !this.data.yearsshow,
       currentquarter: 'Q1'
     })
-    this.getOrderIndex()
+    this.getShareIndex()
   },
   getQuarterIndex: function (quarter) {
     let index = 1
@@ -229,17 +174,27 @@ Page({
     return index;
   },
   // 我的签单数据
-  getOrderIndex: function () {
-    this.getOrderStatQ() // 获取季度签单统计
-    this.getOrderStatQList() // 获取季度签单列表
+  getShareIndex: function () {
+    this.getShareStatQ() // 获取季度分享统计
+    this.getShareStatQList() // 获取季度分享列表
   },
-  // 读取流程名称
-  getApproveFlowNode: function (flowno) {
-    return util.getApproveFlow('010')
-  },
-  // 截取两位小树
-  getTwoDecimal: function (number) {
-    let value = Number(number).toFixed(2)
-    return value
+  // 显示大图
+  showZoomFile: function (e) {
+    const dataset = e.currentTarget.dataset
+    const shareid = dataset.files
+    const attachments = this.data.share.filter(item => {
+      return item.id === shareid
+    })
+    const item = dataset.file
+    let imagepaths = []
+    attachments[0]['attachments'].map(i => {
+      let url = i.downloadurl
+      imagepaths.push(url)
+    })
+    // 预览图片
+    wx.previewImage({
+      current: item.downloadurl,
+      urls: imagepaths
+    })
   }
 })

@@ -15,4 +15,6 @@ module.exports = {
   FileUpload: `${FileServer}/upload`, //文件上传
   FileView: FileServer, //文件预览及下载URL
   ShareAdd: ApiRootUrl + '/api/share/store', //我的分享添加
+  ShareStatQ: ApiRootUrl + '/api/share/statq', //根据用户ID汇总季度分享次数
+  ShareStatQList: ApiRootUrl + '/api/share/index', //根据用户ID获取分享列表
 };

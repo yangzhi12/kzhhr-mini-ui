@@ -103,7 +103,7 @@ Page({
         url: api.ShareAdd,
         data: {
           address: that.data.address,
-          name: that.data.name,
+          detailname: that.data.name,
           latitude: that.data.latitude,
           longitude: that.data.longitude,
           peoples: that.data.peoples,

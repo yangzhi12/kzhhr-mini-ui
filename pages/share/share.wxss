@@ -24,13 +24,9 @@ page{
 }
 
 .profile-info .orderstattitle {
-  width: 25%;
+  width: 33.3%;
   text-align: center;
-}
-
-.profile-info .orderstattitle {
   color: #fff;
-  width: 25%;
 }
 
 .user-menu{
@@ -102,26 +98,26 @@ page{
   margin-top: 10rpx;
 }
 
-.user-menu .content{
-  /* padding-bottom: 20rpx; */
-}
-
-.user-menu .content .contentitem{
+.user-menu .content .itemcontainder{
   padding-bottom: 20rpx;
   border-bottom: 1px solid #d9d9d9;
 }
 
-.user-menu .content .contentitemline{
-  padding-top: 15rpx;
+.user-menu .content .itemcontainder .imagecontainer{
   display: flex;
-  justify-content: start;
+  direction: row;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 
-.user-menu .content .contentitemline .recommendvalue{
-  color: #1982c2;
+.user-menu .content .itemcontainder .itemtext{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 
-.user-menu .shareontainer{
+.user-menu .sharecontainer{
   height: 600rpx;
   text-align: center;
   width: auto;
@@ -130,8 +126,36 @@ page{
 .user-menu .addshare{
   position: absolute;
   right: 25rpx;
-  top: 320rpx;
+  top: 260rpx;
   padding: 15rpx 15rpx;
-  border: 1px solid #1982c2;
   border-radius: 10rpx;
+  z-index: 2;
+  color: white;
+  background-color:rgba(25, 130, 194, 0.8);
+}
+
+.user-menu .addshareno{
+  position: absolute;
+  right: 25rpx;
+  top: 260rpx;
+  padding: 15rpx 15rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #1982c2;
+}
+
+.user-menu .nocontent{
+  height: 400rpx;
+  text-align: center;
+  line-height: 400rpx;
+}
+
+.imagesize{
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.peopletime {
+  display: flex;
+  direction: row;
+  justify-content: space-between;
 }
