@@ -17,4 +17,7 @@ module.exports = {
   ShareAdd: ApiRootUrl + '/api/share/store', //我的分享添加
   ShareStatQ: ApiRootUrl + '/api/share/statq', //根据用户ID汇总季度分享次数
   ShareStatQList: ApiRootUrl + '/api/share/index', //根据用户ID获取分享列表
+  TrainAdd: ApiRootUrl + '/api/train/store', //我的培训添加
+  TrainStatQ: ApiRootUrl + '/api/train/statq', //根据用户ID汇总季度培训次数
+  TrainStatQList: ApiRootUrl + '/api/train/index', //根据用户ID获取培训列表
 };

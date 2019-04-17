@@ -1,1 +1,170 @@
-/* pages/train/trainadd/trainadd.wxss */
+.form-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
+}
+
+.form-item {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.positioncontainer {
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.positioncontainer .address-label {
+  padding-top: 35rpx;
+  display: flex;
+  direction: row;
+  padding-bottom: 10rpx;
+}
+
+.positioncontainer .address-label .address{
+  padding-right: 50rpx;
+}
+
+.positioncontainer .address-label .btnlocation{
+  color: #1982c2;
+}
+
+.form-item .inputlabel {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  /* z-index: 2; */
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 23%;
+}
+
+.form-item .inputPeoplesLabel{
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 35%;
+}
+
+.form-item .peoples {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: inline-block;
+  width: 65%;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.form-item .contractvaluelabel {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 40%;
+}
+
+.contractdategroup {
+  display: flex;
+  direction: row;
+  justify-content: start;
+  padding-top: 20rpx;
+}
+
+.contractstart {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 7rpx;
+}
+
+.contractdatedivide {
+  padding-right: 20rpx;
+}
+
+.contractend {
+  padding-top: 5rpx;
+  padding-right: 20rpx;
+}
+
+.contractend {
+}
+
+.form-item .clear {
+  position: absolute;
+  top: 35rpx;
+  right: 20rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+
+.attachmentcontainer{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.attachmentcontainer .uploadaction{
+  display: flex;
+  direction: column;
+  width: 100%;
+}
+
+.attachmentcontainer .uploadaction .uploadbtn{
+    color: #1982c2;
+    margin-left: 10rpx;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+
+.attachmentcontainer .filesmap{
+  /* margin-top: 25rpx; */
+  /* display: flex;
+  direction: row;   */
+  text-align: center;
+}
+
+.attachmentcontainer .filesmap .attachmentfiles{
+  border: 0.5rpx solid #f3eeee;
+  padding: 25rpx 25rpx;
+  margin: 25rpx 25rpx;
+  position: relative;
+}
+
+.clearfile{
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  z-index: 2;
+  top: 0rpx;
+  right: 0rpx;
+}
+
+.save-btn {
+  margin: 60rpx 0 40rpx 0;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 6rpx;
+}
+
+.imagesize{
+  height: 200rpx;
+  width: 200rpx;
+}

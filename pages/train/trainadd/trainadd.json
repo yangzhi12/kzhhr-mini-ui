@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#1982c2",
+  "navigationBarTitleText": "新增培训",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#1982c2"
 }
