@@ -57,7 +57,7 @@
           </view>
         </view>
         <view class="itemtext">
-          <view class="textposition">分享位置：{{item.address + item.detailname}}</view>
+          <view class="textposition">所在位置：{{item.address + item.detailname}}</view>
           <!-- <view class="peopletime"> -->
             <view class="textpeoples">参与人数：{{item.peoples}}人</view>
             <view class="textcreatetime">分享时间：{{item.createtime}}</view>

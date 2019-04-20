@@ -1,10 +1,10 @@
 <view class="container">
   <view class="profile-info">
-    <view class="content">1、钻级按季度评定</view>
-    <view class="content">2、共五个钻级，每个钻级按五个标准评定</view>
-    <view class="content">3、每个钻级含A、B、C、D、E（仅五钻含）超额等级</view>
-    <view class="content">4、每个钻级相应五个标准均达标即可升级</view>
-    <view class="content">5、首次注册级别默认为业务员</view>
+    <view class="content">1. 钻级按季度评定</view>
+    <view class="content">2. 共五个钻级，每个钻级按五个标准评定</view>
+    <view class="content">3. 每个钻级含A、B、C、D、E（仅五钻含）超额等级</view>
+    <view class="content">4. 每个钻级相应五个标准均达标即可升级</view>
+    <view class="content">5. 首次注册级别默认为业务员</view>
     <!-- <view class="content">不同钻级签单单价及计算方式有所不同</view> -->
   </view>
   <view class="user-menu">

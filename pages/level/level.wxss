@@ -11,12 +11,7 @@ page{
 }
 .profile-info {
   width: 100%;
-  height: 220rpx;
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 30.25rpx; */
+  padding-bottom: 30rpx;
   background: #1982c2;
 }
 
@@ -48,7 +43,7 @@ page{
 }
 
 .titleSel {
-  color: #5f6fee;
+  color: #1982c2;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
@@ -61,7 +56,7 @@ page{
 }
 
 .headerLineSel {
-  background: #5f6fee;
+  background: #1982c2;
   height: 6rpx;
   width: 40rpx;
   position: relative;

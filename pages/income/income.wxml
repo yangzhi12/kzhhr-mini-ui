@@ -1,5 +1,6 @@
-<view class="container">  
-  <view class="profile-info">
+<view class="container">
+  功能暂未开放，敬请期待...  
+  <!-- <view class="profile-info">
     <view class="orderstat">
       <view class="orderstattitle"></view>
       <view class="orderstattitle">收益总额(元)</view>
@@ -46,5 +47,5 @@
     <view class="teamcontainer">
       
     </view>
-  </view>
+  </view> -->
 </view>

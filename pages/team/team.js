@@ -2,7 +2,8 @@ var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var app = getApp();
 Page({
-  data: {
+  data: {    
+    test: null,
     quarter: {
       QT: 0,
       QN: 0,
@@ -15,52 +16,94 @@ Page({
     years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
     selectedyear: 2019,
     yearsshow: true,
-    contract: [],
+    team: [],
     stats: ['Q', 'Y', 'R'],
-    relations: {
-      id: 1,
-      name: '张',
-      children: [
-        {
-          id: 2,
-          name: '1张1',
-          children: [
-            {
-              id: 4,
-              name: '2张1',
-            },
-            {
-              id: 5,
-              name: '2张2',
-              children: [
-                {
-                  id: 8,
-                  name: '8张1',
-                },
-              ]
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: '1张2',
-          children: [
-            {
-              id: 6,
-              name: '3张1',
-            },
-            {
-              id: 7,
-              name: '3张2',
-            }
-          ]
-        },
-        {
-          id: 4,
-          name: '1张3'
-        }
-      ]
-    }
+    // relation: {
+    //   id: 1,
+    //   name: '张',
+    //   children: [
+    //     {
+    //       id: 2,
+    //       name: '2张'
+    //     },
+    //     {
+    //       id: 3,
+    //       name: '3张',
+    //       children: [
+    //         {
+    //           id: 6,
+    //           name: '6张31',
+    //         },
+    //         {
+    //           id: 7,
+    //           name: '7张32',
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       id: 4,
+    //       name: '4张'
+    //     },
+    //     {
+    //       id: 5,
+    //       name: '5张',
+    //     children: [
+    //       {
+    //         id: 8,
+    //         name: '8张51',
+    //       },
+    //       {
+    //         id: 9,
+    //         name: '9张52',
+    //         children: [
+    //           {
+    //             id: 10,
+    //             name: '10张521',
+    //             children: [
+    //               {
+    //                 id: 11,
+    //                 name: '11张101',
+    //               },
+    //               {
+    //                 id: 12,
+    //                 name: '12张102',
+    //               }
+    //             ]
+    //           },
+    //           {
+    //             id: 5,
+    //             name: '10张522'
+    //           }
+    //         ]
+    //       },
+    //       {
+    //         id: 13,
+    //         name: '13张522',
+    //         children: [
+    //           {
+    //             id: 14,
+    //             name: '14张521',
+    //             children: [
+    //               {
+    //                 id: 15,
+    //                 name: '15张101',
+    //               },
+    //               {
+    //                 id: 16,
+    //                 name: '16张102',
+    //               }
+    //             ]
+    //           },
+    //           {
+    //             id: 17,
+    //             name: '17张522'
+    //           }
+    //         ]
+    //       }
+    //     ]
+    //     }
+    //   ]
+    // }
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -78,14 +121,12 @@ Page({
   },
   onHide: function () {
     // 页面隐藏
-
   },
   onUnload: function () {
     // 页面关闭
-
   },
   // 季度签单量汇总
-  getOrderStatQ() {
+  getTeamStatQ() {
     let that = this
     let year = that.data.selectedyear
     let data = {
@@ -96,7 +137,7 @@ Page({
       const token = wx.getStorageSync('token')
       if (token) {
         wx.request({
-          url: api.OrderStatQ,
+          url: api.TeamStatQ,
           method: 'post',
           header: {
             'x-kzhhr-token': token
@@ -147,7 +188,7 @@ Page({
       const token = wx.getStorageSync('token')
       if (token) {
         wx.request({
-          url: api.OrderStatQList,
+          url: api.TeamStatQList,
           method: 'post',
           header: {
             'x-kzhhr-token': token
@@ -164,13 +205,8 @@ Page({
                 });
               } else {
                 let data = response.data
-                for (let i = 0; i < data.length; i++) {
-                  let statename = util.getApproveFlow(data[i].contractstate)['name']
-                  let money = util.getCommaMoney(data[i].contractvalue, 0)
-                  let recommendmoney = util.getCommaMoney(data[i].recommendvalue, 0)
-                  Object.assign(data[i], { contractstatename: statename, contractvaluecomma: money, recommendvaluecomma: recommendmoney })
-                }
-                that.setData({ contract: data })
+                that.setData({ team: data })
+                that.reduceTeam()
               }
             } else {
               wx.showModal({
@@ -230,7 +266,7 @@ Page({
   },
   // 我的签单数据
   getOrderIndex: function () {
-    this.getOrderStatQ() // 获取季度签单统计
+    this.getTeamStatQ() // 获取季度签单统计
     this.getOrderStatQList() // 获取季度签单列表
   },
   // 读取流程名称
@@ -241,5 +277,19 @@ Page({
   getTwoDecimal: function (number) {
     let value = Number(number).toFixed(2)
     return value
+  },
+  // 团队成员归并
+  reduceTeam: function () {
+    let index = -1
+    const team = this.data.team
+    const user = wx.getStorageSync('user')
+    // 设置根节点
+    let root = team.filter((item) => {
+      return item.id === user.id
+    })
+    let tree = util.traverseNodes(root, team)
+    this.setData({
+      relation: tree[0]
+    })
   }
 })

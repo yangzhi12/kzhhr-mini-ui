@@ -70,11 +70,11 @@ Page({
   },
   onShow: function () {
     // 页面显示
-    this.setData({
-      selectedyear: this.data.years[0],
-      currentquarter: 'Q1'
-    })
-    this.getOrderIndex()
+    // this.setData({
+    //   selectedyear: this.data.years[0],
+    //   currentquarter: 'Q1'
+    // })
+    // this.getOrderIndex()
   },
   onHide: function () {
     // 页面隐藏

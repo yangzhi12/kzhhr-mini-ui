@@ -1,5 +1,7 @@
 const ApiRootUrl = 'http://localhost:8360';
 const FileServer = 'http://localhost:2392';
+// const ApiRootUrl = 'https://hhr.dianjuhui.com:3393';
+// const FileServer = 'https://hhr.dianjuhui.com:3394';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + '/api/user/register', //用户注册
@@ -20,4 +22,6 @@ module.exports = {
   TrainAdd: ApiRootUrl + '/api/train/store', //我的培训添加
   TrainStatQ: ApiRootUrl + '/api/train/statq', //根据用户ID汇总季度培训次数
   TrainStatQList: ApiRootUrl + '/api/train/index', //根据用户ID获取培训列表
+  TeamStatQ: ApiRootUrl + '/api/contract/statteamq', //根据用户ID汇总季度团队拓展数
+  TeamStatQList: ApiRootUrl + '/api/contract/teamindex', //根据用户ID汇总季度团队列表
 };

@@ -83,15 +83,11 @@ Page({
             that.setData({
               'loginErrorCount': 0
             });
-            wx.setStorage({
-              key: "token",
-              data: response.data.token,
-              success: function () {
-                wx.redirectTo({
-                  url: '/pages/index/index'
-                })
-              }
-            });
+            Promise.all([
+              util.writeStorageSync('token', response.data.token),
+              util.writeStorageSync('user', response.data.userInfo)]).then(() => {
+                wx.redirectTo({url: '/pages/index/index'})
+            })
           } else {
             wx.showModal({
               title: '提示信息',
@@ -99,14 +95,14 @@ Page({
               showCancel: false
             });
           }
-        }        
+        }
       },
       fail: function (res) {
         let errmsg = res.errMsg
         let errmsgs = errmsg.split(':')
         let tips = '网络异常'
         switch (errmsgs[1]) {
-          case 'fail timeout': 
+          case 'fail timeout':
             tips = '登录超时或网络异常';
             break;
           default:

@@ -551,6 +551,19 @@ function fileuploadRrquest(url, filepath) {
   return promise
 }
 
+// 缓存写
+function writeStorageSync(key, value) {
+  let promise = new Promise(function (resolve, reject) {
+    wx.setStorage({
+      key: key,
+      data: value,
+      success: resolve,
+      fail: reject
+    });
+  })
+  return promise
+}
+
 // 封装Http请求头部
 function reqHeader() {
   const token = wx.getStorageSync('token')
@@ -561,6 +574,19 @@ function reqHeader() {
     Object.assign(header, arguments[0])
   }
   return header
+}
+
+// 树遍历
+function traverseNodes(curnodes, nodes) {
+  let tree = curnodes.map((node, index) => {
+    let childrenNodes = nodes.filter(item => {
+      return item.referee === node.id
+    })
+    Object.assign(curnodes[index], { children: childrenNodes })
+    childrenNodes.length > 0 ? traverseNodes(childrenNodes, nodes) : null
+    return node
+  })
+  return tree
 }
 
 module.exports = {
@@ -584,5 +610,7 @@ module.exports = {
   getCommaMoney,
   reqHeader,
   sendRrquest,
-  fileuploadRrquest
+  fileuploadRrquest,
+  writeStorageSync,
+  traverseNodes
 }

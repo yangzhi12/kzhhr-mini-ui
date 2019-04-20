@@ -16,6 +16,8 @@
 	"appid": "wxe82ef86ab407d3b3",
 	"projectname": "kzhhr-mini-ui",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

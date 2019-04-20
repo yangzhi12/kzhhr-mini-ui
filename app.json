@@ -33,5 +33,6 @@
       "desc": "您的定位信息将用于获取拍照位置分享"
     }
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }

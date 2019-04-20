@@ -419,23 +419,23 @@ Page({
       return false;
     }
     // 合同附件不能为空
-    // if (that.data.contractfiles.length === 0) {
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '请上传合同扫描件',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }
-    // // 电气主接线图不能为空
-    // if (that.data.wiringdiagrams.length === 0) {
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '请上传电气主接线图扫描件',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }
+    if (that.data.contractfiles.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传合同扫描件',
+        showCancel: false
+      });
+      return false;
+    }
+    // 电气主接线图不能为空
+    if (that.data.wiringdiagrams.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传电气主接线图扫描件',
+        showCancel: false
+      });
+      return false;
+    }
     if (!that.data.contractvalue || !that.data.recommendvalue) {
       wx.showModal({
         title: '提示信息',
@@ -559,43 +559,7 @@ Page({
       }
     })
   },
-  uploadwiringdiagram: function () {
-    // let that = this
-    // const token = wx.getStorageSync('token')
-    // wx.chooseMessageFile({
-    //   count: 10,
-    //   type: 'all',
-    //   success(res) {
-    //     let msgflag = res.errMsg
-    //     if (msgflag.split(':').includes('ok')) {
-    //       let files = res.tempFiles
-    //       files.map((item, index) => {
-    //         return Object.assign(item, { no: index + 1 })
-    //       })
-    //       that.setData({
-    //         wiringdiagrams: files
-    //       })
-    //       let requests = []
-    //       that.data.wiringdiagrams.map(file => {
-    //         requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
-    //       })
-    //       Promise.all(requests).then(res => {
-    //         let wiringdiagrams = []
-    //         let r = res.map((url, index) => {
-    //           if (url.errMsg.split(':').includes('ok')) {
-    //             let d = url.data
-    //             if (d.indexOf('http') !== -1) {
-    //               d = d.replace('http://hhr.dianjuhui.com', '')
-    //               wiringdiagrams = that.data.wiringdiagrams.map(file => {
-    //                 return file.no === index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
-    //               })
-    //             }
-    //           }
-    //         })
-    //       })
-    //     }
-    //   }
-    // })
+  uploadwiringdiagram: function () {    
     let that = this
     wx.chooseMessageFile({
       count: 10,
@@ -619,7 +583,7 @@ Page({
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http', 'https')
                   wiringdiagrams = files.map(file => {
-                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
+                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
                   })
                 }
               }
