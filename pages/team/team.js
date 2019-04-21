@@ -7,10 +7,13 @@ Page({
     quarter: {
       QT: 0,
       QN: 0,
+      QP: 0,
       YT: 0,
       YN: 0,
+      YP: 0,
       RT: 0,
-      RN: 0
+      RN: 0,
+      RP: 0
     },
     currentquarter: 'Q1',
     years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],

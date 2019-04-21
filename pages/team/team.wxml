@@ -9,8 +9,8 @@
     <view class="orderstat" wx:for="{{stats}}" wx:key="{{item}}">
       <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>
       <view class="orderstattitle">{{ quarter[item + 'M'] }}</view>
-      <view class="orderstattitle">{{ quarter[item + 'T'] }}</view>
       <view class="orderstattitle">{{ quarter[item + 'N'] }}</view>
+      <view class="orderstattitle">{{ quarter[item + 'P'] }}</view>
     </view>
   </view>
   <view class="user-menu">
@@ -49,8 +49,8 @@
       <view class="member">
         <view class="levelcontainer">
           <view class="level rootmember">
-            <view class="leveltext">{{relation.username}}的团队成员</view>
-            <!-- <view class="leveltext">我的团队成员</view> -->
+            <view class="leveltext">{{relation.username}}</view>
+            <view class="leveltext levelsubtext">（{{relation.levelname}}）</view>
           </view>
         </view>
         <view class="levelcontainer" wx:for="{{relation.children}}" wx:key="item.id">
@@ -58,24 +58,28 @@
           <view class="level">
             <view class="levelh"></view>
             <view class="leveltext">{{item.username}}</view>
+            <view class="leveltext levelsubtext">（{{item.levelname}}）</view>
           </view>
           <view class="levelcontainer" wx:for="{{item.children}}" wx:key="item.id">
             <view class="navline1"></view>
             <view class="level">
               <view class="levelh"></view>
               <view class="leveltext">{{item.username}}</view>
+              <view class="leveltext levelsubtext">（{{item.levelname}}）</view>
             </view>
             <view class="levelcontainer" wx:for="{{item.children}}" wx:key="item.id">
               <view class="navline1"></view>
               <view class="level">
                 <view class="levelh"></view>
                 <view class="leveltext">{{item.username}}</view>
+                <view class="leveltext levelsubtext">（{{item.levelname}}）</view>
               </view>
               <view class="levelcontainer" wx:for="{{item.children}}" wx:key="item.id">
                 <view class="navline1"></view>
                 <view class="level">
                   <view class="levelh"></view>
                   <view class="leveltext">{{item.username}}</view>
+                  <view class="leveltext levelsubtext">（{{item.levelname}}）</view>
                 </view>
               </view>
             </view>

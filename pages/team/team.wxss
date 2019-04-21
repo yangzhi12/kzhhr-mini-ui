@@ -145,6 +145,11 @@
   margin-top: 18rpx;
 }
 
+.levelcontainer .level .levelsubtext {
+  font-size: 28rpx;
+  color:#a7a3a3;
+}
+
 .rootmember {
   left: -60rpx;
 }
