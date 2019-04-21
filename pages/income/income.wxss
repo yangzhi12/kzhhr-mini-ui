@@ -12,117 +12,79 @@ page{
 
 .profile-info {
   background: #1982c2;
-  padding-bottom: 25rpx;
+  padding-bottom: 10rpx;
   padding-left: 25rpx;
   padding-right: 25rpx;
-}
-
-.profile-info .orderstat {
-  display: flex;
-  direction: column;
-  justify-content: space-between;
-}
-
-.profile-info .orderstattitle {
-  width: 25%;
-  text-align: center;
-}
-
-.profile-info .orderstattitle {
   color: #fff;
-  width: 25%;
 }
 
 .user-menu{
     width: 100%;
     height: auto;
     overflow: hidden;
-    background: #fff;
+    background: rgb(146, 68, 68);
     padding-left: 20rpx;
     padding-right: 20px;
 }
 
-.level {
-  padding-bottom: 20rpx;
-}
-.title {
-  width: 100%;
-  height: 88rpx;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.title .menu-items {
-  position: absolute;
-  left: 55rpx;
-  top: 240rpx;
-  border: 1px solid #f4f4f4;
-  border-top-width: 0rpx;
-}
-
-.title .menu-items .item {
-  padding: 15rpx 15rpx;
-  background-color: white;
-}
-
-.title .menu-items .item-selected {
-  padding: 10rpx 10rpx;
-  background-color: #1982c2;
-  color: white;
-}
-
-.titleSel {
-  color: #1982c2;
-  font-size: 32rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.titleUnsel {
-  color: #858fab;
-  font-size: #858fab;
-}
-
-.headerLineSel {
-  background: #1982c2;
-  height: 6rpx;
-  width: 40rpx;
-  position: relative;
-  margin-top: 10rpx;
-}
-
-.headerLineUnsel {
+.reporttainer{
+  margin-top: 20rpx;
   background: #fff;
-  height: 6rpx;
-  width: 40rpx;
-  position: relative;
-  margin-top: 10rpx;
+  padding: 20rpx 20rpx;
 }
 
-.user-menu .content{
-  /* padding-bottom: 20rpx; */
-}
-
-.user-menu .content .contentitem{
-  padding-bottom: 20rpx;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-.user-menu .content .contentitemline{
-  padding-top: 15rpx;
-  display: flex;
-  justify-content: start;
-}
-
-.user-menu .content .contentitemline .recommendvalue{
-  color: #1982c2;
-}
-
-.user-menu .teamcontainer{
-  height: 600rpx;
+.reporttitle{
   text-align: center;
-  width: auto;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #1982c2;
+  margin-left: 200rpx;
+  margin-right: 200rpx;
+}
+
+.reportcontent{
+  margin-top: 20rpx;
+}
+
+.tablerow {
+  display: flex;
+  direction: column;
+  justify-content: space-between;
+}
+
+.tableth {
+  text-align: center;
+  border-bottom: 1rpx solid #f4f4f4;
+  width: 20%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.tabletd {
+  text-align: center;
+  border-bottom: 1rpx solid #f4f4f4;
+  width: 20%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.tdlable {
+  text-align: center;
+  border-bottom: 1rpx solid #f4f4f4;
+  width: 20%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.tablefooter{
+  display: flex;
+  direction: column;
+  justify-content: flex-end;
+}
+
+.footervalue {
+  text-align: center;
+  padding-top: 5rpx;
+  padding-right: 20rpx;
+  padding-bottom: 10rpx;
+  color: red;
 }

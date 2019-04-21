@@ -1,51 +1,51 @@
 <view class="container">
-  功能暂未开放，敬请期待...  
-  <!-- <view class="profile-info">
-    <view class="orderstat">
-      <view class="orderstattitle"></view>
-      <view class="orderstattitle">收益总额(元)</view>
-      <view class="orderstattitle">核准单数(单)</view>
-    </view>
-    <view class="orderstat" wx:for="{{stats}}"  wx:key="{{item}}">
-      <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>
-      <view class="orderstattitle">{{ quarter[item + 'T'] }}</view>
-      <view class="orderstattitle">{{ quarter[item + 'N'] }}</view>
-    </view>
+  <view class="profile-info">
+    收益按季度结算，结算标准解释权归昆自股份
   </view>
-  <view class="user-menu">
-    <view class='title'>
-      <view class='titleSel' bindtap='titleYearClick'>
-        <text>{{selectedyear}}</text>
-        <hr class="headerLineUnsel" />
+    <view class="reporttainer" wx:for="{{reporttitle}}" wx:key="{{item}}">
+      <view class="reporttitle">
+        <view class="innertext">{{item}}年度收益统计</view>
       </view>
-      <view class="menu-items" hidden='{{yearsshow}}'>
-        <view wx:for="{{years}}" wx:key="item" class="{{selectedyear === item ? 'item-selected' : 'item' }}" bindtap="tapMenuItem" data-index="{{item}}">
-          {{item}}
+      <view class="reportcontent">
+        <view class="tablerow">
+          <view class="tdlable"></view>
+          <view class="tableth">Q1</view>   
+          <view class="tableth">Q2</view>
+          <view class="tableth">Q3</view> 
+          <view class="tableth">Q4</view>     
         </view>
-      </view>
-
-      <view class='titleSel' bindtap='titleClick' data-idx='Q1'>
-        <text>Q1</text>
-        <hr class="{{'Q1' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
-      </view>
-
-      <view class='titleSel' bindtap='titleClick' data-idx='Q2'>
-        <text>Q2</text>
-        <hr class="{{'Q2' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
-      </view>
-
-      <view class='titleSel' bindtap='titleClick' data-idx='Q3'>
-        <text>Q3</text>
-        <hr class="{{'Q3' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
-      </view>
-
-      <view class='titleSel' bindtap='titleClick' data-idx='Q4'>
-        <text>Q4</text>
-        <hr class="{{'Q4' == currentquarter ? 'headerLineSel' : 'headerLineUnsel'}} " />
+        <view class="tablerow">
+          <view class="tabletd">钻级</view>
+          <view class="tabletd">{{report[item]['Q1']['levelname']}}</view>   
+          <view class="tabletd">{{report[item]['Q2']['levelname']}}</view> 
+          <view class="tabletd">{{report[item]['Q3']['levelname']}}</view> 
+          <view class="tabletd">{{report[item]['Q4']['levelname']}}</view> 
+        </view>
+        <view class="tablerow">
+          <view class="tabletd">单数(个)</view>
+          <view class="tabletd">{{report[item]['Q1']['orders']}}</view>   
+          <view class="tabletd">{{report[item]['Q2']['orders']}}</view> 
+          <view class="tabletd">{{report[item]['Q3']['orders']}}</view> 
+          <view class="tabletd">{{report[item]['Q4']['orders']}}</view> 
+        </view>
+        <view class="tablerow">
+          <view class="tabletd">单价(元)</view>
+          <view class="tabletd">{{report[item]['Q1']['orderprice']}}</view>   
+          <view class="tabletd">{{report[item]['Q2']['orderprice']}}</view> 
+          <view class="tabletd">{{report[item]['Q3']['orderprice']}}</view> 
+          <view class="tabletd">{{report[item]['Q4']['orderprice']}}</view> 
+        </view> 
+        <view class="tablerow">
+          <view class="tabletd">收益(元)</view>
+          <view class="tabletd">{{report[item]['Q1']['income']}}</view>   
+          <view class="tabletd">{{report[item]['Q2']['income']}}</view> 
+          <view class="tabletd">{{report[item]['Q3']['income']}}</view> 
+          <view class="tabletd">{{report[item]['Q4']['income']}}</view> 
+        </view>
+        <view class="tablefooter">
+          <view class="">年度累计收益(元)：</view> 
+          <view class="footervalue">{{report[item]['Q4']['orderprice']}}</view> 
+        </view>       
       </view>
     </view>
-    <view class="teamcontainer">
-      
-    </view>
-  </view> -->
 </view>
