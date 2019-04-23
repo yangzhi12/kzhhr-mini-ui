@@ -146,8 +146,8 @@
 }
 
 .levelcontainer .level .levelsubtext {
-  font-size: 28rpx;
-  color:#a7a3a3;
+  font-size: 26rpx;
+  color:rgba(51, 51, 51, 0.5);
 }
 
 .rootmember {

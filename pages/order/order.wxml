@@ -4,7 +4,7 @@
       <view class="orderstattitle"></view>
       <view class="orderstattitle">合同个数(个)</view>
       <view class="orderstattitle">合同金额(元)</view>
-      <view class="orderstattitle">核准单数(单)</view>
+      <view class="orderstattitle">站点数(个)</view>
     </view>
     <view class="orderstat" wx:for="{{stats}}" wx:key="{{item}}">
       <view class="orderstattitle">{{item === 'Q' ? '当季度' : ( item === 'Y' ? '当年度' : '累计总数')}}</view>

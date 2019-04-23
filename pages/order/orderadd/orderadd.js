@@ -343,8 +343,8 @@ Page({
     // 设置合同起止时间（时间戳）
     if (that.data.startdate) {
       that.setData({
-        contractstart: (new Date(that.data.startdate)).getTime(),
-        contractend: (new Date(that.data.enddate)).getTime()
+        contractstart: parseInt((new Date(that.data.startdate)).getTime() / 1000),
+        contractend: parseInt((new Date(that.data.enddate)).getTime() / 1000)
       })
     }
     // 空值校验

@@ -22,21 +22,21 @@
           <view class="tabletd">{{report[item]['Q4']['levelname']}}</view> 
         </view>
         <view class="tablerow">
-          <view class="tabletd">单数(个)</view>
+          <view class="tabletd">站点数(个)</view>
           <view class="tabletd">{{report[item]['Q1']['orders']}}</view>   
           <view class="tabletd">{{report[item]['Q2']['orders']}}</view> 
           <view class="tabletd">{{report[item]['Q3']['orders']}}</view> 
           <view class="tabletd">{{report[item]['Q4']['orders']}}</view> 
         </view>
         <view class="tablerow">
-          <view class="tabletd">单价(元)</view>
+          <view class="tabletd">单价(元/个)</view>
           <view class="tabletd">{{report[item]['Q1']['orderprice']}}</view>   
           <view class="tabletd">{{report[item]['Q2']['orderprice']}}</view> 
           <view class="tabletd">{{report[item]['Q3']['orderprice']}}</view> 
           <view class="tabletd">{{report[item]['Q4']['orderprice']}}</view> 
         </view> 
         <view class="tablerow">
-          <view class="tabletd">收益(元)</view>
+          <view class="tabletd">总收益(元)</view>
           <view class="tabletd">{{report[item]['Q1']['income']}}</view>   
           <view class="tabletd">{{report[item]['Q2']['income']}}</view> 
           <view class="tabletd">{{report[item]['Q3']['income']}}</view> 
