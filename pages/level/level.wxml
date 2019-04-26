@@ -135,7 +135,7 @@
         </view>
         <view class="level">
           <view class="levelTitle">标准五</view>
-          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、家庭住址</view>
         </view>
       </swiper-item>
       <swiper-item class='swiper'>
@@ -161,7 +161,7 @@
         </view>
         <view class="level">
           <view class="levelTitle">标准五</view>
-          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址、家庭成员信息</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、家庭住址、家庭成员信息</view>
         </view>
       </swiper-item>
       <swiper-item class='swiper'>
@@ -187,7 +187,7 @@
         </view>
         <view class="level">
           <view class="levelTitle">标准五</view>
-          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、个人简历、家庭住址、家庭成员信息、个人征信证明</view>
+          <view class="levelContent">注册信息：身份证、手机号码、微信号、邮箱、银行卡信息、个人简历、家庭住址、家庭成员信息、个人征信证明</view>
         </view>
       </swiper-item>
     </swiper>
