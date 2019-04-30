@@ -88,3 +88,13 @@ page{
   padding-bottom: 10rpx;
   color: red;
 }
+
+.tdnumber {
+  padding-top: 15rpx;
+}
+
+.noincome {
+  height: 400rpx;
+  text-align: center;
+  line-height: 400rpx;
+}

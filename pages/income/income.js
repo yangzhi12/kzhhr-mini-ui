@@ -3,101 +3,7 @@ var api = require('../../config/api.js');
 var app = getApp();
 Page({
   data: {
-    report: {
-      '2019': 
-        {
-          'Q1': {
-            levelname: '业务员',
-            orders: 4,
-            orderprice: 1000,
-            income: 4000000,
-            createtime: '2019-01-01'
-          },
-          'Q2': {
-            levelname: '业务员',
-            orders: 4,
-            orderprice: 1000,
-            income: 4000000,
-            createtime: '2019-04-01'
-          },
-          'Q3': {
-            levelname: '业务员',
-            orders: 4,
-            orderprice: 1000,
-            income: 4000000,
-            createtime: '2019-07-01'
-          },
-          'Q4': {
-            levelname: '业务员',
-            orders: 4,
-            orderprice: 1000,
-            income: 4000000,
-            createtime: '2019-10-01'
-          }
-        },
-      '2018':
-      {
-        'Q1': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-01-01'
-        },
-        'Q2': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-04-01'
-        },
-        'Q3': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-07-01'
-        },
-        'Q4': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-10-01'
-        }
-      },
-      '2017':
-      {
-        'Q1': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-01-01'
-        },
-        'Q2': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-04-01'
-        },
-        'Q3': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-07-01'
-        },
-        'Q4': {
-          levelname: '业务员',
-          orders: 4,
-          orderprice: 1000,
-          income: 4000000,
-          createtime: '2019-10-01'
-        }
-      }      
-    },
+    report: {},
     reporttitles: []
   },
   onLoad: function (options) {
@@ -119,54 +25,50 @@ Page({
   // 收益报表汇总
   getReport() {
     let that = this
-    that.setData({
-      reporttitle: Object.keys(that.data.report)
-    })
-    // let year = that.data.selectedyear
-    // let data = {
-    //   year: year,
-    //   quarter: that.data.currentquarter.substr(1, 1)
-    // }
-    // try {
-    //   const token = wx.getStorageSync('token')
-    //   if (token) {
-    //     wx.request({
-    //       url: api.OrderStatQ,
-    //       method: 'post',
-    //       header: {
-    //         'x-kzhhr-token': token
-    //       },
-    //       data: data,
-    //       success: function (res) {
-    //         if (res.statusCode === 200) {
-    //           let response = res.data
-    //           if (response.errorno) {
-    //             wx.showModal({
-    //               title: '提示信息',
-    //               content: '服务异常',
-    //               showCancel: false
-    //             });
-    //           } else {
-    //             let data = response.data
-    //             Object.keys(data).map(item => {
-    //               if (item.substr(1, 1) === 'N') {
-    //                 data[item] = that.getTwoDecimal(data[item])
-    //               }
-    //             })
-    //             that.setData({ quarter: data })
-    //           }
-    //         } else {
-    //           wx.showModal({
-    //             title: '提示信息',
-    //             content: '网络异常',
-    //             showCancel: false
-    //           });
-    //         }
-    //       }
-    //     })
-    //   }
-    // } catch (error) {
+    let year = that.data.selectedyear
+    try {
+      const token = wx.getStorageSync('token')
+      if (token) {
+        wx.request({
+          url: api.IncomeList,
+          method: 'post',
+          header: {
+            'x-kzhhr-token': token
+          },
+          data: null,
+          success: function (res) {
+            if (res.statusCode === 200) {
+              let response = res.data
+              if (response.errorno) {
+                wx.showModal({
+                  title: '提示信息',
+                  content: '服务异常',
+                  showCancel: false
+                });
+              } else {
+                let data = response.data
+                let titles = Object.keys(data)
+                titles.map(item => {
+                  let repyearsummary = data[item]['Q1']['incomevalue'] || 0 + data[item]['Q2']['incomevalue'] || 0 + data[item]['Q3']['incomevalue'] || 0 + data[item]['Q4']['incomevalue'] || 0
+                  Object.assign(data[item], { repyearsummary: repyearsummary})
+                })
+                that.setData({ 
+                  report: data,
+                  reporttitle: titles
+                })
+              }
+            } else {
+              wx.showModal({
+                title: '提示信息',
+                content: '网络异常',
+                showCancel: false
+              });
+            }
+          }
+        })
+      }
+    } catch (error) {
 
-    // }
+    }
   }
 })

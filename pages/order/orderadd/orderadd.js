@@ -419,23 +419,23 @@ Page({
       return false;
     }
     // 合同附件不能为空
-    if (that.data.contractfiles.length === 0) {
-      wx.showModal({
-        title: '错误信息',
-        content: '请上传合同扫描件',
-        showCancel: false
-      });
-      return false;
-    }
-    // 电气主接线图不能为空
-    if (that.data.wiringdiagrams.length === 0) {
-      wx.showModal({
-        title: '错误信息',
-        content: '请上传电气主接线图扫描件',
-        showCancel: false
-      });
-      return false;
-    }
+    // if (that.data.contractfiles.length === 0) {
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '请上传合同扫描件',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
+    // // 电气主接线图不能为空
+    // if (that.data.wiringdiagrams.length === 0) {
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '请上传电气主接线图扫描件',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
     if (!that.data.contractvalue || !that.data.recommendvalue) {
       wx.showModal({
         title: '提示信息',

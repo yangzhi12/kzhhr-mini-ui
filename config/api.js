@@ -24,4 +24,5 @@ module.exports = {
   TrainStatQList: ApiRootUrl + '/api/train/index', //根据用户ID获取培训列表
   TeamStatQ: ApiRootUrl + '/api/contract/statteamq', //根据用户ID汇总季度团队拓展数
   TeamStatQList: ApiRootUrl + '/api/contract/teamindex', //根据用户ID汇总季度团队列表
+  IncomeList: ApiRootUrl + '/api/report/index', //根据用户ID查询收益
 };

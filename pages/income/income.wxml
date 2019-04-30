@@ -2,50 +2,51 @@
   <view class="profile-info">
     收益按季度结算，结算标准解释权归昆自股份
   </view>
-    <view class="reporttainer" wx:for="{{reporttitle}}" wx:key="{{item}}">
-      <view class="reporttitle">
-        <view class="innertext">{{item}}年度收益统计</view>
+  <view class="reporttainer" wx:for="{{reporttitle}}" wx:key="{{item}}">
+    <view class="reporttitle">
+      <view class="innertext">{{item}}年度收益统计</view>
+    </view>
+    <view class="reportcontent">
+      <view class="tablerow">
+        <view class="tdlable"></view>
+        <view class="tableth">Q1</view>
+        <view class="tableth">Q2</view>
+        <view class="tableth">Q3</view>
+        <view class="tableth">Q4</view>
       </view>
-      <view class="reportcontent">
-        <view class="tablerow">
-          <view class="tdlable"></view>
-          <view class="tableth">Q1</view>   
-          <view class="tableth">Q2</view>
-          <view class="tableth">Q3</view> 
-          <view class="tableth">Q4</view>     
-        </view>
-        <view class="tablerow">
-          <view class="tabletd">钻级</view>
-          <view class="tabletd">{{report[item]['Q1']['levelname']}}</view>   
-          <view class="tabletd">{{report[item]['Q2']['levelname']}}</view> 
-          <view class="tabletd">{{report[item]['Q3']['levelname']}}</view> 
-          <view class="tabletd">{{report[item]['Q4']['levelname']}}</view> 
-        </view>
-        <view class="tablerow">
-          <view class="tabletd">站点数(个)</view>
-          <view class="tabletd">{{report[item]['Q1']['orders']}}</view>   
-          <view class="tabletd">{{report[item]['Q2']['orders']}}</view> 
-          <view class="tabletd">{{report[item]['Q3']['orders']}}</view> 
-          <view class="tabletd">{{report[item]['Q4']['orders']}}</view> 
-        </view>
-        <view class="tablerow">
-          <view class="tabletd">单价(元/个)</view>
-          <view class="tabletd">{{report[item]['Q1']['orderprice']}}</view>   
-          <view class="tabletd">{{report[item]['Q2']['orderprice']}}</view> 
-          <view class="tabletd">{{report[item]['Q3']['orderprice']}}</view> 
-          <view class="tabletd">{{report[item]['Q4']['orderprice']}}</view> 
-        </view> 
-        <view class="tablerow">
-          <view class="tabletd">总收益(元)</view>
-          <view class="tabletd">{{report[item]['Q1']['income']}}</view>   
-          <view class="tabletd">{{report[item]['Q2']['income']}}</view> 
-          <view class="tabletd">{{report[item]['Q3']['income']}}</view> 
-          <view class="tabletd">{{report[item]['Q4']['income']}}</view> 
-        </view>
-        <view class="tablefooter">
-          <view class="">年度累计收益(元)：</view> 
-          <view class="footervalue">{{report[item]['Q4']['orderprice']}}</view> 
-        </view>       
+      <view class="tablerow">
+        <view class="tabletd">钻级</view>
+        <view class="tabletd">{{report[item]['Q1']['levelname'] || '--'}}</view>
+        <view class="tabletd">{{report[item]['Q2']['levelname'] || '--'}}</view>
+        <view class="tabletd">{{report[item]['Q3']['levelname'] || '--'}}</view>
+        <view class="tabletd">{{report[item]['Q4']['levelname'] || '--'}}</view>
+      </view>
+      <view class="tablerow">
+        <view class="tabletd">站点数(个)</view>
+        <view class="tabletd tdnumber">{{report[item]['Q1']['orders'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q2']['orders'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q3']['orders'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q4']['orders'] || '--'}}</view>
+      </view>
+      <view class="tablerow">
+        <view class="tabletd">单价(元/个)</view>
+        <view class="tabletd tdnumber">{{report[item]['Q1']['orderprice'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q2']['orderprice'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q3']['orderprice'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q4']['orderprice'] || '--'}}</view>
+      </view>
+      <view class="tablerow">
+        <view class="tabletd">总收益(元)</view>
+        <view class="tabletd tdnumber">{{report[item]['Q1']['incomevalue'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q2']['incomevalue'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q3']['incomevalue'] || '--'}}</view>
+        <view class="tabletd tdnumber">{{report[item]['Q4']['incomevalue'] || '--'}}</view>
+      </view>
+      <view class="tablefooter">
+        <view class="">年度累计收益(元)：</view>
+        <view class="footervalue">{{report[item]['repyearsummary']}}</view>
       </view>
     </view>
+  </view>
+  <view class="noincome" hidden='reporttitle.length !== 0'>加油，嘿！</view>
 </view>
