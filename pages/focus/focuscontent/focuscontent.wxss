@@ -1,0 +1,12 @@
+.form-box{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 0 40rpx;
+    margin-top: 20rpx;
+    background: #fff;
+}
+
+.form-box .noticecontainer{
+  height: 100%;
+}

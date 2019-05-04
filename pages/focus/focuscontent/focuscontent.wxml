@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="form-box">
+    <view class="noticecontainer">
+        <view>标题：{{notify.title}}</view>
+        <view>时间：{{notify.createtime}}</view>
+        <view>内容：{{notify.content}}</view>
+      </view>
+  </view>
+</view>

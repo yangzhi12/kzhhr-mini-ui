@@ -454,7 +454,6 @@ function getCommaMoney(s, type) {
 
 // 封装http请求
 function sendRrquest(url, method, data, header) {
-  console.log(data)
   let status = true
   let promise = new Promise(function (resolve, reject) {
     wx.getNetworkType({
@@ -586,9 +585,9 @@ function reqHeader() {
   const header = {
     'x-kzhhr-token': token
   }
-  if (arguments.length > 0 && typeof arguments[0] === 'object') {
-    Object.assign(header, arguments[0])
-  }
+  // if (arguments.length > 0 && typeof arguments[0] === 'object') {
+  //   Object.assign(header, arguments[0])
+  // }
   return header
 }
 

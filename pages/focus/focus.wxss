@@ -37,6 +37,15 @@ items{
   position: relative;
 }
 
+.items .item .itemtitle{
+  width: 460rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+
 .items .item .itemaction{
   color: #1982c2;
   margin-left: 25rpx;
@@ -45,6 +54,5 @@ items{
 .items .item .itemtime{
   position: absolute;
   padding-top: 5rpx;
-  right: 0rpx;
-  
+  right: 0rpx;  
 }

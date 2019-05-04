@@ -49,7 +49,7 @@
     <view class="item">
       <navigator url="/pages/focus/focus" class="a">
         <text class="iconfont iconquanzix"></text>
-        <text class="txt">公告通知</text>
+        <text class="txt">通知公告</text>
       </navigator>
     </view>
     <view class="item no-border">

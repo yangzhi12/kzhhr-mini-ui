@@ -12,6 +12,7 @@
     "pages/train/train",
     "pages/level/level",
     "pages/focus/focus",
+    "pages/focus/focuscontent/focuscontent",
     "pages/about/about",
     "pages/order/orderadd/orderadd",
     "pages/share/shareadd/shareadd",

@@ -1,7 +1,5 @@
 const ApiRootUrl = 'http://127.0.0.1:8360';
 const FileServer = 'http://127.0.0.1:2392';
-// const ApiRootUrl = 'https://hhr.dianjuhui.com:3393';
-// const FileServer = 'https://hhr.dianjuhui.com:3394';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + '/api/user/register', //用户注册
@@ -25,4 +23,7 @@ module.exports = {
   TeamStatQ: ApiRootUrl + '/api/contract/statteamq', //根据用户ID汇总季度团队拓展数
   TeamStatQList: ApiRootUrl + '/api/contract/teamindex', //根据用户ID汇总季度团队列表
   IncomeList: ApiRootUrl + '/api/report/index', //根据用户ID查询收益
+  NotifyList: ApiRootUrl + '/api/notify/indexnotify', //查询最新通知列表(最近10条)
+  NoticeList: ApiRootUrl + '/api/notify/indexnotice', //查询最新公告列表(最近10条)
+  NotifyInfo: ApiRootUrl + '/api/notify/info', //根据ID查询内容
 };

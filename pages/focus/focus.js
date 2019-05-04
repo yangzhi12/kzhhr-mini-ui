@@ -1,23 +1,22 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-// var WxParse = require('../../lib/wxParse/wxParse.js');
 var app = getApp();
 Page({
   data: {
-    process: 0
+    process: 0,
+    notifies: null,
+    notices: null
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
-    // var that = this;
-    // var detail_content = "<div>合同下载</div>";
-    // WxParse.wxParse('detail_content', 'html', detail_content, that, 5);
   },
   onReady: function () {
-
+    // 页面准备完毕
   },
   onShow: function () {
     // 页面显示
+    this.getNotifies()
   },
   onHide: function () {
     // 页面隐藏
@@ -67,5 +66,32 @@ Page({
         success(tipok) {}
       })
     }
+  },
+  getNotifies: function () {
+    // 获取最近10条通知公告信息
+    let that = this
+    const header = util.reqHeader()
+    const reqNotify = util.sendRrquest(api.NotifyList, 'POST', {}, header)
+    const reqNotice = util.sendRrquest(api.NoticeList, 'POST', {}, header)
+    Promise.all([reqNotify, reqNotice]).then(res => {
+      const notifiesRes = res[0].data
+      const noticesRes = res[1].data
+      if (!notifiesRes.errno) {
+        that.setData({
+          notifies: notifiesRes.data
+        }) 
+      }
+      if (!noticesRes.errno) {
+        that.setData({
+          notices: noticesRes.data
+        })
+      }
+    })
+  },
+  viewcontent: function (e) {
+    const id = e.currentTarget.dataset.itemid
+    wx.navigateTo({
+      url: `/pages/focus/focuscontent/focuscontent?id=${id}`
+    })
   }
 })
