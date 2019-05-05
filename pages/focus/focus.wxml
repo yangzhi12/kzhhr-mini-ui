@@ -3,6 +3,7 @@
     <view class="noticecontainer">
       <view class="containertitle">通知</view>
       <view class="items">
+        <view hidden='{{notifies.length > 0}}' style="padding: 15rpx 15rpx;">暂无</view>
         <view wx:for="{{notifies}}" wx:key="{{item}}" class="item" data-itemid="{{item.id}}"  bindtap="viewcontent">
           <view class="itemtitle">{{item.title}}</view>
           <view class="itemtime">{{item.createtime}}</view>

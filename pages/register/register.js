@@ -118,10 +118,10 @@ Page({
       });
       return false;
     }
-    that.setData({
-      issaving: true
-    })
     if (!that.issaving) {
+      that.setData({
+        issaving: true
+      })
       wx.request({
         url: api.RegisterUrl,
         data: {

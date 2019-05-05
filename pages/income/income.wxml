@@ -48,5 +48,5 @@
       </view>
     </view>
   </view>
-  <view class="noincome" hidden='reporttitle.length !== 0'>加油，嘿！</view>
+  <view class="noincome" hidden='{{reporttitle.length > 0}}'>加油，嘿！</view>
 </view>

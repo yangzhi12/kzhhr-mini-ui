@@ -26,4 +26,5 @@ module.exports = {
   NotifyList: ApiRootUrl + '/api/notify/indexnotify', //查询最新通知列表(最近10条)
   NoticeList: ApiRootUrl + '/api/notify/indexnotice', //查询最新公告列表(最近10条)
   NotifyInfo: ApiRootUrl + '/api/notify/info', //根据ID查询内容
+  ModifyPwd: ApiRootUrl + '/api/user/modifypwd', //修改用户密码
 };

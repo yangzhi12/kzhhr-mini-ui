@@ -5,6 +5,8 @@
     "pages/reset/reset",
     "pages/index/index",
     "pages/personal/personal",
+    "pages/personal/setpwd/setpassword",
+    "pages/personal/modifyinfo/modifyinfo",
     "pages/income/income",
     "pages/order/order",
     "pages/team/team",

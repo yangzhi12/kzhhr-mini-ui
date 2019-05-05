@@ -3,6 +3,7 @@ var api = require('../../config/api.js');
 var app = getApp()
 Page({
   data: {
+    id: '',
     username: '',
     gender: '',
     gendername: '',
@@ -78,6 +79,7 @@ Page({
     let _this = this
     // 设置用户名称
     _this.setData({
+      id: userInfo.id,
       username: userInfo.username,
       gender: util.getGenderName(userInfo.gender),
       mobile: userInfo.mobile,
@@ -89,6 +91,24 @@ Page({
       registertype: util.getRefereeName(userInfo.register_type),
       refereename: userInfo.register_type === 'REF' ? userInfo.refereename : null,
       refereemobile: userInfo.register_type === 'REF' ? userInfo.refereemobile : null
+    })
+  },
+  /**
+   * 点击修改密码触发
+   */
+  setpassword: function (e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/personal/setpwd/setpassword?id=${id}`
+    })
+  },
+  /**
+   * 点击完善资料时触发
+   */
+  modifyinfo: function (e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/personal/modifyinfo/modifyinfo?id=${id}`
     })
   }
 })

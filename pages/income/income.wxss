@@ -97,4 +97,8 @@ page{
   height: 400rpx;
   text-align: center;
   line-height: 400rpx;
+  width: 100%;
+  background: #fff;
+  padding-left: 20rpx;
+  padding-right: 20px;
 }

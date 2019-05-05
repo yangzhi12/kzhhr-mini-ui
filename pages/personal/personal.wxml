@@ -1,32 +1,28 @@
 <view class="container">
-    <view class="form-box">
-    	<view class="form-item">
-    		<text class="itemname">用户名：{{username}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">性别：{{gender}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">手机号：{{mobile}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">身份证号：{{certificate}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">微信号：{{weixinno}}</text>
-			</view>
-      <view class="form-item"  hidden="{{ (!isreferee) || (isreferee === 'NO_REF') }}">
-    		<text class="itemname">推荐人：{{refereename}}</text>
-			</view>
-      <view class="form-item"  hidden="{{ (!isreferee) || (isreferee === 'NO_REF') }}">
-    		<text class="itemname">推荐人手机号：{{refereemobile}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">当前级别：{{level}}</text>
-			</view>
-      <view class="form-item">
-    		<text class="itemname">档案状态：{{state}}</text>
-			</view>
-    	<button type="default" class="login-btn" bindtap="loginOut">退出登录</button>
+  <view class="form-box">
+    <view class="toolbar">
+      <view class="toolbtnmodify" data-id='{{id}}' bindtap='modifyinfo'>完善个人信息</view>
+      <view class="toolbtnsetpwd" data-id='{{id}}' bindtap='setpassword'>修改密码</view>
     </view>
+    <view class="form-item">
+      <text class="itemname">用户名：{{username}}</text>
+      <text class="itemnamecol">性别：{{gender}}</text>
+    </view>
+    <view class="form-item">
+      <text class="itemname">手机号：{{mobile}}</text>
+      <text class="itemnamecol">微信号：{{weixinno}}</text>
+    </view>
+    <!-- <view class="form-item">
+      <text class="itemname">身份证号：{{certificate}}</text>
+    </view> -->
+    <view class="form-item" hidden="{{ (!isreferee) || (isreferee === 'NO_REF') }}">
+      <text class="itemname">推荐人：{{refereename}}</text>
+      <text class="itemnamecol">推荐人手机号：{{refereemobile}}</text>
+    </view>
+    <view class="form-item">
+      <text class="itemname">当前级别：{{level}}</text>
+      <text class="itemnamecol">档案状态：{{state}}</text>
+    </view>
+    <button type="default" class="login-btn" bindtap="loginOut">退出登录</button>
+  </view>
 </view>
