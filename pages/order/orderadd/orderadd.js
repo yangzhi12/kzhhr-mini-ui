@@ -64,14 +64,15 @@ Page({
     }, {
       id: '1107',
       name: '其他'
-    }, {
-      id: '1200',
-      name: '大工业'
-    }],
+    }
+    // , {
+    //   id: '1200',
+    //   name: '大工业'
+    // }
+    ],
     industry: '1100',
     industryindex: 1,
-    voltages: [
-      {
+    voltages: [{
         id: '00',
         name: '0.4kV'
       },
@@ -98,8 +99,7 @@ Page({
     ],
     voltage: '01',
     voltageindex: 1,
-    substationtypes: [
-      {
+    substationtypes: [{
         value: '00',
         name: '室内配电站',
         checked: false
@@ -110,8 +110,7 @@ Page({
         checked: false
       }
     ],
-    plannos: [
-      {
+    plannos: [{
         value: '00',
         name: '基础',
         checked: false
@@ -144,26 +143,26 @@ Page({
     lowvoltagecount: '',
     wiringdiagrams: []
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
   },
-  onReady: function () {
+  onReady: function() {
 
   },
-  onShow: function () {
+  onShow: function() {
     // 页面显示
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
 
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
 
   },
   // 绑定行业选择
-  bindPickerIndustryChange: function (e) {
+  bindPickerIndustryChange: function(e) {
     this.setData({
       industryindex: e.detail.value,
       industry: this.data.industries[e.detail.value].id
@@ -171,32 +170,32 @@ Page({
     this.autoCalculateValue()
   },
   // 绑定电压选择
-  bindPickerVoltageChange: function (e) {
+  bindPickerVoltageChange: function(e) {
     this.setData({
       voltageindex: e.detail.value,
       voltage: this.data.voltages[e.detail.value].id
     })
   },
   // 变压器数量
-  bindTransformerCountInput: function (e) {
+  bindTransformerCountInput: function(e) {
     this.setData({
       transformercount: e.detail.value
     })
   },
   // 低压柜个数
-  bindLowvoltageCountInput: function (e) {
+  bindLowvoltageCountInput: function(e) {
     this.setData({
       lowvoltagecount: e.detail.value
     })
   },
   // 选择配电站形式时触发
-  substationtypeChange: function (e) {
+  substationtypeChange: function(e) {
     this.setData({
       substationtype: e.detail.value
     })
   },
   // 选择方案时触发
-  serviceplanChange: function (e) {
+  serviceplanChange: function(e) {
     let plan = e.detail.value
     let plans = this.data.planitems.filter(item => {
       let indexno = item['value'].substr(0, 2)
@@ -218,7 +217,7 @@ Page({
     this.autoCalculateValue()
   },
   // 方案条款选择改变时触发
-  itemtypesChange: function (e) {
+  itemtypesChange: function(e) {
     let selected = e.detail.value
     if (selected.length === 0) {
       let plannos = this.data.plannos.map(item => {
@@ -238,7 +237,7 @@ Page({
     })
     this.autoCalculateValue()
   },
-  bindDateSelectedChange: function (e) {
+  bindDateSelectedChange: function(e) {
     this.setData({
       startdate: e.detail.value
     })
@@ -250,20 +249,20 @@ Page({
     })
     this.autoCalculateValue()
   },
-  bindContractnameInput: function (e) {
+  bindContractnameInput: function(e) {
     let value = e.detail.value;
     this.setData({
       contractname: value
     })
   },
-  bindTransformerInput: function (e) {
+  bindTransformerInput: function(e) {
     let value = e.detail.value;
     this.setData({
       transformer: value
     })
     this.autoCalculateValue()
   },
-  clearInput: function (e) {
+  clearInput: function(e) {
     switch (e.currentTarget.id) {
       case 'clear-contractname':
         this.setData({
@@ -293,7 +292,7 @@ Page({
     }
   },
   // 根据变压器容量、所属行业、服务方案自动计算合同金额
-  autoCalculateValue: function (e) {
+  autoCalculateValue: function(e) {
     let that = this
     let industry = that.data.industry
     let transformer = that.data.transformer
@@ -316,18 +315,16 @@ Page({
                 transformer: transformer,
                 industry: industry
               },
-              success: function (res) {
+              success: function(res) {
                 if (res.statusCode === 200) {
                   let response = res.data
-                  if (response.errorno) {
-                  } else {
+                  if (response.errorno) {} else {
                     that.setData({
                       contractvalue: response.data.recommendfee * 3,
                       recommendvalue: response.data.recommendfee
                     })
                   }
-                } else {
-                }
+                } else {}
               }
             })
           }
@@ -337,7 +334,7 @@ Page({
       }
     }
   },
-  saveContract: function () {
+  saveContract: function() {
     const that = this;
     let errors = [];
     // 设置合同起止时间（时间戳）
@@ -472,7 +469,7 @@ Page({
           'content-type': 'application/json',
           'x-kzhhr-token': token
         },
-        success: function (res) {
+        success: function(res) {
           if (res.statusCode === 200) {
             let response = res.data
             if (!response.errno) {
@@ -522,7 +519,7 @@ Page({
       })
     }
   },
-  uploadcontract: function () {
+  uploadcontract: function() {
     let that = this
     wx.chooseMessageFile({
       count: 10,
@@ -532,7 +529,9 @@ Page({
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
           files.map((item, index) => {
-            return Object.assign(item, { no: that.data.contractfiles.length + index + 1 })
+            return Object.assign(item, {
+              no: that.data.contractfiles.length + index + 1
+            })
           })
           let requests = []
           files.map(file => {
@@ -546,7 +545,10 @@ Page({
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http', 'https')
                   contractfiles = files.map(file => {
-                    return file.no === that.data.contractfiles.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '000' }) : file
+                    return file.no === that.data.contractfiles.length + index + 1 ? Object.assign(file, {
+                      downloadurl: d,
+                      category: '000'
+                    }) : file
                   })
                 }
               }
@@ -559,7 +561,7 @@ Page({
       }
     })
   },
-  uploadwiringdiagram: function () {    
+  uploadwiringdiagram: function() {
     let that = this
     wx.chooseMessageFile({
       count: 10,
@@ -568,13 +570,18 @@ Page({
         let msgflag = res.errMsg
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
+          console.log(files)
           files.map((item, index) => {
-            return Object.assign(item, { no: that.data.wiringdiagrams.length + index + 1 })
+            return Object.assign(item, {
+              no: that.data.wiringdiagrams.length + index + 1
+            })
           })
+          console.log(files)
           let requests = []
           files.map(file => {
             requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
           })
+          console.log(files)
           Promise.all(requests).then(res => {
             let wiringdiagrams = []
             let r = res.map((url, index) => {
@@ -583,7 +590,10 @@ Page({
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http', 'https')
                   wiringdiagrams = files.map(file => {
-                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, { downloadurl: d, category: '010' }) : file
+                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, {
+                      downloadurl: d,
+                      category: '010'
+                    }) : file
                   })
                 }
               }
@@ -596,7 +606,7 @@ Page({
       }
     })
   },
-  clearFile: function (e) {
+  clearFile: function(e) {
     const no = e.currentTarget.id
     let files = this.data.contractfiles
     const curfiles = files.filter(file => {
@@ -606,7 +616,7 @@ Page({
       contractfiles: curfiles
     })
   },
-  clearWiringdiagramFile: function (e) {
+  clearWiringdiagramFile: function(e) {
     const no = e.currentTarget.id
     let files = this.data.wiringdiagrams
     const curfiles = files.filter(file => {
@@ -617,7 +627,7 @@ Page({
     })
   },
   // 显示大图
-  showZoomFile: function (e) {
+  showZoomFile: function(e) {
     const dataset = e.currentTarget.dataset
     const items = dataset.files
     const item = dataset.file
@@ -630,11 +640,11 @@ Page({
       images.map(i => {
         let url = i.path
         imagepaths.push(url)
-      })     
+      })
       // 预览图片
       wx.previewImage({
         current: item.path,
-        urls: imagepaths 
+        urls: imagepaths
       })
     } else {
       // 预览其他格式的文件 
@@ -651,10 +661,10 @@ Page({
           })
         }
       })
-    }    
+    }
   },
   // 判断文件类型
-  fileTypeIsImage: function (item) {
+  fileTypeIsImage: function(item) {
     return item.type === 'image'
   }
 })

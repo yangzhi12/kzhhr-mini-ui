@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="form-box">
+    <!-- <view class="form-item">
+      <view class="inputlabel">修改家庭成员</view>
+    </view> -->
+    <view class="form-item">
+      <view class="inputlabel">姓名:</view>
+      <input class="famlilyName" value="{{name}}" bindinput="bindFamlilyNameInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ name.length > 0 }}" id="clear-famlilyName" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">称谓:</view>
+      <input class="famlilyAppellation" value="{{appel}}" bindinput="bindfamlilyAppellationInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ appel.length > 0 }}" id="clear-famlilyAppellation" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">手机号:</view>
+      <input class="famlilyMobile" value="{{mobile}}" bindinput="bindfamlilyMobileInput" maxlength="20" auto-focus/>
+      <image wx:if="{{mobile.length > 0 }}" id="clear-famlilyMobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">联系地址:</view>
+      <input class="famlilyAdress" value="{{address}}" bindinput="bindfamlilyAdressInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ address.length > 0 }}" id="clear-famlilyAdress" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <!-- <button type="default" class="login-btn" bindtap="deleteFam">删除</button> -->
+    <button type="default" class="login-btn" bindtap="startSave">保存</button>
+  </view>
+</view>

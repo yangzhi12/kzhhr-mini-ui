@@ -1,1 +1,255 @@
-/* pages/personal/modifyinfo/modifyinfo.wxss */
+.form-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  margin-top: 96rpx;
+  background: #fff;
+}
+
+.form-item {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.form-item .inputlabel {
+  position: absolute;
+  top: 35rpx;
+  left: 0rpx;
+  /* z-index: 2; */
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 32%;
+}
+
+.form-item .email, .form-item .bankno, .form-item .bankaddress,
+.form-item .address, .form-item .weixinno, .form-item .refereename,
+.form-item .refereemobile, .form-item .refereecertificate {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: inline-block;
+  width: 68%;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+  /* border-bottom: 1px solid #d9d9d9; */
+}
+
+.form-item-type {
+  /* margin-top:32rpx; */
+  height: 100rpx;
+  /* overflow: hidden; */
+  width: 100%;
+  color: #333;
+  font-size: 30rpx;
+  /* top: 20rpx; */
+}
+
+.type-label {
+  color: #333;
+  /* width: 15%; *//* opacity:0.75; */
+}
+
+.form-item-type .type-item {
+  float: left;
+  width: 32%;
+  margin-top: 30rpx;
+}
+
+.radio-label {
+  margin-left: 20rpx;
+}
+
+.form-item-type .type-selected {
+  float: right;
+  width: 68%;
+  margin-top: 22rpx;
+}
+
+.form-item .clear {
+  position: absolute;
+  top: 26rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+
+.login-btn {
+  margin: 60rpx 0 40rpx 0;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  background: #b4282d;
+  border-radius: 6rpx;
+}
+
+.form-item-text {
+  height: 35rpx;
+  width: 100%;
+}
+
+.form-item-text .register {
+  display: block;
+  height: 34rpx;
+  float: left;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.form-item-text .reset {
+  display: block;
+  height: 34rpx;
+  float: right;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.inputlabel-famlily {
+  position: absolute;
+  top: 35rpx;
+  left: 0;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 32%;
+}
+
+.form-item-famlily {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
+  width: 100%;
+  display: flex;
+}
+
+.form-item-famlily .famlily-item {
+  width: 25%;
+  top: 35rpx;
+  position: relative;
+}
+
+.inputlabel-famlily-add {
+  position: absolute;
+  top: 35rpx;
+  left: 40%;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 32%;
+  color: #1982c2;
+}
+
+.form-box .contractcontainer {
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.form-box .contractcontainer .uploadaction {
+  display: flex;
+  direction: column;
+  width: 100%;
+}
+
+.form-box .contractcontainer .uploadaction .uploadbtn {
+  color: #1982c2;
+  padding-left: 5rpx;
+}
+
+.form-box .contractcontainer .filesmap {
+  /* margin-top: 25rpx; *//* display: flex;
+  direction: row;   */
+  text-align: center;
+}
+
+.form-box .contractcontainer .filesmap .contractfiles {
+  border: 0.5rpx solid #f3eeee;
+  padding: 25rpx 25rpx;
+  margin: 25rpx 25rpx;
+  position: relative;
+}
+
+.form-item .itemname {
+  position: absolute;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.form-item .itemnamecol {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.form-famlily {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
+  width: 100%;
+  display: flex;
+}
+
+.famlily-content {
+  position: relative;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+  width: 15%;
+  justify-content: center;
+  text-align: center;
+}
+
+.famlily-content-add {
+  position: relative;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+  width: 35%;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.famlily-content-text {
+  top: 20rpx;
+}
+
+.deletefam {
+  position: absolute;
+  top: 26rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}

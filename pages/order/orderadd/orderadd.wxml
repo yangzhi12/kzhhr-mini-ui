@@ -82,6 +82,7 @@
       <view class="contractvaluelabel">合同金额（元）：</view>
       <view class="contractvalue">{{ contractvalue }}</view>
     </view>
+    
     <view class="contractcontainer">
       <view class="uploadaction">
         <view class="uploadlabel">合同扫描件：</view>
@@ -95,6 +96,7 @@
         </view>
       </view>
     </view>
+
     <view class="contractcontainer">
       <view class="uploadaction">
         <view class="uploadlabel">电气主接线图扫描件：</view>
@@ -107,6 +109,7 @@
         </view>
       </view>
     </view>
+    
     <button type="default" class="save-btn" bindtap="saveContract">保存</button>
   </view>
 </view>

@@ -1,28 +1,28 @@
-.form-box{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding: 0 40rpx;
-    margin-top: 20rpx;
-    background: #fff;
+.form-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  margin-top: 20rpx;
+  background: #fff;
 }
 
-.form-item{
-    position: relative;
-    background: #fff;
-    height: 96rpx;
-    border-bottom: 1px solid #d9d9d9;
+.form-item {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
 }
 
-.form-item .itemname{
-    position: absolute;
-    top: 26rpx;
-    left: 0;
-    display: block;
-    height: 44rpx;
-    background: #fff;
-    color: #333;
-    font-size: 30rpx;
+.form-item .itemname {
+  position: absolute;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
 }
 
 .form-item .itemnamecol {
@@ -36,15 +36,15 @@
   font-size: 30rpx;
 }
 
-.login-btn{
-    margin: 60rpx 0 40rpx 0;
-    height: 96rpx;
-    line-height: 96rpx;
-    color: #fff;
-    font-size: 30rpx;
-    width: 100%;
-    background: #b4282d;
-    border-radius: 6rpx;
+.login-btn {
+  margin: 60rpx 0 40rpx 0;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  background: #b4282d;
+  border-radius: 6rpx;
 }
 
 .toolbar {
@@ -55,10 +55,52 @@
 }
 
 .toolbtnsetpwd {
-  color: #1982c2;  
+  color: #1982c2;
 }
 
 .toolbtnmodify {
   margin-right: 40rpx;
   color: #1982c2;
 }
+
+.form-famlily {
+  position: relative;
+  background: #fff;
+  height: 96rpx;
+  border-bottom: 1px solid #d9d9d9;
+  width: 100%;
+  display: flex;
+}
+
+.famlily-content {
+  position: relative;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+  width: 15%;
+  justify-content: center;
+  text-align: center;
+}
+
+.famlily-content-add {
+  position: relative;
+  top: 26rpx;
+  left: 0;
+  display: block;
+  height: 44rpx;
+  background: #fff;
+  color: #333;
+  font-size: 30rpx;
+  width: 35%;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.famlily-content-text{
+  top: 20rpx;
+}
+

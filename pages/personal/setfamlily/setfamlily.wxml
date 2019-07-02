@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="form-box">
+    <!-- <view class="form-item">
+      <view class="inputlabel">家庭成员关系</view>
+    </view> -->
+    <view class="form-item">
+      <view class="inputlabel">姓名:</view>
+      <input class="famlilyName" value="{{famlilyName}}" bindinput="bindFamlilyNameInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ email.length > 0 }}" id="clear-famlilyName" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">称谓:</view>
+      <input class="famlilyAppellation" value="{{famlilyAppellation}}" bindinput="bindfamlilyAppellationInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ famlilyAppellation.length > 0 }}" id="clear-famlilyAppellation" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">手机号:</view>
+      <input class="famlilyMobile" value="{{famlilyMobile}}" bindinput="bindfamlilyMobileInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ famlilyMobile.length > 0 }}" id="clear-famlilyMobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <view class="form-item">
+      <view class="inputlabel">联系地址:</view>
+      <input class="famlilyAdress" value="{{famlilyAdress}}" bindinput="bindfamlilyAdressInput" maxlength="20" auto-focus/>
+      <image wx:if="{{ famlilyAdress.length > 0 }}" id="clear-famlilyAdress" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <button type="default" class="login-btn" bindtap="startSave">保存</button>
+  </view>
+</view>

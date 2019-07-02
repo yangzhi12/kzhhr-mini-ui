@@ -68,6 +68,7 @@ Page({
           success: function (res) {
             if (res.statusCode === 200) {
               let response = res.data
+              console.log(response)
               if (response.errorno) {
                 wx.showModal({
                   title: '提示信息',
@@ -79,6 +80,8 @@ Page({
                 Object.keys(data).map(item => {
                   if (item.substr(1, 1) === 'N') {
                     data[item] = that.getTwoDecimal(data[item])
+                    console.log(item)
+                    console.log(data)
                   }
                 })
                 that.setData({ quarter: data })
@@ -106,6 +109,7 @@ Page({
       year: year,
       quarter: quarter
     }
+    console.log(that.data.quarter)
     try {
       const token = wx.getStorageSync('token')
       if (token) {

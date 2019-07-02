@@ -142,6 +142,7 @@ Page({
         success: function (res) {
           if (res.statusCode === 200) {
             let response = res.data
+            console.log(response);
             if (!response.errno) {
               that.setData({
                 'loginErrorCount': 0

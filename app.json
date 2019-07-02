@@ -7,6 +7,8 @@
     "pages/personal/personal",
     "pages/personal/setpwd/setpassword",
     "pages/personal/modifyinfo/modifyinfo",
+    "pages/personal/setfamlily/setfamlily",
+    "pages/personal/updatefamlily/updatefamlily",
     "pages/income/income",
     "pages/order/order",
     "pages/team/team",

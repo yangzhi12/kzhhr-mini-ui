@@ -1,2 +1,106 @@
-<!--pages/personal/modifyinfo/modifyinfo.wxml-->
-<text>pages/personal/modifyinfo/modifyinfo.wxml</text>
+<view class="container">
+  <view class="form-box">
+
+    <view class="form-item">
+      <text class="itemname">用户名：{{username}}</text>
+      <text class="itemnamecol">性别：{{gender}}</text>
+    </view>
+    
+    <view class="form-item">
+      <text class="itemname">手机号：{{mobile}}</text>
+      <text class="itemnamecol">微信号：{{weixinno}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="itemname">当前级别：{{level}}</text>
+      <text class="itemnamecol">档案状态：{{state}}</text>
+    </view>
+
+    <view class="form-item" hidden="{{(level == '业务员')}}">
+      <view class="inputlabel">邮箱:</view>
+      <input class="email" value="{{email}}" bindinput="bindEmailInput" auto-focus/>
+      <image wx:if="{{ email.length > 0 }}" id="clear-email" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+
+    <view class="form-item" hidden="{{(level == '业务员')}}">
+      <view class="inputlabel">银行卡卡号：</view>
+      <input class="bankno" value="{{bankno}}" bindinput="bindBanknoInput" auto-focus/>
+      <image wx:if="{{ bankno.length > 0 }}" id="clear-bankno" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+
+    <view class="form-item" hidden="{{(level == '业务员')}}">
+      <view class="inputlabel">开户行地址：</view>
+      <input class="bankaddress" value="{{bankaddress}}" bindinput="bindbankAddressInput"  auto-focus/>
+      <image wx:if="{{ bankaddress.length > 0 }}" id="clear-bankaddress" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+
+    <view class="form-item" wx:if="{{(level == '五钻A') || (level == '五钻B') || (level == '五钻C') || (level == '五钻D') || (level == '五钻E') || (level == '四钻A') || (level == '四钻B') || (level == '四钻C') || (level == '四钻D') || (level == '三钻A') || (level == '三钻B') || (level == '三钻C') || (level == '三钻D')}}">
+      <view class="inputlabel">家庭住址：</view>
+      <input class="address" value="{{address}}" bindinput="bindAddressInput" auto-focus/>
+      <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+
+    <view class="form-item" wx:if="{{(level == '五钻A') || (level == '五钻B') || (level == '五钻C') || (level == '五钻D') || (level == '五钻E') || (level == '四钻A') || (level == '四钻B') || (level == '四钻C') || (level == '四钻D')}}">
+      <view class="inputlabel-famlily">家庭成员关系:</view>
+      <navigator class="inputlabel-famlily-add" url="../setfamlily/setfamlily">新增家庭成员</navigator>
+    </view>
+
+    <view wx:if="{{(level == '五钻A') || (level == '五钻B') || (level == '五钻C') || (level == '五钻D') || (level == '五钻E') || (level == '四钻A') || (level == '四钻B') || (level == '四钻C') || (level == '四钻D')}}">
+      <!-- <view class="form-item">
+        <text class="itemname">家庭成员关系:</text>
+      </view> -->
+      <view class="form-famlily">
+        <view class="famlily-content">姓名</view>
+        <view class="famlily-content">称谓</view>
+        <view class="famlily-content-add">手机号</view>
+        <text class="famlily-content-add">联系地址</text>
+      </view>
+      <view wx:for="{{resp}}" wx:key="{{item}}">
+        <view class="form-famlily">
+          <view class="famlily-content" data-item="{{item}}" bindtap='nameChange'>
+            <input value='{{item.name}}' bindinput='bindItemNameInput' auto-focus='true'></input>
+          </view>
+          <view class="famlily-content" data-item="{{item}}" bindtap='nameChange'>
+            <input value='{{item.appellation}}' bindinput='bindItemAppInput' auto-focus='true'></input>
+          </view>
+          <view class="famlily-content-add"  data-item="{{item}}" bindtap='nameChange'>
+            <input value='{{item.mobile}}' bindinput='bindItenMobileInput' auto-focus='true'></input>
+          </view>
+          <view class="famlily-content-add famlily-content-text"  data-item="{{item}}" bindtap='nameChange'>
+            <input value='{{item.address}}' bindinput='bindItemAdressInput' auto-focus='true'></input>
+          </view>
+          <image class="deletefam" src="/static/images/clear_input.png" data-item="{{item}}" catchtap="deletefaminfo"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- <view class="contractcontainer"  hidden="{{(level == '业务员') || (level == '一钻A') || (level == '一钻B') || (level == '一钻C') || (level == '一钻D') || (level == '一钻E')}}">
+      <view class="uploadaction">
+        <view class="uploadlabel">个人简历信息：</view>
+        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传个人简历图(微信内图片)</view>
+      </view>
+      <view class="filesmap">
+        <view class="contractfiles" wx:for="{{wiringdiagrams}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" data-files="{{wiringdiagrams}}" data-file="{{item}}" catchtap="showZoomFile" />
+          <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearWiringdiagramFile"></image>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- <view class="contractcontainer"   wx:if="{{(level == '五钻A') || (level == '五钻B') || (level == '五钻C') || (level == '五钻D') || (level == '五钻E')}}">
+      <view class="uploadaction">
+        <view class="uploadlabel">个人征信证明：</view>
+        <view class="uploadbtn" bindtap="uploadcontract">点击上传个人征信图(微信内图片)
+        </view>
+      </view>
+      <view class="filesmap">
+        <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" data-files="{{contractfiles}}" data-file="{{item}}" catchtap="showZoomFile" />
+          <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
+        </view>
+      </view>
+    </view> -->
+
+    <button type="default" class="login-btn" bindtap="startSubmit">提交</button>
+  </view>
+</view>
