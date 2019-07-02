@@ -57,6 +57,7 @@ var referee = {
 
 //校验银行卡号
 function luhnCheck(bankno) {
+  if (!bankno) return false;
   var lastNum = bankno.substr(bankno.length - 1, 1); //取出最后一位（与luhn进行比较）
   var first15Num = bankno.substr(0, bankno.length - 1); //前15或18位
   var newArr = new Array();
@@ -464,6 +465,7 @@ function showErrorToast(msg) {
 
 // no 为级别代号
 function getLevelName(no) {
+  console.log(no)
   return level[no]
 }
 

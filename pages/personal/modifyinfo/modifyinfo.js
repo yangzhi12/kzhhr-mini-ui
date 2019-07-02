@@ -9,11 +9,13 @@ Page({
   data: {
     username: '',
     gender: '',
+    gendername: '',
     mobile: '',
     weixinno: '',
     level: '',
+    levelname: '',
     state: '',
-
+    statename: '',
     email: '',
     bankno: '',
     bankaddress: '',
@@ -44,7 +46,7 @@ Page({
           },
           success: function(res) {
             if (res.statusCode === 200) {
-              console.log(res.data);
+              // console.log(res.data);
               let response = res.data
               that.assignUIData(response)
             } else {
@@ -69,10 +71,13 @@ Page({
       id: userInfo.id,
       username: userInfo.username,
       gender: userInfo.gender,
+      gendername: util.getGenderName(userInfo.gender), 
       mobile: userInfo.mobile,
       weixinno: userInfo.weixin_no,
-      level: util.getLevelName(userInfo.level),
-      state: util.getStateName(userInfo.state),
+      level: userInfo.level,
+      levelname: util.getLevelName(userInfo.level),
+      state: userInfo.state,
+      statename: util.getStateName(userInfo.state),
       email: userInfo.email,
       address: userInfo.address,
       bankaddress: userInfo.bankaddress,
