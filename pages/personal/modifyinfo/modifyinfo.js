@@ -20,8 +20,8 @@ Page({
     bankno: '',
     bankaddress: '',
     address: '',
-    // wiringdiagrams: [],
-    // contractfiles: []
+    resume_attachmentlist: [],
+    credit_attachmentlist: [],
     resp: [],
     itemname: {},
     itemapp: {},
@@ -30,6 +30,11 @@ Page({
 
     id: 0,
     idno:0
+  },
+
+  // 阻止新增家庭成员再次上传
+  preventNewFamlily:function(){
+    console.log('test for newFamlily')
   },
 
   // 查询个人资料
@@ -82,40 +87,85 @@ Page({
       address: userInfo.address,
       bankaddress: userInfo.bankaddress,
       bankno: userInfo.bankno,
+      // 个人简历
+      resume_attachmentlist: userInfo.attachmentlist ?
+        userInfo.attachmentlist.filter(
+          (item) => {
+            return item.category === '000'
+          }
+        ) : [],
+      // 个人征信
+      credit_attachmentlist: userInfo.attachmentlist ?
+        userInfo.attachmentlist.filter(
+          (item) => {
+            return item.category === '010'
+          }
+        ) : []
     })
   },
 
   startSubmit: function(res) {
     let reemail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
     let that = this
-    if (!reemail.test(that.data.email)){
-      wx.showModal({
-        title: '提示信息',
-        content: '邮箱输入有误，请重新输入',
-      })
-      return false;
+    if (that.data.level > 0) {
+      // if (!reemail.test(that.data.email)) {
+      //   wx.showModal({
+      //     title: '提示信息',
+      //     content: '邮箱输入有误，请重新输入',
+      //   })
+      //   return false;
+      // }
+      // if (!util.luhnCheck(that.data.bankno)) {
+      //   wx.showModal({
+      //     title: '提示信息',
+      //     content: '银行卡号输入有误，请重新输入',
+      //   })
+      //   return false;
+      // }
+      // if (!that.data.bankaddress) {
+      //   wx.showModal({
+      //     title: '提示信息',
+      //     content: '开户行地址不能为空，请重新输入',
+      //   })
+      //   return false;
+      // }
     }
-    if (!util.luhnCheck(that.data.bankno)){
-      wx.showModal({
-        title: '提示信息',
-        content: '银行卡号输入有误，请重新输入',
-      })
-      return false;
+    if (that.data.level > 10) {
+      if (that.data.resume_attachmentlist.length === 0) {
+        wx.showModal({
+          title: '提示信息',
+          content: '请上传个人简历',
+        })
+        return false;
+      }
     }
-    if(that.data.bankaddress.length == 0){
-      wx.showModal({
-        title: '提示信息',
-        content: '开户行地址不能为空，请重新输入',
-      })
-      return false;
+    if (that.data.level > 20) {
+      if (!that.data.address) {
+        wx.showModal({
+          title: '提示信息',
+          content: '家庭地址不能为空，请重新输入',
+        })
+        return false;
+      }
     }
-    if (that.data.address.length == 0) {
-      wx.showModal({
-        title: '提示信息',
-        content: '家庭地址不能为空，请重新输入',
-      })
-      return false;
-    }    
+    if (that.data.level > 30) {
+      if (that.data.resp.length == 0) {
+        wx.showModal({
+          title: '提示信息',
+          content: '家庭成员信息不能为空，请重新输入',
+        })
+        return false;
+      }
+    } 
+    if (that.data.level > 40) {
+      if (that.data.credit_attachmentlist.length == 0) {
+        wx.showModal({
+          title: '提示信息',
+          content: '个人征信证明不能为空，请重新输入',
+        })
+        return false;
+      }
+    }
     const token = wx.getStorageSync('token')
     wx.request({
       url: api.CompleteFamlily,
@@ -128,6 +178,9 @@ Page({
         bankno: that.data.bankno,
         bankaddress: that.data.bankaddress,
         address: that.data.address,
+        level: that.data.level,
+        resume_attachmentlist: that.data.resume_attachmentlist,
+        credit_attachmentlist: that.data.credit_attachmentlist
       },
       success: function() {
         wx.redirectTo({
@@ -357,5 +410,152 @@ Page({
   onShareAppMessage: function() {
 
   },
-
+  uploadcontract: function () {
+    let that = this
+    let userid = that.data.id
+    wx.chooseMessageFile({
+      count: 10,
+      type: 'all',
+      success(res) {
+        let msgflag = res.errMsg
+        if (msgflag.split(':').includes('ok')) {
+          let files = res.tempFiles
+          files.map((item, index) => {
+            return Object.assign(item, {
+              no: that.data.resume_attachmentlist.length + index + 1
+            })
+          })
+          let requests = []
+          files.map(file => {
+            requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
+          })
+          Promise.all(requests).then(res => {
+            let contractfiles = []
+            let r = res.map((url, index) => {
+              if (url.errMsg.split(':').includes('ok')) {
+                let d = url.data
+                if (d.indexOf('http') !== -1) {
+                  d = d.replace('http', 'https')
+                  contractfiles = files.map(file => {
+                    return file.no === that.data.resume_attachmentlist.length + index + 1 ? Object.assign(file, {
+                      downloadurl: d,
+                      category: '000',
+                      userid: userid
+                    }) : file
+                  })
+                }
+              }
+            })
+            that.setData({
+              resume_attachmentlist: that.data.resume_attachmentlist.concat(contractfiles)
+            })
+          })
+        }
+      }
+    })
+  },
+  uploadwiringdiagram: function () {
+    let that = this
+    wx.chooseMessageFile({
+      count: 10,
+      type: 'all',
+      success(res) {
+        let msgflag = res.errMsg
+        if (msgflag.split(':').includes('ok')) {
+          let files = res.tempFiles
+          files.map((item, index) => {
+            return Object.assign(item, {
+              no: that.data.credit_attachmentlist.length + index + 1
+            })
+          })
+          let requests = []
+          files.map(file => {
+            requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
+          })
+          Promise.all(requests).then(res => {
+            let wiringdiagrams = []
+            let r = res.map((url, index) => {
+              if (url.errMsg.split(':').includes('ok')) {
+                let d = url.data
+                if (d.indexOf('http') !== -1) {
+                  d = d.replace('http', 'https')
+                  wiringdiagrams = files.map(file => {
+                    return file.no === that.data.credit_attachmentlist.length + index + 1 ? Object.assign(file, {
+                      downloadurl: d,
+                      category: '010',
+                      userid: userid
+                    }) : file
+                  })
+                }
+              }
+            })
+            that.setData({
+              credit_attachmentlist: that.data.credit_attachmentlist.concat(wiringdiagrams)
+            })
+          })
+        }
+      }
+    })
+  },
+  clearFile: function (e) {
+    const no = e.currentTarget.id
+    let files = this.data.resume_attachmentlist
+    const curfiles = files.filter(file => {
+      return `${file.no}` !== `${no}`
+    })
+    this.setData({
+      resume_attachmentlist: curfiles
+    })
+  },
+  clearWiringdiagramFile: function (e) {
+    const no = e.currentTarget.id
+    let files = this.data.credit_attachmentlist
+    const curfiles = files.filter(file => {
+      return `${file.no}` !== `${no}`
+    })
+    this.setData({
+      credit_attachmentlist: curfiles
+    })
+  },
+  // 显示大图
+  showZoomFile: function (e) {
+    const dataset = e.currentTarget.dataset
+    const items = dataset.files
+    const item = dataset.file
+    if (this.fileTypeIsImage(item)) {
+      // 获取图片列表
+      let images = items.filter(i => {
+        return i.type === 'image'
+      })
+      let imagepaths = []
+      images.map(i => {
+        let url = i.path
+        imagepaths.push(url)
+      })
+      // 预览图片
+      wx.previewImage({
+        current: item.path,
+        urls: imagepaths
+      })
+    } else {
+      // 预览其他格式的文件 
+      let url = item.path
+      wx.downloadFile({
+        url: url,
+        success(res) {
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success(res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+    }
+  },
+  // 判断文件类型
+  fileTypeIsImage: function (item) {
+    return item.type === 'image'
+  }
 })

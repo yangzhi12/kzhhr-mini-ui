@@ -110,7 +110,7 @@ Page({
       },
       success: function () {
         wx.redirectTo({
-          url: '../../personal/personal',
+          url: '../modifyinfo/modifyinfo',
         })
       }
     })

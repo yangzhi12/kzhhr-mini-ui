@@ -104,3 +104,12 @@
   top: 20rpx;
 }
 
+.imagesize{
+  height: 400rpx;
+  width: 600rpx;
+}
+
+.attachment {
+  border-bottom: 1px solid #d9d9d9;
+  text-align: center;
+}

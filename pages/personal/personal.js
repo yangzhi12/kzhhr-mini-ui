@@ -22,16 +22,16 @@ Page({
     email:'',
     bankno:'',
     bankaddress:'',
+    resume_attachmentlist: [],
+    credit_attachmentlist: [],
+    familylist: [],
     
     name: '',
     appellation: '',
     mobilefam: '',
     address: '',
     famtotal:0,
-    resp:{},
-    wiringdiagrams:[],
-    contractfiles:[]
-
+    resp:{}
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -43,7 +43,6 @@ Page({
   onShow: function() {
     // 页面显示
     this.getPersonalInfo()
-    this.getfamInfo()
   },
   onHide: function() {
     // 页面隐藏
@@ -66,7 +65,6 @@ Page({
     let that = this
     try {
       const token = wx.getStorageSync('token')
-      console.log(token)
       if (token) {
         wx.request({
           url: api.PersonalUrl,
@@ -76,7 +74,6 @@ Page({
           },
           success: function (res) {
             if (res.statusCode === 200) {
-              console.log(res.data);
               let response = res.data
               that.assignUIData(response)              
             } else {
@@ -116,46 +113,26 @@ Page({
       email: userInfo.email || '',
       address: userInfo.address || '',
       bankaddress: userInfo.bankaddress || '',
-      bankno: userInfo.bankno || '',
-      wiringdiagrams: userInfo.wiringdiagrams,
-      contractfiles: userInfo.contractfiles
-    
+      bankno: userInfo.bankno || '' ,
+      // 个人简历
+      resume_attachmentlist: userInfo.attachmentlist ? 
+      userInfo.attachmentlist.filter(
+        (item) => {
+          return item.category === '000'
+        }
+      ) : [],
+      // 个人征信
+      credit_attachmentlist: userInfo.attachmentlist ?
+        userInfo.attachmentlist.filter(
+          (item) => {
+            return item.category === '010'
+          }
+      ) : [],
+      // 家庭成员
+      familylist: userInfo.familylist
     })
   },
-
-  //查询家庭成员
-  getfamInfo(){
-    let that = this
-    const token = wx.getStorageSync('token')
-    if (token) {
-      wx.request({
-        url: api.PersonnalFam,
-        method: 'get',
-        header: {
-          'x-kzhhr-token': token
-        },
-        success:function(res){
-          console.log(res)
-          let resp = res.data
-          console.log(resp)
-          let index = Object.keys(resp)
-          console.log(index)
-          that.setData({
-            resp:resp,
-            famtotal:resp.length,
-          })    
-        },
-        fail:function(){
-          wx.showModal({
-            title: '提示信息',
-            content: '查询家庭成员失败',
-            showCancel: false
-          })
-        }
-      })
-    }
-  },
-
+  // 显示大图
   showZoomFile: function (e) {
     const dataset = e.currentTarget.dataset
     const items = dataset.files
@@ -167,17 +144,17 @@ Page({
       })
       let imagepaths = []
       images.map(i => {
-        let url = i.path
+        let url = i.downloadurl
         imagepaths.push(url)
       })
       // 预览图片
       wx.previewImage({
-        current: item.path,
+        current: item.downloadurl,
         urls: imagepaths
       })
     } else {
       // 预览其他格式的文件 
-      let url = item.path
+      let url = item.downloadurl
       wx.downloadFile({
         url: url,
         success(res) {
@@ -192,7 +169,10 @@ Page({
       })
     }
   },
-
+  // 判断文件类型
+  fileTypeIsImage: function (item) {
+    return item.type === 'image'
+  },
   /**
    * 点击修改密码触发
    */

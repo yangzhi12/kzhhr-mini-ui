@@ -253,3 +253,17 @@
   height: 44rpx;
   width: 44rpx;
 }
+
+.imagesize{
+  height: 400rpx;
+  width: 400rpx;
+}
+
+.clearfile{
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  z-index: 2;
+  top: 0rpx;
+  right: 0rpx;
+}

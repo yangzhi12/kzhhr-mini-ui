@@ -47,6 +47,9 @@ Page({
       id: '1101',
       name: '一般工业'
     }, {
+        id: '2100',
+        name: '大工业'
+    },{
       id: '1102',
       name: '综合商业体'
     }, {
@@ -65,12 +68,8 @@ Page({
       id: '1107',
       name: '其他'
     }
-    // , {
-    //   id: '1200',
-    //   name: '大工业'
-    // }
     ],
-    industry: '1100',
+    industry: '1101',
     industryindex: 1,
     voltages: [{
         id: '00',
@@ -416,23 +415,23 @@ Page({
       return false;
     }
     // 合同附件不能为空
-    // if (that.data.contractfiles.length === 0) {
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '请上传合同扫描件',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }
-    // // 电气主接线图不能为空
-    // if (that.data.wiringdiagrams.length === 0) {
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '请上传电气主接线图扫描件',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }
+    if (that.data.contractfiles.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传合同扫描件',
+        showCancel: false
+      });
+      return false;
+    }
+    // 电气主接线图不能为空
+    if (that.data.wiringdiagrams.length === 0) {
+      wx.showModal({
+        title: '错误信息',
+        content: '请上传电气主接线图扫描件',
+        showCancel: false
+      });
+      return false;
+    }
     if (!that.data.contractvalue || !that.data.recommendvalue) {
       wx.showModal({
         title: '提示信息',
