@@ -57,7 +57,6 @@ var referee = {
 
 //校验银行卡号
 function luhnCheck(bankno) {
-  if (!bankno) return false;
   var lastNum = bankno.substr(bankno.length - 1, 1); //取出最后一位（与luhn进行比较）
   var first15Num = bankno.substr(0, bankno.length - 1); //前15或18位
   var newArr = new Array();
@@ -578,7 +577,6 @@ function fileuploadRrquest(url, filepath) {
               if (res.confirm) {
                 //返回res.confirm为true时，表示用户点击确定按钮
                 console.log('表示用户点击确定按钮')
-
               }
             }
           })

@@ -70,28 +70,28 @@
       </view>
     </view>
 
-    <view class="contractcontainer"  wx:if="{{ level > 10 }}">
+    <view class="contractcontainer">
       <view class="uploadaction">
-        <view class="uploadlabel">个人简历信息：</view>
-        <view class="uploadbtn" bindtap="uploadcontract">点击上传个人简历图(微信内图片)</view>
+        <view class="uploadlabel">个人简历扫描件：</view>
+        <view class="uploadbtn" bindtap="uploadcontract">点击上传个人简历(微信内图片)
+        </view>
       </view>
       <view class="filesmap">
-        <view class="contractfiles" wx:for="{{resume_attachmentlist}}" wx:key="{{item.no}}">
-          <image class="imagesize" mode='scaleToFill' src="{{item.downloadurl}}" data-files="{{resume_attachmentlist}}" data-file="{{item}}" catchtap="showZoomFile" />
+        <view class="contractfiles" wx:for="{{contractfiles}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" data-files="{{contractfiles}}" data-file="{{item}}" catchtap="showZoomFile" />
           <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearFile"></image>
         </view>
       </view>
     </view>
 
-    <view class="contractcontainer"   wx:if="{{ level > 40 }}">
+    <view class="contractcontainer">
       <view class="uploadaction">
-        <view class="uploadlabel">个人征信证明：</view>
-        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传个人征信图(微信内图片)
-        </view>
+        <view class="uploadlabel">征信证明扫描件：</view>
+        <view class="uploadbtn" bindtap="uploadwiringdiagram">点击上传征信证明图(微信内图片)</view>
       </view>
       <view class="filesmap">
-        <view class="contractfiles" wx:for="{{credit_attachmentlist}}" wx:key="{{item.no}}">
-          <image class="imagesize" mode='scaleToFill' src="{{item.downloadurl}}" data-files="{{credit_attachmentlist}}" data-file="{{item}}" catchtap="showZoomFile" />
+        <view class="contractfiles" wx:for="{{wiringdiagrams}}" wx:key="{{item.no}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.path}}" data-files="{{wiringdiagrams}}" data-file="{{item}}" catchtap="showZoomFile" />
           <image id="{{item.no}}" class="clearfile" src="/static/images/clear_input.png" catchtap="clearWiringdiagramFile"></image>
         </view>
       </view>

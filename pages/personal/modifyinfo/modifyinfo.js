@@ -20,8 +20,8 @@ Page({
     bankno: '',
     bankaddress: '',
     address: '',
-    resume_attachmentlist: [],
-    credit_attachmentlist: [],
+    contractfiles: [],
+    wiringdiagrams: [],
     resp: [],
     itemname: {},
     itemapp: {},
@@ -88,19 +88,9 @@ Page({
       bankaddress: userInfo.bankaddress,
       bankno: userInfo.bankno,
       // 个人简历
-      resume_attachmentlist: userInfo.attachmentlist ?
-        userInfo.attachmentlist.filter(
-          (item) => {
-            return item.category === '000'
-          }
-        ) : [],
+      resumes: [],
       // 个人征信
-      credit_attachmentlist: userInfo.attachmentlist ?
-        userInfo.attachmentlist.filter(
-          (item) => {
-            return item.category === '010'
-          }
-        ) : []
+      credits: []
     })
   },
 
@@ -108,34 +98,43 @@ Page({
     let reemail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
     let that = this
     if (that.data.level > 0) {
-      // if (!reemail.test(that.data.email)) {
-      //   wx.showModal({
-      //     title: '提示信息',
-      //     content: '邮箱输入有误，请重新输入',
-      //   })
-      //   return false;
-      // }
-      // if (!util.luhnCheck(that.data.bankno)) {
-      //   wx.showModal({
-      //     title: '提示信息',
-      //     content: '银行卡号输入有误，请重新输入',
-      //   })
-      //   return false;
-      // }
-      // if (!that.data.bankaddress) {
-      //   wx.showModal({
-      //     title: '提示信息',
-      //     content: '开户行地址不能为空，请重新输入',
-      //   })
-      //   return false;
-      // }
-    }
-    if (that.data.level > 10) {
-      if (that.data.resume_attachmentlist.length === 0) {
+      if (!reemail.test(that.data.email)) {
         wx.showModal({
           title: '提示信息',
-          content: '请上传个人简历',
+          content: '邮箱输入有误，请重新输入',
         })
+        return false;
+      }
+      if (!that.data.bankno) {
+        wx.showModal({
+          title: '提示信息',
+          content: '银行卡号不能为空，请重新输入',
+        })
+        return false;
+      }
+      if (!util.luhnCheck(that.data.bankno)) {
+        wx.showModal({
+          title: '提示信息',
+          content: '银行卡号输入有误，请重新输入',
+        })
+        return false;
+      }
+      if (!that.data.bankaddress) {
+        wx.showModal({
+          title: '提示信息',
+          content: '开户行地址不能为空，请重新输入',
+        })
+        return false;
+      }
+    }
+    if (that.data.level > 10) {
+      // 个人简历不能为空
+      if (that.data.contractfiles.length === 0) {
+        wx.showModal({
+          title: '错误信息',
+          content: '请上传个人简历扫描件',
+          showCancel: false
+        });
         return false;
       }
     }
@@ -158,14 +157,16 @@ Page({
       }
     } 
     if (that.data.level > 40) {
-      if (that.data.credit_attachmentlist.length == 0) {
+      // 个人征信证明不能为空
+      if (that.data.wiringdiagrams.length === 0) {
         wx.showModal({
-          title: '提示信息',
-          content: '个人征信证明不能为空，请重新输入',
-        })
+          title: '错误信息',
+          content: '请上传个人征信证明扫描件',
+          showCancel: false
+        });
         return false;
       }
-    }
+    }    
     const token = wx.getStorageSync('token')
     wx.request({
       url: api.CompleteFamlily,
@@ -173,15 +174,7 @@ Page({
       header: {
         'x-kzhhr-token': token
       },
-      data: {
-        email: that.data.email,
-        bankno: that.data.bankno,
-        bankaddress: that.data.bankaddress,
-        address: that.data.address,
-        level: that.data.level,
-        resume_attachmentlist: that.data.resume_attachmentlist,
-        credit_attachmentlist: that.data.credit_attachmentlist
-      },
+      data: that.getData(),
       success: function() {
         wx.redirectTo({
           url: '../../personal/personal',
@@ -197,18 +190,51 @@ Page({
     })
   },
 
+  getData: function() {
+    let that = this
+    let data = {}
+    // 当钻级大于0时,所需完善的资料为:邮箱、银行卡信息
+    if (that.data.level > 0) {
+      Object.assign(data, {
+        email: that.data.email,
+        bankno: that.data.bankno,
+        bankaddress: that.data.bankaddress,
+        level: that.data.level
+      })
+    }
+    // 当钻级大于1时,所需完善的资料为:个人简历
+    if (that.data.level > 1) {
+      Object.assign(data, {
+        resume_attachmentlist: that.data.contractfiles,
+      })
+    }
+    // 当钻级大于2时,所需完善的资料为:家庭住址
+    if (that.data.level > 2) {
+      Object.assign(data, {
+        address: that.data.address,
+      })
+    }
+    // 当钻级大于3时,所需完善的资料为:家庭成员
+    // if (that.data.level > 3) {
+    //   Object.assign(data, {
+        
+    //   })
+    // }
+    // 当钻级大于4时,所需完善的资料为:个人征信
+    if (that.data.level > 4) {
+      Object.assign(data, {
+        credit_attachmentlist: that.data.wiringdiagrams
+      })
+    }
+    return data
+  },
   nameChange: function(event) {
     let nameId = event.currentTarget.dataset.item.id
     let updatename = event.currentTarget.dataset.item.name
     let updateappellation = event.currentTarget.dataset.item.appellation
     let updateaddress = event.currentTarget.dataset.item.address
     let updatemobile = event.currentTarget.dataset.item.mobile
-    console.log(updatemobile)
-    //"../updatefamlily/updatefamlily?id=&" + nameId + "&name=" + name ,
-    //let parmas = `/pages/personal/updatefamlily/updatefamlily?id=&${nameId}&name=&${updatename}&appel=&${updateappellation}&address=&${updateaddress}&mobile=&${updatemobile}`
     wx.redirectTo({
-      //url: "/pages/personal/updatefamlily/updatefamlily",
-      //url:parmas
       url: "../updatefamlily/updatefamlily?id=" + nameId + "&name=" + updatename + "&appel=" + updateappellation + "&address=" + updateaddress + "&mobile=" + updatemobile
     })
   },
@@ -412,7 +438,6 @@ Page({
   },
   uploadcontract: function () {
     let that = this
-    let userid = that.data.id
     wx.chooseMessageFile({
       count: 10,
       type: 'all',
@@ -422,7 +447,7 @@ Page({
           let files = res.tempFiles
           files.map((item, index) => {
             return Object.assign(item, {
-              no: that.data.resume_attachmentlist.length + index + 1
+              no: that.data.contractfiles.length + index + 1
             })
           })
           let requests = []
@@ -437,17 +462,16 @@ Page({
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http', 'https')
                   contractfiles = files.map(file => {
-                    return file.no === that.data.resume_attachmentlist.length + index + 1 ? Object.assign(file, {
+                    return file.no === that.data.contractfiles.length + index + 1 ? Object.assign(file, {
                       downloadurl: d,
-                      category: '000',
-                      userid: userid
+                      category: '000'
                     }) : file
                   })
                 }
               }
             })
             that.setData({
-              resume_attachmentlist: that.data.resume_attachmentlist.concat(contractfiles)
+              contractfiles: that.data.contractfiles.concat(contractfiles)
             })
           })
         }
@@ -465,7 +489,7 @@ Page({
           let files = res.tempFiles
           files.map((item, index) => {
             return Object.assign(item, {
-              no: that.data.credit_attachmentlist.length + index + 1
+              no: that.data.wiringdiagrams.length + index + 1
             })
           })
           let requests = []
@@ -480,17 +504,16 @@ Page({
                 if (d.indexOf('http') !== -1) {
                   d = d.replace('http', 'https')
                   wiringdiagrams = files.map(file => {
-                    return file.no === that.data.credit_attachmentlist.length + index + 1 ? Object.assign(file, {
+                    return file.no === that.data.wiringdiagrams.length + index + 1 ? Object.assign(file, {
                       downloadurl: d,
-                      category: '010',
-                      userid: userid
+                      category: '010'
                     }) : file
                   })
                 }
               }
             })
             that.setData({
-              credit_attachmentlist: that.data.credit_attachmentlist.concat(wiringdiagrams)
+              wiringdiagrams: that.data.wiringdiagrams.concat(wiringdiagrams)
             })
           })
         }
@@ -499,22 +522,22 @@ Page({
   },
   clearFile: function (e) {
     const no = e.currentTarget.id
-    let files = this.data.resume_attachmentlist
+    let files = this.data.contractfiles
     const curfiles = files.filter(file => {
       return `${file.no}` !== `${no}`
     })
     this.setData({
-      resume_attachmentlist: curfiles
+      contractfiles: curfiles
     })
   },
   clearWiringdiagramFile: function (e) {
     const no = e.currentTarget.id
-    let files = this.data.credit_attachmentlist
+    let files = this.data.wiringdiagrams
     const curfiles = files.filter(file => {
       return `${file.no}` !== `${no}`
     })
     this.setData({
-      credit_attachmentlist: curfiles
+      wiringdiagrams: curfiles
     })
   },
   // 显示大图

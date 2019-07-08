@@ -1,5 +1,5 @@
 const ApiRootUrl = 'https://hhr.dianjuhui.com:3393';
-const FileServer = 'https://hhr.dianjuhui.com:3394/upload';
+const FileServer = 'https://hhr.dianjuhui.com:3394';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + '/api/user/register', //用户注册
@@ -18,8 +18,7 @@ module.exports = {
   OrderStatQList: ApiRootUrl + '/api/contract/index', //根据用户ID获取签单列表
   OrderMoney: ApiRootUrl + '/api/contract/fee', //自动计算合同金额·
   OrderAdd: ApiRootUrl + '/api/contract/store', //新增保存合同
-  //FileUpload: `${FileServer}/upload`, //文件上传
-  //FileView: FileServer, //文件预览及下载URL
+  FileUpload: `${FileServer}/upload`, //文件上传
   ShareAdd: ApiRootUrl + '/api/share/store', //我的分享添加
   ShareStatQ: ApiRootUrl + '/api/share/statq', //根据用户ID汇总季度分享次数
   ShareStatQList: ApiRootUrl + '/api/share/index', //根据用户ID获取分享列表

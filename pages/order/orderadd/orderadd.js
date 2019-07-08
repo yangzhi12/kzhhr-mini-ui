@@ -537,6 +537,7 @@ Page({
             requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
           })
           Promise.all(requests).then(res => {
+            console.log(res)
             let contractfiles = []
             let r = res.map((url, index) => {
               if (url.errMsg.split(':').includes('ok')) {
@@ -569,18 +570,15 @@ Page({
         let msgflag = res.errMsg
         if (msgflag.split(':').includes('ok')) {
           let files = res.tempFiles
-          console.log(files)
           files.map((item, index) => {
             return Object.assign(item, {
               no: that.data.wiringdiagrams.length + index + 1
             })
           })
-          console.log(files)
           let requests = []
           files.map(file => {
             requests.push(util.fileuploadRrquest(api.FileUpload, file.path))
           })
-          console.log(files)
           Promise.all(requests).then(res => {
             let wiringdiagrams = []
             let r = res.map((url, index) => {

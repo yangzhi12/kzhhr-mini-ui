@@ -106,10 +106,11 @@
 
 .imagesize{
   height: 400rpx;
-  width: 600rpx;
+  width: 400rpx;
 }
 
 .attachment {
-  border-bottom: 1px solid #d9d9d9;
+  padding-top: 5rpx;
+  border-bottom: 1rpx solid #d9d9d9;
   text-align: center;
 }
