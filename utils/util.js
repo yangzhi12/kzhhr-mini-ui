@@ -55,8 +55,66 @@ var referee = {
   'NO_REF': '合伙人推荐'
 }
 
+//校验银行卡号
+function luhnCheck(bankno) {
+  var lastNum = bankno.substr(bankno.length - 1, 1); //取出最后一位（与luhn进行比较）
+  var first15Num = bankno.substr(0, bankno.length - 1); //前15或18位
+  var newArr = new Array();
+  for (var i = first15Num.length - 1; i > -1; i--) { //前15或18位倒序存进数组
+    newArr.push(first15Num.substr(i, 1));
+  }
+  var arrJiShu = new Array(); //奇数位*2的积 <9
+  var arrJiShu2 = new Array(); //奇数位*2的积 >9
+  var arrOuShu = new Array(); //偶数位数组
+  for (var j = 0; j < newArr.length; j++) {
+    if ((j + 1) % 2 == 1) { //奇数位
+      if (parseInt(newArr[j]) * 2 < 9) arrJiShu.push(parseInt(newArr[j]) * 2);
+      else arrJiShu2.push(parseInt(newArr[j]) * 2);
+    } else //偶数位
+      arrOuShu.push(newArr[j]);
+  }
+
+  var jishu_child1 = new Array(); //奇数位*2 >9 的分割之后的数组个位数
+  var jishu_child2 = new Array(); //奇数位*2 >9 的分割之后的数组十位数
+  for (var h = 0; h < arrJiShu2.length; h++) {
+    jishu_child1.push(parseInt(arrJiShu2[h]) % 10);
+    jishu_child2.push(parseInt(arrJiShu2[h]) / 10);
+  }
+
+  var sumJiShu = 0; //奇数位*2 < 9 的数组之和
+  var sumOuShu = 0; //偶数位数组之和
+  var sumJiShuChild1 = 0; //奇数位*2 >9 的分割之后的数组个位数之和
+  var sumJiShuChild2 = 0; //奇数位*2 >9 的分割之后的数组十位数之和
+  var sumTotal = 0;
+  for (var m = 0; m < arrJiShu.length; m++) {
+    sumJiShu = sumJiShu + parseInt(arrJiShu[m]);
+  }
+
+  for (var n = 0; n < arrOuShu.length; n++) {
+    sumOuShu = sumOuShu + parseInt(arrOuShu[n]);
+  }
+
+  for (var p = 0; p < jishu_child1.length; p++) {
+    sumJiShuChild1 = sumJiShuChild1 + parseInt(jishu_child1[p]);
+    sumJiShuChild2 = sumJiShuChild2 + parseInt(jishu_child2[p]);
+  }
+  //计算总和
+  sumTotal = parseInt(sumJiShu) + parseInt(sumOuShu) + parseInt(sumJiShuChild1) + parseInt(sumJiShuChild2);
+
+  //计算luhn值
+  var k = parseInt(sumTotal) % 10 == 0 ? 10 : parseInt(sumTotal) % 10;
+  var luhn = 10 - k;
+
+  if (lastNum == luhn) {
+    　return true;
+  } else {
+    return false;
+  }
+}
+
 // 获取流程节点
 function getApproveFlow(flowno) {
+  //substr(start,length)
   let flowFlag = flowno.substr(0, 2)
   let flows = {
     '01': {
@@ -221,6 +279,7 @@ function validLinkPhone(linkphone) {
   return true
 }
 
+
 /**
  * 身份证号码效验
  * @param {String} pid 身份证号
@@ -265,7 +324,7 @@ function validPersonID(pid) {
  * 封封微信的的request
  */
 function request(url, data = {}, method = "GET") {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     wx.request({
       url: url,
       data: data,
@@ -273,7 +332,7 @@ function request(url, data = {}, method = "GET") {
       header: {
         'X-Nideshop-Token': wx.getStorageSync('token')
       },
-      success: function (res) {
+      success: function(res) {
         console.log("success");
         if (res.statusCode == 200) {
           if (res.data.errno == 401) {
@@ -284,8 +343,10 @@ function request(url, data = {}, method = "GET") {
               return getUserInfo();
             }).then((userInfo) => {
               //登录远程服务器
-              request(api.AuthLoginByWeixin,
-                { code: code, userInfo: userInfo }, 'POST').then(res => {
+              request(api.AuthLoginByWeixin, {
+                code: code,
+                userInfo: userInfo
+              }, 'POST').then(res => {
                 if (res.errno === 0) {
                   //存储用户信息
                   wx.setStorageSync('userInfo', res.data.userInfo);
@@ -309,7 +370,7 @@ function request(url, data = {}, method = "GET") {
         }
 
       },
-      fail: function (err) {
+      fail: function(err) {
         reject(err)
         console.log("failed")
       }
@@ -329,12 +390,12 @@ function post(url, data = {}) {
  * 检查微信会话是否过期
  */
 function checkSession() {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     wx.checkSession({
-      success: function () {
+      success: function() {
         resolve(true);
       },
-      fail: function () {
+      fail: function() {
         reject(false);
       }
     })
@@ -345,16 +406,16 @@ function checkSession() {
  * 调用微信登录
  */
 function login() {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     wx.login({
-      success: function (res) {
+      success: function(res) {
         if (res.code) {
           resolve(res.code);
         } else {
           reject(res);
         }
       },
-      fail: function (err) {
+      fail: function(err) {
         reject(err);
       }
     });
@@ -362,17 +423,17 @@ function login() {
 }
 
 function getUserInfo() {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     wx.getUserInfo({
       withCredentials: true,
-      success: function (res) {
+      success: function(res) {
         if (res.detail.errMsg === 'getUserInfo:ok') {
           resolve(res);
         } else {
           reject(res)
         }
       },
-      fail: function (err) {
+      fail: function(err) {
         reject(err);
       }
     })
@@ -403,6 +464,7 @@ function showErrorToast(msg) {
 
 // no 为级别代号
 function getLevelName(no) {
+  console.log(no)
   return level[no]
 }
 
@@ -443,9 +505,9 @@ function getCommaMoney(s, type) {
 // 封装http请求
 function sendRrquest(url, method, data, header) {
   let status = true
-  let promise = new Promise(function (resolve, reject) {
+  let promise = new Promise(function(resolve, reject) {
     wx.getNetworkType({
-      success: function (res) {
+      success: function(res) {
         // 返回网络类型2g，3g，4g，wifi, none, unknown
         let networkType = res.networkType
         if (networkType == "none") {
@@ -455,7 +517,7 @@ function sendRrquest(url, method, data, header) {
             title: '提示',
             content: '网络连接失败,请检查您的网络设置',
             showCancel: false,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 //返回res.confirm为true时，表示用户点击确定按钮
                 console.log('表示用户点击确定按钮')
@@ -471,7 +533,7 @@ function sendRrquest(url, method, data, header) {
             title: '提示',
             content: '未知的网络类型,请检查您的网络设置',
             showCancel: false,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 //返回res.confirm为true时，表示用户点击确定按钮
                 console.log('表示用户点击确定按钮')
@@ -499,9 +561,9 @@ function sendRrquest(url, method, data, header) {
 // 封装文件上传
 function fileuploadRrquest(url, filepath) {
   let status = true
-  let promise = new Promise(function (resolve, reject) {
+  let promise = new Promise(function(resolve, reject) {
     wx.getNetworkType({
-      success: function (res) {
+      success: function(res) {
         // 返回网络类型2g，3g，4g，wifi, none, unknown
         let networkType = res.networkType
         if (networkType == "none") {
@@ -511,11 +573,10 @@ function fileuploadRrquest(url, filepath) {
             title: '提示',
             content: '网络连接失败,请检查您的网络设置',
             showCancel: false,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 //返回res.confirm为true时，表示用户点击确定按钮
                 console.log('表示用户点击确定按钮')
-
               }
             }
           })
@@ -527,7 +588,7 @@ function fileuploadRrquest(url, filepath) {
             title: '提示',
             content: '未知的网络类型,请检查您的网络设置',
             showCancel: false,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 //返回res.confirm为true时，表示用户点击确定按钮
                 console.log('表示用户点击确定按钮')
@@ -556,7 +617,7 @@ function fileuploadRrquest(url, filepath) {
 
 // 缓存写
 function writeStorageSync(key, value) {
-  let promise = new Promise(function (resolve, reject) {
+  let promise = new Promise(function(resolve, reject) {
     wx.setStorage({
       key: key,
       data: value,
@@ -585,7 +646,9 @@ function traverseNodes(curnodes, nodes) {
     let childrenNodes = nodes.filter(item => {
       return item.referee === node.id
     })
-    Object.assign(curnodes[index], { children: childrenNodes })
+    Object.assign(curnodes[index], {
+      children: childrenNodes
+    })
     childrenNodes.length > 0 ? traverseNodes(childrenNodes, nodes) : null
     return node
   })
@@ -615,5 +678,6 @@ module.exports = {
   sendRrquest,
   fileuploadRrquest,
   writeStorageSync,
-  traverseNodes
+  traverseNodes,
+  luhnCheck
 }

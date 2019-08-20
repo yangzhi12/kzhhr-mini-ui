@@ -6,26 +6,27 @@ Page({
     report: {},
     reporttitles: []
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
   },
-  onReady: function () {
-  },
-  onShow: function () {
+  onReady: function() {},
+  onShow: function() {
     // 页面显示
     this.getReport()
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
   },
   // 收益报表汇总
   getReport() {
     let that = this
     let year = that.data.selectedyear
+    console.log(that.data)
+    console.log(year)
     try {
       const token = wx.getStorageSync('token')
       if (token) {
@@ -36,9 +37,11 @@ Page({
             'x-kzhhr-token': token
           },
           data: null,
-          success: function (res) {
+          success: function(res) {
+            console.log(res)
             if (res.statusCode === 200) {
               let response = res.data
+              console.log(response)
               if (response.errorno) {
                 wx.showModal({
                   title: '提示信息',
@@ -47,12 +50,18 @@ Page({
                 });
               } else {
                 let data = response.data
+                console.log(data)
                 let titles = Object.keys(data)
+                console.log(titles)
                 titles.map(item => {
+                  console.log(data[item]['Q1'])
                   let repyearsummary = data[item]['Q1']['incomevalue'] || 0 + data[item]['Q2']['incomevalue'] || 0 + data[item]['Q3']['incomevalue'] || 0 + data[item]['Q4']['incomevalue'] || 0
-                  Object.assign(data[item], { repyearsummary: repyearsummary})
+                  Object.assign(data[item], {
+                    repyearsummary: repyearsummary
+                  })
                 })
-                that.setData({ 
+                
+                that.setData({
                   report: data,
                   reporttitle: titles
                 })

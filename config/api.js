@@ -1,5 +1,5 @@
-const ApiRootUrl = 'http://127.0.0.1:8360';
-const FileServer = 'http://127.0.0.1:2392';
+const ApiRootUrl = 'https://hhr.dianjuhui.com:3393';
+const FileServer = 'https://hhr.dianjuhui.com:3394';
 
 module.exports = {
   RegisterUrl: ApiRootUrl + '/api/user/register', //用户注册
@@ -7,13 +7,18 @@ module.exports = {
   IndexUrl: ApiRootUrl + '/api/index/index', //首页数据接口
   AuthLoginByWeixin: ApiRootUrl + '/api/auth/loginByWeixin', //微信登录
   PersonalUrl: ApiRootUrl + '/api/user/info', //个人中心资料
+  PersonnalFam: ApiRootUrl + '/api/user/fam', //家庭成员
+  //PersonalId: ApiRootUrl + '/api/user/id',//家庭id
+  AddsetFamlily: ApiRootUrl + '/api/user/addfamlily',//新增家庭成员
+  DeleteFamlily: ApiRootUrl + '/api/user/deletefamlily',//删除家庭成员
+  CompleteFamlily: ApiRootUrl + '/api/user/completefamlily',//完善个人信息
+  UpdateFamlily: ApiRootUrl + '/api/user/updatefamlily',//修改家庭成员
   UserInfoURL: ApiRootUrl + '/api/user/getUserInfoById', //根据用户ID查询用户信息
   OrderStatQ: ApiRootUrl + '/api/contract/statq', //根据用户ID汇总季度签单量
   OrderStatQList: ApiRootUrl + '/api/contract/index', //根据用户ID获取签单列表
-  OrderMoney: ApiRootUrl + '/api/contract/fee', //自动计算合同金额
+  OrderMoney: ApiRootUrl + '/api/contract/fee', //自动计算合同金额·
   OrderAdd: ApiRootUrl + '/api/contract/store', //新增保存合同
   FileUpload: `${FileServer}/upload`, //文件上传
-  FileView: FileServer, //文件预览及下载URL
   ShareAdd: ApiRootUrl + '/api/share/store', //我的分享添加
   ShareStatQ: ApiRootUrl + '/api/share/statq', //根据用户ID汇总季度分享次数
   ShareStatQList: ApiRootUrl + '/api/share/index', //根据用户ID获取分享列表

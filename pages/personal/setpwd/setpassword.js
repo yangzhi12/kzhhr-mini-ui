@@ -77,6 +77,7 @@ Page({
     let that = this
     let errors = [];
     // 空值校验
+    console.log(Object.keys(that.data.fieldMaps));
     Object.keys(that.data.fieldMaps).map(item => {
       let value = util.trimSpaceSymbol(that.data[item])
       if (value.length === 0) {

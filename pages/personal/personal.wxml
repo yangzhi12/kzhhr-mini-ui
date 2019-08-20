@@ -1,27 +1,76 @@
 <view class="container">
   <view class="form-box">
     <view class="toolbar">
-      <view class="toolbtnmodify" data-id='{{id}}' bindtap='modifyinfo'>完善个人信息</view>
+      <view class="toolbtnmodify" data-id='{{id}}' bindtap='modifyinfo' hidden="{{level == '业务员'}}">完善个人信息</view>
       <view class="toolbtnsetpwd" data-id='{{id}}' bindtap='setpassword'>修改密码</view>
     </view>
     <view class="form-item">
       <text class="itemname">用户名：{{username}}</text>
-      <text class="itemnamecol">性别：{{gender}}</text>
+      <text class="itemnamecol">性别：{{gendername}}</text>
     </view>
     <view class="form-item">
       <text class="itemname">手机号：{{mobile}}</text>
       <text class="itemnamecol">微信号：{{weixinno}}</text>
     </view>
-    <!-- <view class="form-item">
-      <text class="itemname">身份证号：{{certificate}}</text>
-    </view> -->
     <view class="form-item" hidden="{{ (!isreferee) || (isreferee === 'NO_REF') }}">
       <text class="itemname">推荐人：{{refereename}}</text>
       <text class="itemnamecol">推荐人手机号：{{refereemobile}}</text>
     </view>
     <view class="form-item">
-      <text class="itemname">当前级别：{{level}}</text>
-      <text class="itemnamecol">档案状态：{{state}}</text>
+      <text class="itemname">当前级别：{{levelname}}</text>
+      <text class="itemnamecol">档案状态：{{statename}}</text>
+    </view>
+    <view class="form-item" wx:if="{{ level > 20 }}">
+      <text class="itemname">家庭地址：{{address}}</text>
+    </view>
+    <view class="form-item" wx:if="{{ level > 00 }}">
+      <text class="itemname">邮箱:</text>
+      <text class="itemnamecol">{{email}}</text>
+    </view>
+    <view class="form-item" wx:if="{{ level > 00 }}">
+      <text class="itemname">银行卡卡号:</text>
+      <text class="itemnamecol">{{bankno}}</text>
+    </view>
+    <view class="form-item" wx:if="{{ level > 00 }}">
+      <text class="itemname">开户行地址:</text>
+      <text class="itemnamecol">{{bankaddress}}</text>
+    </view>
+    <view class="form-item" wx:if="{{ level > 10 }}">
+      <text class="itemname">个人简历：{{resume_attachmentlist.length > 0 ? '' : '暂未提供'}}   </text>
+    </view>
+    <view class="attachment" wx:if="{{ level > 10 && resume_attachmentlist.length > 0}}">
+      <view wx:for="{{resume_attachmentlist}}" wx:key="{{item.id}}">
+        <image class="imagesize" mode='scaleToFill' src="{{item.downloadurl}}" data-files="{{resume_attachmentlist}}" data-file="{{item}}" catchtap="showZoomFile" />
+      </view>
+    </view>
+    <view wx:if="{{ level > 30 }}">
+      <view class="form-item">
+        <text class="itemname">家庭成员关系:{{ familylist.length > 0 ? '' : ' 暂未提供' }}</text>
+      </view>
+      <view class="form-famlily" wx:if="{{ level > 30 && familylist.length > 0 }}">
+        <view class="famlily-content">姓名</view>
+        <view class="famlily-content">称谓</view>
+        <view class="famlily-content-add">手机号</view>
+        <view class="famlily-content-add">联系地址</view>
+      </view>
+      <view wx:if="{{ level > 30 && familylist.length > 0 }}">
+        <view wx:for="{{familylist}}" wx:key="{{item}}">
+            <view class="form-famlily">
+              <view class="famlily-content">{{item.name}}</view>
+              <view class="famlily-content">{{item.appellation}}</view>
+              <view class="famlily-content-add">{{item.mobile}}</view>
+              <text class="famlily-content-add famlily-content-text">{{item.address}}</text>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view class="form-item" wx:if="{{ level > 50 }}">
+      <text class="itemname">个人征信证明:{{credit_attachmentlist.length ? '' : ' 暂未提供'}}</text>
+    </view>
+    <view class="attachment" wx:if="{{level > 50 && credit_attachmentlist.length > 0}}">
+        <view wx:for="{{credit_attachmentlist}}" wx:key="{{item.id}}">
+          <image class="imagesize" mode='scaleToFill' src="{{item.downloadurl}}" data-files="{{credit_attachmentlist}}" data-file="{{item}}" catchtap="showZoomFile" />
+        </view>
     </view>
     <button type="default" class="login-btn" bindtap="loginOut">退出登录</button>
   </view>

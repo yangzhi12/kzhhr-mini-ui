@@ -1,6 +1,7 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var app = getApp()
+
 Page({
   data: {
     id: '',
@@ -17,13 +18,28 @@ Page({
     state: '',
     statename: '',
     registertype: '',
-    isreferee: ''
+    isreferee: '',
+    email:'',
+    bankno:'',
+    bankaddress:'',
+    resume_attachmentlist: [],
+    credit_attachmentlist: [],
+    familylist: [],
+    
+    name: '',
+    appellation: '',
+    mobilefam: '',
+    address: '',
+    famtotal:0,
+    resp:{}
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
   },
-  onReady: function() {},
+  onReady: function() {
+    
+  },
   onShow: function() {
     // 页面显示
     this.getPersonalInfo()
@@ -81,17 +97,81 @@ Page({
     _this.setData({
       id: userInfo.id,
       username: userInfo.username,
-      gender: util.getGenderName(userInfo.gender),
+      gender: userInfo.gender,
+      gendername: util.getGenderName(userInfo.gender), 
       mobile: userInfo.mobile,
       certificate: userInfo.certificate,
       weixinno: userInfo.weixin_no,
-      level: util.getLevelName(userInfo.level),
-      state: util.getStateName(userInfo.state),
+      level: userInfo.level,
+      levelname: util.getLevelName(userInfo.level),
+      statename: userInfo.state,
+      statename: util.getStateName(userInfo.state),
       isreferee: userInfo.register_type,
       registertype: util.getRefereeName(userInfo.register_type),
       refereename: userInfo.register_type === 'REF' ? userInfo.refereename : null,
-      refereemobile: userInfo.register_type === 'REF' ? userInfo.refereemobile : null
+      refereemobile: userInfo.register_type === 'REF' ? userInfo.refereemobile : null,
+      email: userInfo.email || '',
+      address: userInfo.address || '',
+      bankaddress: userInfo.bankaddress || '',
+      bankno: userInfo.bankno || '' ,
+      // 个人简历
+      resume_attachmentlist: userInfo.attachmentlist ? 
+      userInfo.attachmentlist.filter(
+        (item) => {
+          return item.category === '000'
+        }
+      ) : [],
+      // 个人征信
+      credit_attachmentlist: userInfo.attachmentlist ?
+        userInfo.attachmentlist.filter(
+          (item) => {
+            return item.category === '010'
+          }
+      ) : [],
+      // 家庭成员
+      familylist: userInfo.familylist
     })
+  },
+  // 显示大图
+  showZoomFile: function (e) {
+    const dataset = e.currentTarget.dataset
+    const items = dataset.files
+    const item = dataset.file
+    if (this.fileTypeIsImage(item)) {
+      // 获取图片列表
+      let images = items.filter(i => {
+        return i.type === 'image'
+      })
+      let imagepaths = []
+      images.map(i => {
+        let url = i.downloadurl
+        imagepaths.push(url)
+      })
+      // 预览图片
+      wx.previewImage({
+        current: item.downloadurl,
+        urls: imagepaths
+      })
+    } else {
+      // 预览其他格式的文件 
+      let url = item.downloadurl
+      wx.downloadFile({
+        url: url,
+        success(res) {
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success(res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+    }
+  },
+  // 判断文件类型
+  fileTypeIsImage: function (item) {
+    return item.type === 'image'
   },
   /**
    * 点击修改密码触发
